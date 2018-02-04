@@ -4,7 +4,8 @@
   "description": "Geo Jumper Frontend",
   "main": "index.js",
   "scripts": {
-    "test": "jest -i --coverage"
+    "test": "jest -i --coverage",
+    "watch": "webpack-dev-server --inline --hot"
   },
   "repository": {
     "type": "git",
