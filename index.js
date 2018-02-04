@@ -4,10 +4,10 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 
-// Serve favicon
-app.use(favicon(`${__dirname}/src/images/favicon.ico`));
+// // Serve favicon
+// app.use(favicon(`${__dirname}/src/images/favicon.ico`));
 
 // Static mounts
 app.use(express.static(`${__dirname}/build`));

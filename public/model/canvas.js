@@ -1,4 +1,4 @@
-let canvas = document.getElementById('geo-jumper');
+let canvas = document.getElementById('playground');
 let ctx = canvas.getContext('2d');
 
 const CANVAS_WIDTH = 900;

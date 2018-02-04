@@ -1,82 +1,117 @@
-// import React, { Component } from 'react';
+'use strict';
 
-// class Game extends Component {
-//   constructor(props) {
-//     super(props);
+import { CANVAS_HEIGHT, CANVAS_WIDTH, ctx, FRICTION, GRAVITY } from './model/canvas';
+import Player from './model/player';
+import Brick from './model/brick';
+import Spike from './model/spike';
 
-//   }
+// ==================================================
+// ================ WINDOW RENDERING ================
+// ==================================================
+(function() {
+  const requestAnimationFrame = 
+  window.requestAnimationFrame || 
+  window.mozRequestAnimationFrame || 
+  window.webkitRequestAnimationFrame || 
+  window.msRequestAnimationFrame;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
 
-//   render() {
-//     return (
-//       // bricks={bricks}
-//       // spikes={spikes}
+// ==================================================
+// =============== KEYBOARD LISTENERS ===============
+// ==================================================
+let keyboard = {};
 
-//     );
-//   }
-// }
-import { 
-  CANVAS_HEIGHT,
-  CANVAS_WIDTH,
-  ctx,
-  FRICTION,
-  GRAVITY,
-} from './canvas-properties';
+let player = new Player();
 
-export default (player, bricks, spikes) => {
-  (function() {
-    const requestAnimationFrame = 
-    window.requestAnimationFrame || 
-    window.mozRequestAnimationFrame || 
-    window.webkitRequestAnimationFrame || 
-    window.msRequestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-  })();
+let bricks = [
+  new Brick(),
+  new Brick(100, 200),
+  new Brick(200, 100),
+  new Brick(375, 100),
+];
+// ====HAZARDS===== 
+let spikes = [
+  new Spike(100),
+  new Spike(300),
+  new Spike(500),
+  new Spike(700),
+];
+
+
+
+
+
+
+document.addEventListener('keydown', (event) => {
+  // console.log(event.keyCode);
+  if (event.keyCode === 40 && !player.crouching) {
+    player.crouching = true;
+    if (player.direction === 'right') {
+      player.x += player.default.width / 2;    
+      player.y += player.default.height * 0.75;    
+    } else {
+      player.x -= player.default.height * 0.875;
+      player.y += player.default.height * 0.75;    
+    }
+  }
+
+  if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
+    player.jump();
+  }
+  keyboard[event.keyCode] = true;
+});
+
+document.addEventListener('keyup', (event) => {
+  if (event.keyCode === 40 && player.crouching) {
+    player.crouching = false;
+    if (player.direction === 'right') {
+      player.x -= player.default.width / 2;    
+      player.y -= player.default.height * 0.75;    
+    } else {
+      player.x += player.default.height * 0.875;
+      player.y -= player.default.height * 0.75;    
+    }
+  }
+
+  player.jumping = false;
+  keyboard[event.keyCode] = false;
+});
+
+// ==================================================
+// ================== UPDATE PAGE ===================
+// ==================================================
+function update() {
+  player.stand();
+  player.setDirection();
+  player.moveRight(keyboard);
+  player.moveLeft(keyboard);
+  player.glide(keyboard);
   
-  let keyboard = {};
+  if (keyboard[40]) { // 40 === 'down arrow'
+    player.slide();
+  } else {
+    player.velX *= FRICTION;
+  }
+  player.velY += GRAVITY;
 
-  // ==================================================
-  // =================== CONTROLS =====================
-  // ==================================================
-  document.addEventListener('keydown', (event) => {
-    // console.log(event.keyCode);
-    if (event.keyCode === 40 && !player.crouching) {
-      player.crouching = true;
-      if (player.direction === 'right') {
-        player.x += player.default.width / 2;    
-        player.y += player.default.height * 0.75;    
-      } else {
-        player.x -= player.default.height * 0.875;
-        player.y += player.default.height * 0.75;    
-      }
-    }
+  player.x += player.velX;
+  player.y += player.velY;
 
-    if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
-      player.jump();
-    }
-    keyboard[event.keyCode] = true;
-  });
-
-  document.addEventListener('keyup', (event) => {
-    if (event.keyCode === 40 && player.crouching) {
-      player.crouching = false;
-      if (player.direction === 'right') {
-        player.x -= player.default.width / 2;    
-        player.y -= player.default.height * 0.75;    
-      } else {
-        player.x += player.default.height * 0.875;
-        player.y -= player.default.height * 0.75;    
-      }
-    }
-
-    player.jumping = false;
-    keyboard[event.keyCode] = false;
-  });
+  setBorders(player);
+  collisionCheck(player, bricks);
+  spikeCheck(player, spikes);
 
 
-  window.addEventListener('load', () => {
-    update(player, bricks, spikes, keyboard);
-  });
-};
+  clearCanvas(document.getElementById('playground').getContext('2d'));
+  bricks.forEach(brick => brick.render());
+  spikes.forEach(spike => spike.render());
+  player.render();
+
+  requestAnimationFrame(update);
+}
+
+
 
 // ==================================================
 // ==================== ACTIONS =====================
@@ -120,6 +155,7 @@ function collisionCheck(player, objects) {
     }
   });
 }
+
 
 // RESET PLAYER WHEN SPIKE IS TOUCHED
 function spikeCheck(player, spikes) {
@@ -174,36 +210,10 @@ function setLeftAndRightBorders(model) {
 // ==================================================
 // ==================== RENDER =====================
 // ==================================================
-function clearCanvas() {
+function clearCanvas(ctx) {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
-function update(player, bricks, spikes, keyboard) {
-  player.stand();
-  player.setDirection();
-  player.moveRight(keyboard);
-  player.moveLeft(keyboard);
-  player.glide(keyboard);
-  
-  if (keyboard[40]) { // 40 === 'down arrow'
-    player.slide();
-  } else {
-    player.velX *= FRICTION;
-  }
-  player.velY += GRAVITY;
-
-  player.x += player.velX;
-  player.y += player.velY;
-
-  setBorders(player);
-  collisionCheck(player, bricks);
-  spikeCheck(player, spikes);
-
-
-  clearCanvas();
-  bricks.forEach(brick => brick.render());
-  spikes.forEach(spike => spike.render());
-  player.render();
-
-  requestAnimationFrame(update);
-}
+window.addEventListener('load', () => {
+  update();
+});

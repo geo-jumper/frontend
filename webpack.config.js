@@ -13,7 +13,7 @@ const webPackConfig = module.exports = {};
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
-webPackConfig.entry = `${__dirname}/src/main.js`;
+webPackConfig.entry = `${__dirname}/public/main.js`;
 webPackConfig.output = {
   filename: 'bundle.[hash].js',
   path: `${__dirname}/build`,
@@ -21,7 +21,7 @@ webPackConfig.output = {
 };
 
 webPackConfig.plugins = [
-  new HTMLPlugin({template: `${__dirname}/src/index.html`}),
+  new HTMLPlugin({template: `${__dirname}/public/index.html`}),
   new EnvironmentPlugin(['NODE_ENV']),
   new DefinePlugin({
     __API_URL__: JSON.stringify(process.env.API_URL),

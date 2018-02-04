@@ -1,10 +1,13 @@
-import { 
-  CANVAS_HEIGHT,
+const io = require('socket.io-client');
+const socket = io('http://localhost:3000');
+import {
   CANVAS_WIDTH,
-  ctx,
+  CANVAS_HEIGHT,
   FRICTION,
   GRAVITY,
-} from './canvas-properties';
+} from './canvas';
+
+let ctx = document.getElementById('playground').getContext('2d');
 
 // ========================================
 // =========== PLAYER ATTRIBUTES ==========
@@ -104,6 +107,9 @@ export default class Player {
   render() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
+
+    let { x, y, width, height } = this;
+    socket.emit('update-player', ({ x, y, width, height }));
   }
 
   setDirection() {
