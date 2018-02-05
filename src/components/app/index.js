@@ -5,6 +5,7 @@ import Landing from '../landing';
 import Matchmaking from '../matchmaking';
 import Countdown from '../countdown';
 import Game from '../canvas-game';
+import MatchResults from '../match-results';
 
 class App extends React.Component {
   constructor(props){
@@ -21,6 +22,7 @@ class App extends React.Component {
             <Route exact path='/matchmaking' component={Matchmaking}/>
             <Route exact path='/countdown' component={Countdown}/>
             <Route exact path='/game' component={Game}/>
+            <Route exact path='/matchresults' component={MatchResults}/>
           </div>
         </BrowserRouter>
       </div>

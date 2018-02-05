@@ -32,9 +32,7 @@ class Matchmaking extends React.Component {
     return (
       <div id = "matchmaking">
         <h1> Matchmaking </h1>
-
         {isSearching}
-
       </div>
     );
   }
