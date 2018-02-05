@@ -6,6 +6,7 @@ import Landing from '../landing';
 import Game from '../canvas-game';
 import Matchmaking from '../matchmaking';
 import Countdown from '../countdown';
+import MatchResults from '../match-results';
 
 class App extends React.Component {
   constructor(props){
@@ -26,6 +27,8 @@ class App extends React.Component {
             <Route exact path='/profile' component={Profile}/> */}
             <Route exact path='/matchmaking' component={Matchmaking}/>
             <Route exact path='/countdown' component={Countdown}/>
+            <Route exact path='/matchresults' component={MatchResults}/>
+
           </div>
         </BrowserRouter>
       </div>
