@@ -7,6 +7,7 @@ class Landing extends React.Component {
 
     
   }
+  
   render(){
     return (
       <div id ="landing">
@@ -16,4 +17,5 @@ class Landing extends React.Component {
     );
   }
 }
+
 export default Landing;

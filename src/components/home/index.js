@@ -5,8 +5,6 @@ import SignUpForm from '../signup-form';
 import LogInForm from '../login-form';
 import ContinueAnonymously from '../continue-anonymously';
 
-
-
 class Home extends React.Component {
   render() {
     return (
@@ -16,8 +14,6 @@ class Home extends React.Component {
         <SignUpForm/>
         <LogInForm/>
         <ContinueAnonymously/>
-
-
 
       </div>
 
