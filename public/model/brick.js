@@ -3,7 +3,8 @@ class Brick {
     // DEFAULTS
     x = CANVAS_WIDTH / 10, 
     y = CANVAS_HEIGHT - 100, 
-    width = Math.floor(Math.random() * 80) + 60,  //random brick size between 60-80
+    // width = Math.floor(Math.random() * 80) + 60,  //random brick size between 60-80
+    width = 60,
     height = 10
   ) {
     this.type = 'platform';
