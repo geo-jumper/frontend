@@ -1,21 +1,28 @@
 import React from 'react';
 import { getSocket } from '../../utils/socketIO';
-
-const socket = getSocket();
-
+import { withRouter } from 'react-router';
 
 class Matchmaking extends React.Component {
   constructor(props){
     super(props);
-    this.state = {searching:true};
-      
+    this.state = {
+      searching: true,
+      socket: null,
+    };
+
   }
 
+  componentWillMount() {
+    this.setState({ socket: getSocket() });
+  }
 
-  render(){
-    // socket.on('match-found', () => {
-    //   this.setState({ searching: false });
-    // });
+  render() {
+    const { history } = this.props;
+
+    this.state.socket.on('match-found', () => {
+      this.setState({ searching: false });
+      history.push('/countdown');
+    });
 
     let isSearching = this.state.searching ?
       <p>1/2 Players found ...</p> :
@@ -25,11 +32,14 @@ class Matchmaking extends React.Component {
     return (
       <div id = "matchmaking">
         <h1> Matchmaking </h1>
-        
+
         {isSearching}
 
       </div>
     );
   }
 }
-export default Matchmaking;
+
+const MatchmakingWithRouter = withRouter(Matchmaking);
+
+export default MatchmakingWithRouter;

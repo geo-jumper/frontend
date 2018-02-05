@@ -14,4 +14,4 @@ const FindGame = withRouter(({history}) => {
   );
 });
 
-export default FindGame; 
+export default FindGame;
