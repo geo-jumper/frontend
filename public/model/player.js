@@ -1,18 +1,6 @@
-const io = require('socket.io-client');
-const socket = io('http://localhost:3000');
-import {
-  CANVAS_WIDTH,
-  CANVAS_HEIGHT,
-  FRICTION,
-  GRAVITY,
-} from './canvas';
+const socket = io();
 
-let ctx = document.getElementById('playground').getContext('2d');
-
-// ========================================
-// =========== PLAYER ATTRIBUTES ==========
-// ========================================
-export default class Player {
+class Player {
   constructor() {
     this.type = 'character';
     this.color = 'orangered';
@@ -37,6 +25,8 @@ export default class Player {
     this.falling = true;
     this.direction = 'right';
 
+    this.playerInterval = 0;
+    this.secondPlayer = {};
   }
   
   // ========================================
@@ -108,8 +98,21 @@ export default class Player {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
 
-    let { x, y, width, height } = this;
-    socket.emit('update-player', ({ x, y, width, height }));
+    
+    ctx.fillStyle = this.secondPlayer.color;
+    ctx.fillRect(this.secondPlayer.x, this.secondPlayer.y, this.secondPlayer.width, this.secondPlayer.height);
+    
+    if (this.playerInterval === 0) {
+      this.playerInterval = 2;
+
+      let { x, y, width, height, color } = this;
+      socket.emit('update-player', ({ x, y, width, height, color : 'blue' }));
+
+      socket.on('render-players', (playerObject) => {
+        this.secondPlayer = playerObject;
+      });
+    }
+    this.playerInterval --;
   }
 
   setDirection() {

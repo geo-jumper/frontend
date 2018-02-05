@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/main.css">
     <title> Interactive Canvas </title>
   </head>
   <body>
+    <script src="/socket.io/socket.io.js"></script>
     <canvas id="playground">
+      <!-- Load Canvas Properties First -->
+      <script src="model/canvas.js"></script>
+
+      <!-- Configure Game Models -->
+      <script src="model/brick.js"></script>
+      <script src="model/spike.js"></script>
+      <script src="model/player.js"></script>
+      
+      <!-- Render Game -->
+      <script src="main.js"></script>
     </canvas>
   </body>
 </html>

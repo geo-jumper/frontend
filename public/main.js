@@ -1,10 +1,3 @@
-'use strict';
-
-import { CANVAS_HEIGHT, CANVAS_WIDTH, ctx, FRICTION, GRAVITY } from './model/canvas';
-import Player from './model/player';
-import Brick from './model/brick';
-import Spike from './model/spike';
-
 // ==================================================
 // ================ WINDOW RENDERING ================
 // ==================================================

@@ -8,11 +8,3 @@ const GRAVITY = 0.85;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
-
-export default {
-  CANVAS_WIDTH,
-  CANVAS_HEIGHT,
-  ctx,
-  FRICTION,
-  GRAVITY,
-};

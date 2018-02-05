@@ -1,13 +1,4 @@
-import {
-  CANVAS_WIDTH,
-  CANVAS_HEIGHT,
-  FRICTION,
-  GRAVITY,
-} from './canvas';
-
-let ctx = document.getElementById('playground').getContext('2d');
-
-export default class Brick {
+class Brick {
   constructor(
     // DEFAULTS
     x = CANVAS_WIDTH / 10, 

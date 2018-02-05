@@ -1,22 +1,40 @@
 'use strict';
 
 require('dotenv').config();
+let PORT = process.env.PORT || 3000;
 
-const express = require('express');
-const app = express();
-// const favicon = require('serve-favicon');
+let express = require('express');
+let app = express();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
 
-// // Serve favicon
-// app.use(favicon(`${__dirname}/src/images/favicon.ico`));
+app.use(express.static('./public'));
 
-// Static mounts
-app.use(express.static(`${__dirname}/build`));
+const USERS = {};
 
-// Serve index.html
-app.get('*', (request, response) => {
-  response.sendFile(`${__dirname}/build/index.html`);
+io.on('connection', (socket) => {
+  console.log(`${socket.id} connected.`);
+  USERS[socket.id] = {};
+  USERS[socket.id].username = 'anon';
+  
+  
+  socket.on('disconnect', () => {
+    console.log(`${socket.id} disconnected.`);
+    delete USERS[socket.id];
+  });
+
+  socket.on('update-player', (playerObject) => {
+    // player object = { x, y, width, height }
+    socket.broadcast.emit('render-players', playerObject);
+  });
+
+  // socket.on('set-username', ({username}) => {
+  //   USERS[socket.id].username = username;
+  //   console.log(`Username set for socket #${socket.id}`);
+  //   socket.emit('set-username-placeholder', {username});
+  // });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is up on PORT ${process.env.PORT}`);
+http.listen(PORT, () => {
+  console.log(`Server ready @ http://localhost:${PORT}`);
 });
