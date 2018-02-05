@@ -9,6 +9,8 @@
                                                                                   
 ```
 
+# Frontend Application
+
 #### `Staging` : [![Build Status](https://travis-ci.org/geo-jumper/frontend.svg?branch=staging)](https://travis-ci.org/geo-jumper/frontend)
 
 #### `Master` : [![Build Status](https://travis-ci.org/geo-jumper/frontend.svg?branch=master)](https://travis-ci.org/geo-jumper/frontend)
