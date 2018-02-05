@@ -12,7 +12,7 @@ describe('LoginForm', () => {
 
     expect(mountedLoginForm.state()).toEqual({});
   });
-  test('Testing that the component renders a SignUp form to the page', () => {
+  test('Testing that the component renders a Login form to the page', () => {
     const wrapper = shallow(
       <form></form>
     );
