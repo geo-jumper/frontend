@@ -1,10 +1,21 @@
 import React from 'react';
+import FindGame from '../find-game';
 
 class Landing extends React.Component {
-  render() {
+  constructor(props){
+    super(props);
+
+    
+  }
+  
+  render(){
     return (
-      <h1>LIFE</h1>
+      <div id ="landing">
+        <h1> Welcome to Geo-Jumper </h1>
+        <FindGame/>
+      </div>
     );
   }
 }
+
 export default Landing;

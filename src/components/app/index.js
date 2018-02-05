@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from  '../home';
 import Landing from '../landing';
 import Game from '../canvas-game';
+import Matchmaking from '../matchmaking';
+import Countdown from '../countdown';
 
 class App extends React.Component {
   constructor(props){
@@ -22,6 +24,8 @@ class App extends React.Component {
             <Route path='/game' component={Game}/>
             {/* <Route exact path ='/dashboard' component={Dashboard}/>
             <Route exact path='/profile' component={Profile}/> */}
+            <Route exact path='/matchmaking' component={Matchmaking}/>
+            <Route exact path='/countdown' component={Countdown}/>
           </div>
         </BrowserRouter>
       </div>
