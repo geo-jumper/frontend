@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import JoinGame from '../join-game';
 
 
 class Dashboard extends React.Component {
@@ -10,12 +11,12 @@ class Dashboard extends React.Component {
         <h1>Geo-Jumper</h1>
         <div id ="games">
           <button onClick={() => {
-            return <Link to="/jumper" component={GameLoader}/>;
+            return <Link to="/jumper" component={JoinGame}/>;
           }}>
       Demo
           </button>
           <button onClick={() => {
-            return <Link to="/jumper" component={GameLoader}/>;
+            return <Link to="/jumper" component={JoinGame}/>;
           }}>
       Join Game
           </button>

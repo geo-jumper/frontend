@@ -5,13 +5,7 @@ import {Router, Route} from 'react-router';
 
 //Dalton- On click user goes to /game
 const JoinGame = withRouter(({ GameLoader }) => {
-  return (
-    <button onClick={() => {
-      <Link to="/jumper" component={GameLoader}/>;
-    }}>
-      Join Game
-    </button>
-  );
+
 });
 
 export default JoinGame;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Dashboard from  '../dashboard';
+import { render } from 'react-dom';
 
 class Landing extends React.Component {
   constructor(props){
@@ -15,6 +16,7 @@ class Landing extends React.Component {
     this.setState({
       showComponent: true,
     });
+    <Route path="/dashboard" component={Dashboard}/>;
   }
 
 
@@ -29,14 +31,15 @@ class Landing extends React.Component {
               <Dashboard /> :
               null
             }
-            <button onClick={() => {
+            {/* <button onClick={() => {
               return <Link to="/dashboard" component={Dashboard}/>;
-            }}></button>
+            }}></button> */}
           </div>
 
           
           
         </BrowserRouter>
+        
       </div>
     );
   }
