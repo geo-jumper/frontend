@@ -30,6 +30,7 @@ class SignUpForm extends React.Component {
           value={this.state.username}
           onChange={this.handleChange}
         />
+        <br />
         <input
           name='email'
           placeholder='email'
@@ -37,6 +38,7 @@ class SignUpForm extends React.Component {
           value={this.state.email}
           onChange={this.handleChange}
         />
+        <br />
         <input
           name='password'
           placeholder='password'
@@ -44,6 +46,7 @@ class SignUpForm extends React.Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
+        <br />
         <button type='submit'>Sign up</button>
       </form>
       
