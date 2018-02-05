@@ -25,6 +25,9 @@ let bricks = [
 ];
 // ====HAZARDS===== 
 let spikes = [
+  new Spike(85, 200),
+  new Spike(180, 100),
+  new Spike(350, 40),
   new Spike(100),
   new Spike(300),
   new Spike(500),
@@ -35,9 +38,10 @@ let spikes = [
 
 
 
-
+// mattL - keydown === when a key is pressed
 document.addEventListener('keydown', (event) => {
   // console.log(event.keyCode);
+  // mattL - 40 === down arrow
   if (event.keyCode === 40 && !player.crouching) {
     player.crouching = true;
     if (player.direction === 'right') {
@@ -49,12 +53,14 @@ document.addEventListener('keydown', (event) => {
     }
   }
 
+  // mattL - 38 === up arrow
   if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
     player.jump();
   }
   keyboard[event.keyCode] = true;
 });
 
+// mattL - keyup === when a key is released
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 40 && player.crouching) {
     player.crouching = false;
@@ -96,7 +102,7 @@ function update() {
   spikeCheck(player, spikes);
 
 
-  clearCanvas(document.getElementById('playground').getContext('2d'));
+  clearCanvas(ctx);
   bricks.forEach(brick => brick.render());
   spikes.forEach(spike => spike.render());
   player.render();
@@ -119,7 +125,7 @@ function collisionCheck(player, objects) {
     // add the half widths and half heights of the objects
     let collisionDirection = null;
   
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+    // if the x and y vector are less than the half width or half height, they must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {         
       // figures out on which side we are colliding (top, bottom, left, or right)
       var distanceX = halfWidths - Math.abs(vectorX),             
@@ -149,7 +155,6 @@ function collisionCheck(player, objects) {
   });
 }
 
-
 // RESET PLAYER WHEN SPIKE IS TOUCHED
 function spikeCheck(player, spikes) {
   spikes.forEach(spike => {
@@ -159,7 +164,6 @@ function spikeCheck(player, spikes) {
     let halfWidths = (player.width / 2) + (spike.width / 2);
     let halfHeights = (player.height / 2) + (spike.height / 2);
     // add the half widths and half heights of the objects
-    let collisionDirection = null;
   
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {

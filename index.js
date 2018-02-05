@@ -27,12 +27,6 @@ io.on('connection', (socket) => {
     // player object = { x, y, width, height }
     socket.broadcast.emit('render-players', playerObject);
   });
-
-  // socket.on('set-username', ({username}) => {
-  //   USERS[socket.id].username = username;
-  //   console.log(`Username set for socket #${socket.id}`);
-  //   socket.emit('set-username-placeholder', {username});
-  // });
 });
 
 http.listen(PORT, () => {

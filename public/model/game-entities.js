@@ -1,4 +1,22 @@
-const socket = io();
+// ========================================
+// ============= CANVAS SETUP =============
+// ========================================
+let canvas = document.getElementById('playground');
+let ctx = canvas.getContext('2d');
+
+const CANVAS_WIDTH = 900;
+const CANVAS_HEIGHT = 400;
+const FRICTION = 0.85;
+const GRAVITY = 0.85;
+
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
+
+// ========================================
+// ============= PLAYER MODEL =============
+// ========================================
+import io from 'socket.io-client';
+const socket = io('http://localhost:3000');
 
 class Player {
   constructor() {
@@ -29,9 +47,7 @@ class Player {
     this.secondPlayer = {};
   }
   
-  // ========================================
   // ============ PLAYER ACTIONS ============
-  // ========================================
   resetPosition(){
     this.velY = 0;
     this.velX = 0;
@@ -90,11 +106,7 @@ class Player {
     this.width = this.default.height;
   }
 
-
-  // ========================================
   // =========== PLAYER RENDERING ===========
-  // ========================================
-
   // mattL - set this color and size
   render() {
     ctx.fillStyle = this.color;
@@ -124,5 +136,70 @@ class Player {
     } else {
       this.direction = 'left';
     }
+  }
+}
+
+// ========================================
+// ============= BRICK MODEL ==============
+// ========================================
+class Brick {
+  constructor(
+    // dalton - DEFAULTS
+    x = CANVAS_WIDTH / 10, 
+    y = CANVAS_HEIGHT - 100, 
+    width = 60,
+    height = 10
+  ) {
+    this.type = 'platform';
+    this.color = '#333333';
+
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
+
+  // ============= BRICK RENDERING ==============
+  render() {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}
+
+// ========================================
+// ============= SPIKE MODEL ==============
+// ========================================
+class Spike {
+  constructor(
+    // DEFAULTS
+    x = CANVAS_WIDTH - 100, 
+    y = CANVAS_HEIGHT - 10, 
+    width = 10, 
+    height = 10
+  ) {
+    this.type = 'spike';
+    this.color = 'red';
+
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
+  
+  // ============= SPIKE RENDERING ==============
+  render() {
+    ctx.fillStyle = this.color;
+    // ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.beginPath();
+    ctx.moveTo(this.x + (this.width / 2), this.y + this.height); // top point
+    ctx.lineTo(this.x, this.y); // left point
+    ctx.lineTo(this.x + this.width, this.y); // right point
+    ctx.fill(); 
+
+    ctx.beginPath();
+    ctx.moveTo(this.x + (this.width / 2), this.y); // top point
+    ctx.lineTo(this.x - (this.width / 2), this.y); // left point
+    ctx.lineTo(this.x + (this.width / 2), this.y - this.height); // right point
+    ctx.fill(); 
   }
 }
