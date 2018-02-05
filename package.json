@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/geo-jumper/frontend#readme",
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
     "jest": "^22.1.4",
     "redux-devtools-extension": "^2.13.2"
