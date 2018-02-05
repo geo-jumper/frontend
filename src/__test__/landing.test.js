@@ -14,6 +14,13 @@ describe('Landing', () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('render a div id', () => {
+    const wrapper = shallow(
+      <div id="landing"></div>
+    );
+    expect(wrapper.prop('id')).toEqual('landing');
+  });
 });
 
 
