@@ -13,9 +13,7 @@ class Matchmaking extends React.Component {
 
 
   render(){
-    // socket.on('match-found', () => {
-    //   this.setState({ searching: false });
-    // });
+
 
     let isSearching = this.state.searching ?
       <p>1/2 Players found ...</p> :
@@ -25,7 +23,7 @@ class Matchmaking extends React.Component {
     return (
       <div id = "matchmaking">
         <h1> Matchmaking </h1>
-        
+        <div className = "loader"> </div>
         {isSearching}
 
       </div>
