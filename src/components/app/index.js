@@ -6,7 +6,6 @@ import Matchmaking from '../matchmaking';
 import Countdown from '../countdown';
 import Game from '../canvas-game';
 import MatchResults from '../match-results';
-import AuthRedirect from '../auth-redirect';
 // mattL - images for tuxedo man to reference
 import leftTuxedoMan from '../../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../../images/right-tuxedo-man.png';
