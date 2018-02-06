@@ -1,3 +1,5 @@
+import {Howl, Howler} from 'howler';
+
 // ========================================
 // ============= CANVAS SETUP =============
 // ========================================
@@ -70,6 +72,10 @@ export class Player {
       if (this.velX < this.speed) {
         this.velX ++;
       }
+      const sound = new Howl ({
+        src: ['../../../../src/sound/sound-effects/Movement/Footsteps/sfx_movement_footsteps1a.wav'],
+      });
+      sound.play();
     }
   }
 
