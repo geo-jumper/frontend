@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class Countdown extends React.Component {
   constructor(props){
@@ -24,10 +24,18 @@ class Countdown extends React.Component {
 
     if (this.state.timer === 0) {
       clearInterval(this.countdown);
-      history.push('/game');
+      // history.push('/game');
     }
     return (
       <div id = "countdown">
+
+        {this.state.timer === 0 ? 
+          <Redirect to={{
+            pathname: '/game',
+            state: { level: 2 },
+          }}/> 
+          : undefined}
+
         <h1>{this.state.timer}</h1>
       </div>
     );
