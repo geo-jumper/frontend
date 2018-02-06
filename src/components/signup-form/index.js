@@ -10,7 +10,7 @@ import { HOME_ROUTE } from '../../routes';
 
 
 class SignUpForm extends React.Component {
-    
+
   constructor(props){
     super(props);
 
@@ -18,7 +18,6 @@ class SignUpForm extends React.Component {
       username: '',
       email: '',
       password: '',
-
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,16 +25,18 @@ class SignUpForm extends React.Component {
   }
   handleChange(event) {
     let {name, value} = event.target;
-    this.setState({ [name]: value }); 
+    
+    this.setState({ [name]: value });
   }
   handleSubmit(event){
     event.preventDefault();
+
     const {history} = this.props;
+
     let account = {};
     account.username = this.state.username;
     account.password = this.state.password;
     account.email = this. state.email;
-    // this.setState();
 
     return superagent.post(`${__API_URL__}${routes.SIGNUP_ROUTE}`)
       .send(account)
@@ -47,7 +48,7 @@ class SignUpForm extends React.Component {
   }
 
 
-  
+
   handleValidation(name, value) {
     if(this.props.type === 'login')
       return null;
@@ -69,11 +70,11 @@ class SignUpForm extends React.Component {
         return null;
     }
   }
-  
+
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}> 
+      <form onSubmit={this.handleSubmit}>
         <input
           name='username'
           placeholder='username'
@@ -100,7 +101,7 @@ class SignUpForm extends React.Component {
         <br />
         <button type='submit'>Sign up</button>
       </form>
-      
+
     );
   }
 }
