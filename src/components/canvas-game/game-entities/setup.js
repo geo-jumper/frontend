@@ -27,8 +27,9 @@ export class Player {
     this.default = {
       x: 10,
       y: CANVAS_HEIGHT - 400,
-      height: 40,
-      width: 10,
+      height: 28, // mattL - character height must be at least
+      //                     28 or they fall through the bricks
+      width: 20,
       jumpLimit: 2,
     };
 
@@ -45,6 +46,7 @@ export class Player {
     this.falling = true;
     this.direction = 'right';
 
+    this.characterFrame = 0;
     this.playerInterval = 0;
     this.secondPlayer = {};
   }
@@ -108,27 +110,174 @@ export class Player {
   }
 
   crouch() {
-    this.height = this.default.width;
-    this.width = this.default.height;
+    // this.height = this.default.width;
+    // this.width = this.default.height;
   }
 
   // =========== PLAYER RENDERING ===========
   // mattL - set this color and size
   render() {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    let characterStatus = null;
+    this.setFalling();
 
-    ctx.fillStyle = this.secondPlayer.color;
-    ctx.fillRect(this.secondPlayer.x, this.secondPlayer.y, this.secondPlayer.width, this.secondPlayer.height);
+    let standingCharacter = [
+      12, // image: x - location  
+      11, // image: y - location
+      11, // image: x - span
+      16, // image: y - span
+      this.x, // image: x- positioning
+      this.y, // image: y - positioning
+      this.width, // image: width
+      this.height + 2,  // image: height
+    ];
+
+    let movingCharacter = {
+      // sequence 1
+      1: [ 
+        52, // image: x - location  
+        11, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+      // sequence 2
+      2: [ 
+        52, // image: x - location  
+        40, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+      // sequence 3
+      3: [ 
+        52, // image: x - location  
+        71, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+      // sequence 4
+      4: [ 
+        52, // image: x - location  
+        101, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+      // sequence 5
+      5: [ 
+        52, // image: x - location  
+        130, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+      // sequence 6
+      6: [ 
+        52, // image: x - location  
+        161, // image: y - location
+        12, // image: x - span
+        16, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height + 2,  // image: height
+      ],
+    };
+
+    let parachute = [
+      214, // image: x - location  
+      10, // image: y - location
+      18, // image: x - span
+      16, // image: y - span
+      this.x - 5, // image: x- positioning
+      this.y - 25, // image: y - positioning
+      this.width + 10, // image: width
+      this.height + 6,  // image: height
+    ];
+
+    let crouchingCharacter = [
+      216, // image: x - location  
+      101, // image: y - location
+      12, // image: x - span
+      16, // image: y - span
+      this.x, // image: x- positioning
+      this.y, // image: y - positioning
+      this.width, // image: width
+      this.height + 2,  // image: height
+    ];
+
+    let jumpingCharacter = [
+      92, // image: x - location  
+      10, // image: y - location
+      14, // image: x - span
+      18, // image: y - span
+      this.x, // image: x- positioning
+      this.y, // image: y - positioning
+      this.width, // image: width
+      this.height + 2,  // image: height
+    ];
+
+    if (this.velY < 0) { // mattL - the player is rising up if velocity < 0
+      characterStatus = jumpingCharacter;
+      this.drawCharacter(jumpingCharacter);
+    }
+    else if (this.falling && this.crouching) {
+      characterStatus = [parachute, standingCharacter];
+      this.drawCharacter(parachute);
+      this.drawCharacter(standingCharacter);
+    }
+    else if (this.crouching) {
+      characterStatus = crouchingCharacter;
+      this.drawCharacter(crouchingCharacter);
+    }
+    // mattL - if the velocity is greater than 0.5 
+    //         then the player is moving at a noticeable rate
+    else if (Math.abs(this.velX) > 0.5) {
+      this.characterFrame += 1;
+      // mattL - increments the movingCharacter Frame Sequence to make the
+      //         character look like it's moving. '/ 5' sets the animation speed
+      let frame = Math.floor(this.characterFrame / 5);
+      // mattL - '(% 6) + 1' selects the character frame
+      //         ex: sequence 1 through 6
+      characterStatus = movingCharacter[(frame % 6) + 1];
+      this.drawCharacter(movingCharacter[(frame % 6) + 1]);
+    } else {
+      this.characterFrame = 0;
+      characterStatus = standingCharacter;
+      this.drawCharacter(standingCharacter);
+    }
+
+    // =========== Second Player ===========
+    this.drawOtherPlayer(this.secondPlayer);
 
     if (this.playerInterval === 0) {
       this.playerInterval = 2;
+      // console.log(characterStatus);
+      
+      socket.emit('update-player', ({
+        direction: this.direction,
+        characterStatus,
+      }));
 
-      let { x, y, width, height, color } = this;
-      socket.emit('update-player', ({ x, y, width, height, color : 'blue' }));
-
-      socket.on('render-players', (playerObject) => {
-        this.secondPlayer = playerObject;
+      socket.on('render-players', (secondPlayer) => {
+        // console.log('hi');
+        this.secondPlayer = secondPlayer;
       });
     }
 
@@ -136,10 +285,51 @@ export class Player {
   }
 
   setDirection() {
-    if (this.velX > 0) {
+    if (this.velX >= 0) {
       this.direction = 'right';
     } else {
       this.direction = 'left';
+    }
+  }
+
+  setFalling() {
+    if (this.velY <= 0) {
+      this.falling = false;
+    } else {
+      this.falling = true;
+    }
+  }
+
+  drawCharacter(properties) {
+    let leftTuxedoMan = document.getElementById('left-tuxedo-man');
+    let rightTuxedoMan = document.getElementById('right-tuxedo-man');
+    let tuxedoMan = null;
+
+    if (this.direction === 'left') {
+      tuxedoMan = leftTuxedoMan;  
+    } else {
+      tuxedoMan = rightTuxedoMan;
+    }
+    if (properties.length === 8) {
+      ctx.drawImage(tuxedoMan, ...properties);
+    }
+  }
+
+  drawOtherPlayer(secondPlayer) {
+    let leftTuxedoMan = document.getElementById('left-tuxedo-man');
+    let rightTuxedoMan = document.getElementById('right-tuxedo-man');
+    let tuxedoMan = null;
+
+    if (secondPlayer.direction === 'left') {
+      tuxedoMan = leftTuxedoMan;
+    } else {
+      tuxedoMan = rightTuxedoMan;
+    }
+
+    // mattL - we need secondPlayer.characterStatus to check, because it will break
+    //         at the beginning of the game because there's no data
+    if (secondPlayer.characterStatus && secondPlayer.characterStatus.length === 8) {
+      ctx.drawImage(tuxedoMan, ...secondPlayer.characterStatus);
     }
   }
 }
