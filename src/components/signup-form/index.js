@@ -1,13 +1,26 @@
 import React from 'react';
+import validator from 'validator';
+import superagent from 'superagent';
+import * as routes from '../../routes';
+import * as cookie from '../../lib/cookie';
+import { log } from 'util';
+
+
 
 class SignUpForm extends React.Component {
     
   constructor(props){
     super(props);
 
-    this.state = {};
+    this.state = {
+      username: '',
+      email: '',
+      password: '',
 
+    };
 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     let {name, value} = event.target;
@@ -15,14 +28,47 @@ class SignUpForm extends React.Component {
   }
   handleSubmit(event){
     event.preventDefault();
-    this.props.onComplete(this.state);
-    this.setState();
+    let account = {};
+    account.username = this.state.username;
+    account.password = this.state.password;
+    account.email = this. state.email;
+    // this.setState();
+
+    return superagent.post(`${__API_URL__}${routes.SIGNUP_ROUTE}`)
+      .send(account)
+      .then(response => {
+        console.log(response);
+      });
   }
+
+
+  
+  // handleValidation(name, value) {
+  //   if(this.props.type === 'login')
+  //     return null;
+
+  //   switch(name) {
+  //     case 'username':
+  //       if(value.length < 6)
+  //         return 'Your name must be at least 6 characters long';
+  //       return null;
+  //     case 'email':
+  //       if(!validator.isEmail(value))
+  //         return 'You must provide a valid email';
+  //       return null;
+  //     case 'password':
+  //       if(value.length < 8)
+  //         return 'Your password must be at least 8 characters long';
+  //       return null;
+  //     default:
+  //       return null;
+  //   }
+  // }
   
 
   render() {
     return(
-      <form> 
+      <form onSubmit={this.handleSubmit}> 
         <input
           name='username'
           placeholder='username'
