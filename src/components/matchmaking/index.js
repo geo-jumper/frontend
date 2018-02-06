@@ -1,6 +1,6 @@
 import React from 'react';
-// import { updateSocket } from '../canvas-game/game-entities/setup';
 import { getSocket } from '../../utils/socketIO';
+import { updateSocket } from '../canvas-game/game-entities/setup';
 
 class Matchmaking extends React.Component {
   constructor(props){
@@ -22,7 +22,7 @@ class Matchmaking extends React.Component {
     if (this.state.socket) {
       this.state.socket.on('match-found', () => {
         this.setState({ searching: false });
-        // updateSocket(this.state.socket);
+        updateSocket(getSocket);
         history.push('/countdown');
       });
     }
