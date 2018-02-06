@@ -1,6 +1,6 @@
 import React from 'react';
+// import { updateSocket } from '../canvas-game/game-entities/setup';
 import { getSocket } from '../../utils/socketIO';
-import { withRouter } from 'react-router';
 
 class Matchmaking extends React.Component {
   constructor(props){
@@ -16,13 +16,19 @@ class Matchmaking extends React.Component {
     this.setState({ socket: getSocket() });
   }
 
-  render() {
+  componentDidMount() {
     const { history } = this.props;
 
-    this.state.socket.on('match-found', () => {
-      this.setState({ searching: false });
-      history.push('/countdown');
-    });
+    if (this.state.socket) {
+      this.state.socket.on('match-found', () => {
+        this.setState({ searching: false });
+        // updateSocket(this.state.socket);
+        history.push('/countdown');
+      });
+    }
+  }
+
+  render() {
 
     let isSearching = this.state.searching ?
       <p>1/2 Players found ...</p> :
@@ -38,6 +44,4 @@ class Matchmaking extends React.Component {
   }
 }
 
-const MatchmakingWithRouter = withRouter(Matchmaking);
-
-export default MatchmakingWithRouter;
+export default Matchmaking;
