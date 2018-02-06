@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateSocket } from '../canvas-game/game-entities/setup';
 import { getSocket } from '../../utils/socketIO';
 
 class Matchmaking extends React.Component {
@@ -21,6 +22,7 @@ class Matchmaking extends React.Component {
     if (this.state.socket) {
       this.state.socket.on('match-found', () => {
         this.setState({ searching: false });
+        updateSocket(this.state.socket);
         history.push('/countdown');
       });
     }
