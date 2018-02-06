@@ -18,13 +18,16 @@ class Countdown extends Component {
     },1000);
   }
 
-  render(){
+  componentDidUpdate() {
     const { history } = this.props;
 
     if (this.state.timer === 0) {
       clearInterval(this.countdown);
       history.push('/game');
     }
+  }
+
+  render(){
     return (
       <div id = "countdown">
         <h1>{this.state.timer}</h1>

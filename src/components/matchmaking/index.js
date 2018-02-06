@@ -16,15 +16,17 @@ class Matchmaking extends React.Component {
   }
 
   componentDidMount() {
-    this.state.socket.on('match-found', () => {
-      this.setState({ searching: false });
-      history.push('/countdown');
-    });
+    const { history } = this.props;
+
+    if (this.state.socket) {
+      this.state.socket.on('match-found', () => {
+        this.setState({ searching: false });
+        history.push('/countdown');
+      });
+    }
   }
 
   render() {
-    const { history } = this.props;
-
 
     let isSearching = this.state.searching ?
       <p>1/2 Players found ...</p> :
