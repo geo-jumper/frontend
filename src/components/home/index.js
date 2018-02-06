@@ -10,11 +10,9 @@ class Home extends React.Component {
     return (
       <div id="home">
         <h1>Geo-Jumper</h1>
-        
         <SignUpForm/>
         <LogInForm/>
         <ContinueAnonymously/>
-
       </div>
 
     );

@@ -29,7 +29,7 @@ export class Player {
       width: 10,
       jumpLimit: 2,
     };
-  
+
     this.x = this.default.x;
     this.y = this.default.y;
     this.width = this.default.width;
@@ -46,7 +46,7 @@ export class Player {
     this.playerInterval = 0;
     this.secondPlayer = {};
   }
-  
+
   // ============ PLAYER ACTIONS ============
   resetPosition(){
     this.velY = 0;
@@ -54,7 +54,7 @@ export class Player {
     this.x = this.default.x;
     this.y = this.default.y;
   }
-  
+
   resetJump() {
     this.jumpLimit = this.default.jumpLimit;
   }
@@ -65,7 +65,7 @@ export class Player {
     this.jumpLimit --;
   }
 
-  moveRight(keyboard) {  
+  moveRight(keyboard) {
     if (keyboard[39] && !keyboard[40]) { // 39 === 'right arrow'
       if (this.velX < this.speed) {
         this.velX ++;
@@ -85,7 +85,7 @@ export class Player {
     this.width = this.default.width;
     this.height = this.default.height;
   }
-  
+
   // mattL - occurs when crouching with velocity on the ground
   slide() {
     this.velX *= (FRICTION * 1.160);
@@ -111,10 +111,10 @@ export class Player {
   render() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
-    
+
     ctx.fillStyle = this.secondPlayer.color;
     ctx.fillRect(this.secondPlayer.x, this.secondPlayer.y, this.secondPlayer.width, this.secondPlayer.height);
-    
+
     if (this.playerInterval === 0) {
       this.playerInterval = 2;
 
@@ -144,8 +144,8 @@ export class Player {
 export class Brick {
   constructor(
     // dalton - DEFAULTS
-    x = CANVAS_WIDTH / 10, 
-    y = CANVAS_HEIGHT - 100, 
+    x = CANVAS_WIDTH / 10,
+    y = CANVAS_HEIGHT - 100,
     width = 60,
     height = 10
   ) {
@@ -171,9 +171,9 @@ export class Brick {
 export class Spike {
   constructor(
     // DEFAULTS
-    x = CANVAS_WIDTH - 100, 
-    y = CANVAS_HEIGHT - 10, 
-    width = 10, 
+    x = CANVAS_WIDTH - 100,
+    y = CANVAS_HEIGHT - 10,
+    width = 10,
     height = 10
   ) {
     this.type = 'spike';
@@ -184,7 +184,7 @@ export class Spike {
     this.width = width;
     this.height = height;
   }
-  
+
   // ============= SPIKE RENDERING ==============
   render() {
     ctx.fillStyle = this.color;
@@ -193,12 +193,12 @@ export class Spike {
     ctx.moveTo(this.x + (this.width / 2), this.y + this.height); // top point
     ctx.lineTo(this.x, this.y); // left point
     ctx.lineTo(this.x + this.width, this.y); // right point
-    ctx.fill(); 
+    ctx.fill();
 
     ctx.beginPath();
     ctx.moveTo(this.x + (this.width / 2), this.y); // top point
     ctx.lineTo(this.x - (this.width / 2), this.y); // left point
     ctx.lineTo(this.x + (this.width / 2), this.y - this.height); // right point
-    ctx.fill(); 
+    ctx.fill();
   }
 }
