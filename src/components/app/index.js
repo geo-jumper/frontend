@@ -6,10 +6,10 @@ import Matchmaking from '../matchmaking';
 import Countdown from '../countdown';
 import Game from '../canvas-game';
 import MatchResults from '../match-results';
+import AuthRedirect from '../auth-redirect';
 // mattL - images for tuxedo man to reference
 import leftTuxedoMan from '../../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../../images/right-tuxedo-man.png';
-
 
 class App extends React.Component {
   constructor(props){
@@ -22,6 +22,8 @@ class App extends React.Component {
         <BrowserRouter>
           <div>
             <Route exact path='/' component={Home}/>
+            <Route exact path='/signup' component={Home}/>
+            <Route exact path='/login' component={Home}/>
             <Route exact path='/landing' component={Landing}/>
             <Route exact path='/matchmaking' component={Matchmaking}/>
             <Route exact path='/countdown' component={Countdown}/>
