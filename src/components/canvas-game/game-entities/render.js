@@ -46,15 +46,7 @@ document.addEventListener('keydown', (event) => {
   // mattL - 40 === down arrow
   if (event.keyCode === 40 && !player.crouching) {
     player.crouching = true;
-    if (player.direction === 'right') {
-      player.x += player.default.width / 2;    
-      player.y += player.default.height * 0.75;    
-    } else {
-      player.x -= player.default.height * 0.875;
-      player.y += player.default.height * 0.75;    
-    }
   }
-
   // mattL - 38 === up arrow
   if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
     player.jump();
@@ -66,15 +58,7 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 40 && player.crouching) {
     player.crouching = false;
-    if (player.direction === 'right') {
-      player.x -= player.default.width / 2;    
-      player.y -= player.default.height * 0.75;    
-    } else {
-      player.x += player.default.height * 0.875;
-      player.y -= player.default.height * 0.75;    
-    }
   }
-
   player.jumping = false;
   keyboard[event.keyCode] = false;
 });
@@ -183,6 +167,7 @@ function setTopAndBottomBorders(model) {
   // mattL - configure the bottom of canvas
   if (model.y >= game.CANVAS_HEIGHT - model.height) {
     model.y = game.CANVAS_HEIGHT - model.height;
+    model.velY = 0;
     
     if (model.type === 'character') {
       model.resetJump();

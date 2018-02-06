@@ -6,6 +6,10 @@ import Matchmaking from '../matchmaking';
 import Countdown from '../countdown';
 import Game from '../canvas-game';
 import MatchResults from '../match-results';
+// mattL - images for tuxedo man to reference
+import leftTuxedoMan from '../../images/left-tuxedo-man.png';
+import rightTuxedoMan from '../../images/right-tuxedo-man.png';
+
 
 class App extends React.Component {
   constructor(props){
@@ -23,6 +27,12 @@ class App extends React.Component {
             <Route exact path='/countdown' component={Countdown}/>
             <Route exact path='/game' component={Game}/>
             <Route exact path='/matchresults' component={MatchResults}/>
+
+            {/* mattL - Image Dump for Tuxedo Man */}
+            <div id='image-dump' style={{display: 'none'}}>
+              <img id='left-tuxedo-man' src={leftTuxedoMan} alt="Left Tuxedo Man" />
+              <img id='right-tuxedo-man' src={rightTuxedoMan} alt="Right Tuxedo Man" />
+            </div>
           </div>
         </BrowserRouter>
       </div>

@@ -19,7 +19,7 @@ class Game extends React.Component {
     return(
       <BrowserRouter>
         {/* <Link to='/'> Home </Link> */}
-      
+
       </BrowserRouter>
     );
   }
