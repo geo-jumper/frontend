@@ -52,6 +52,11 @@ Geo-Jumper is a multiplayer fullstack platform game that combines socket.io with
 * PR: If you would like to contribute to the Repo, please open a Pull Request and we will review it
 * Bug Reporting: If you find a bug - please report it by opening up an issue in this git repository.
 
+
+### Credits
+
+[Character Sheet - Gentleman Spy](https://opengameart.org/content/gentleman-spy-animated)
+
 ### License
 
 MIT © Geo-Jumper
