@@ -16,7 +16,11 @@ canvas.height = CANVAS_HEIGHT;
 // ============= PLAYER MODEL =============
 // ========================================
 import io from 'socket.io-client';
-const socket = io(`http://localhost:3000`);
+let socket = io(`http://localhost:3000`);
+
+export const updateSocket = (getSocket) => {
+  socket = getSocket();
+};
 
 export class Player {
   constructor() {
