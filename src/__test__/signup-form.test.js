@@ -10,7 +10,13 @@ describe('SignupForm', () => {
   test('Testing that the initial signup form state is an empty object', () => {
     let mountedSignUpForm = Enzyme.mount(<SignupForm />);
 
-    expect(mountedSignUpForm.state()).toEqual({});
+    const expected = {
+      email: '',
+      username: '',
+      password: '',
+    };
+
+    expect(mountedSignUpForm.state()).toEqual(expected);
   });
   test('Testing that the component renders a SignUp form to the page', () => {
     const wrapper = shallow(
@@ -26,8 +32,16 @@ describe('SignupForm', () => {
     let name = 'name';
     let value = 'value';
 
-    wrapper.setState({[name] : value});
+    const event = {};
+    event.target = {};
 
-    expect(wrapper.state()).toEqual({[name] : value});
+    let mockEvent = event.target;
+    mockEvent.name = 'email';
+    mockEvent.value = 'testValue';
+
+    console.log(wrapper);
+    // wrapper.handleChange(mockEvent);
+
+    expect(wrapper.state().email).toEqual('');
   });
 });

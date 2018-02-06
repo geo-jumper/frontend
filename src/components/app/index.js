@@ -11,7 +11,6 @@ import leftTuxedoMan from '../../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../../images/right-tuxedo-man.png';
 import {Howl, Howler} from 'howler';
 
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -26,6 +25,8 @@ class App extends React.Component {
               onClick={mute()}
             >Audio</button>
             <Route exact path='/' component={Home}/>
+            <Route exact path='/signup' component={Home}/>
+            <Route exact path='/login' component={Home}/>
             <Route exact path='/landing' component={Landing}/>
             <Route exact path='/matchmaking' component={Matchmaking}/>
             <Route exact path='/countdown' component={Countdown}/>
