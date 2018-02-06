@@ -23,49 +23,11 @@ describe('SignupForm', () => {
 
     let wrapper = Enzyme.mount(<SignupForm />);
 
-    // wrapper.find('input').simulate('change');
-
     let name = 'name';
     let value = 'value';
-
-    // let {name, value} = event.target;
 
     wrapper.setState({[name] : value});
 
     expect(wrapper.state()).toEqual({[name] : value});
   });
-
-
-  // test('Testing handleSubmit events', () => {
-  //   let wrapper = Enzyme.mount(<SignupForm />);
-  
-  //   wrapper.find('button').simulate('click');
-
-  //   let name = 'yourName';
-  //   let value = 'yourName';
-
-  //   // let {name, value} = event.target;
-    
-  //   wrapper.setProps({[name] : value});
-    
-  //   expect(wrapper.props()).toEqual({[name] : value});
-  // });
-
-  // test('pass a selected value to the onChange handler', () => {
-  //   const value = '2';
-  //   const handleChange = handleChange(event);
-  //   const wrapper = shallow(
-  //     <input onChange={handleChange} />
-  //   );
-
-  //   expect(wrapper).toMatchSnapshot();
-
-  //   wrapper.find('select').simulate('change', {
-  //     target: { value },
-  //   });
-
-  //   expect(handleChange).toBeCalledWith(value);
-  // });
-    
-
 });
