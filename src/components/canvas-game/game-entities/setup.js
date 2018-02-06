@@ -319,11 +319,19 @@ export class Player {
     } else {
       tuxedoMan = rightTuxedoMan;
     }
-
-    // mattL - we need secondPlayer.characterStatus to check, because it will break
-    //         at the beginning of the game because there's no data
-    if (secondPlayer.characterStatus && secondPlayer.characterStatus.length === 8) {
-      ctx.drawImage(tuxedoMan, ...secondPlayer.characterStatus);
+    // mattL - we need secondPlayer.characterStatus to check, before rendering
+    //         because for the first few frames there's no data
+    if (secondPlayer.characterStatus) {
+      // mattL - if the character status length is two, then it has the character
+      //         and the parachute, so we want to render both objects
+      if (secondPlayer.characterStatus.length === 2) {
+        secondPlayer.characterStatus.forEach(eachImage => {
+          ctx.drawImage(tuxedoMan, ...eachImage);
+        });
+      }
+      else if (secondPlayer.characterStatus && secondPlayer.characterStatus.length === 8) {
+        ctx.drawImage(tuxedoMan, ...secondPlayer.characterStatus);
+      }
     }
   }
 }

@@ -22,17 +22,17 @@ class Countdown extends React.Component {
   render(){
     const { history } = this.props;
 
-    if (this.state.timer === 0) {
-      clearInterval(this.countdown);
-      // history.push('/game');
-    }
+    // if (this.state.timer === 0) {
+    //   clearInterval(this.countdown);
+    //   // history.push('/game');
+    // }
     return (
       <div id = "countdown">
 
         {this.state.timer === 0 ? 
           <Redirect to={{
             pathname: '/game',
-            state: { level: 2 },
+            state: { level: 1 },
           }}/> 
           : undefined}
 
