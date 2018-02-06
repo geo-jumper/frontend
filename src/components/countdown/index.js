@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 
-class Countdown extends React.Component {
+class Countdown extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -19,13 +19,10 @@ class Countdown extends React.Component {
     },1000);
   }
 
-  render(){
+  componentDidUpdate() {
     const { history } = this.props;
 
-    // if (this.state.timer === 0) {
-    //   clearInterval(this.countdown);
-    //   // history.push('/game');
-    // }
+  render(){
     return (
       <div id = "countdown">
 
@@ -42,6 +39,5 @@ class Countdown extends React.Component {
   }
 }
 
-const CountdownWithRouter = withRouter(Countdown);
 
-export default CountdownWithRouter;
+export default Countdown;

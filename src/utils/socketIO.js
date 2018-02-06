@@ -4,6 +4,7 @@ export let socket = null;
 
 export const socketInit = () => {
   const _socket = io('http://localhost:3000');
+  _socket.emit('join-room');
   socket = _socket;
 };
 
