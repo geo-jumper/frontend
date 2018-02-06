@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
-class Countdown extends React.Component {
+class Countdown extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -34,6 +33,5 @@ class Countdown extends React.Component {
   }
 }
 
-const CountdownWithRouter = withRouter(Countdown);
 
-export default CountdownWithRouter;
+export default Countdown;
