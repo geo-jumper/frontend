@@ -11,6 +11,6 @@ describe('Matchmaking', () => {
   test('Testing that the initial matchmaking state sets searching : true', () => {
     let mountedMatchmakingForm = Enzyme.mount(<Matchmaking/>);
 
-    expect(mountedMatchmakingForm.state()).toEqual({searching:true});
+    expect(mountedMatchmakingForm.state()).toEqual({searching:true, socket: null});
   });
 });

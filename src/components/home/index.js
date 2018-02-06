@@ -12,9 +12,8 @@ class Home extends React.Component {
         <h1>Geo-Jumper</h1>
         <SignUpForm/>
         <LogInForm/>
-        <ContinueAnonymously/>
+        <ContinueAnonymously history={this.props.history}/>
       </div>
-
     );
   }
 }

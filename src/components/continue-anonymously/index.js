@@ -1,7 +1,6 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 
-const ContinueAnonymously = withRouter(({history}) => {
+const ContinueAnonymously = ({ history }) => {
   return(
     <button onClick = {() =>{
       history.push('/landing');
@@ -10,6 +9,6 @@ const ContinueAnonymously = withRouter(({history}) => {
     </button>
 
   );
-});
+};
 
-export default ContinueAnonymously; 
+export default ContinueAnonymously;
