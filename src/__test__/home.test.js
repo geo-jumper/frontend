@@ -14,4 +14,11 @@ describe('Home', () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('render a div', () => {
+    const wrapper = shallow(
+      <div id='home'></div>
+    );
+    expect(wrapper.prop('id')).toEqual('home');
+  });
 });
