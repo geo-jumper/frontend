@@ -230,7 +230,12 @@ function renderGrid(ctx) {
 }
 
 function renderBackground() {
-  let image = document.getElementById('clouds');
+  if (game.backgroundFrame === 52) {
+    game.backgroundFrame = 2;
+  }
+  game.backgroundFrame ++;
+  let image = document.getElementById(`lava-${Math.floor(game.backgroundFrame / 2)}`);
+  // let image = document.getElementById('clouds');
 
   game.ctx.drawImage(image, 0, 0, 900, 400);
 }

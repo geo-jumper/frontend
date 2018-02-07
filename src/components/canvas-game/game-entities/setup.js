@@ -11,6 +11,7 @@ export const CANVAS_WIDTH = 900;
 export const CANVAS_HEIGHT = 400;
 export const FRICTION = 0.85;
 export const GRAVITY = 0.85;
+export let backgroundFrame = 52;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;

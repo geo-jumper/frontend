@@ -7,9 +7,7 @@ import Countdown from '../countdown';
 import Game from '../canvas-game';
 import MatchResults from '../match-results';
 // mattL - images for tuxedo man to reference
-import leftTuxedoMan from '../../images/left-tuxedo-man.png';
-import rightTuxedoMan from '../../images/right-tuxedo-man.png';
-import clouds from '../../images/clouds.png';
+import image from '../../utils/import-images';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -18,6 +16,8 @@ class App extends React.Component {
   }
 
   render() {
+    let lava = new Array(26).fill('lava');
+
     return (
       <div className='app'>
         <BrowserRouter>
@@ -28,10 +28,16 @@ class App extends React.Component {
             <Route path = '/game' component={Game} />
             <Game />
             {/* mattL - Image Dump for Tuxedo Man */}
-            <div id='image-dump' style={{display: 'none'}}>
-              <img id='left-tuxedo-man' src={leftTuxedoMan} alt="Left Tuxedo Man" />
-              <img id='right-tuxedo-man' src={rightTuxedoMan} alt="Right Tuxedo Man" />
-              <img id='clouds' src={clouds} alt="Toy Story" />
+            <div id='image-dump' style={{}}>
+              <img id='left-tuxedo-man' src={image.leftTuxedoMan} alt="Left Tuxedo Man" />
+              <img id='right-tuxedo-man' src={image.rightTuxedoMan} alt="Right Tuxedo Man" />
+              <img id='clouds' src={image.clouds} alt="Toy Story" />
+              {
+                lava.map((each, i) => {
+                  return <img key={i} id={`lava-${i + 1}`} src={image[`lava_${i + 1}`]} alt={`lava-${i + 1}`} />;
+                })
+              }
+
             </div>
           </div>
         </BrowserRouter>
