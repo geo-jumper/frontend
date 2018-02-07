@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-// const BACKEND_API = 'http://localhost:3000';
-const BACKEND_API = 'http://28f027de.ngrok.io/';
+const BACKEND_API = 'http://localhost:3000';
+// TODO: const BACKEND_API = 'http://28f027de.ngrok.io/';
 
 export let socket = null;
 

@@ -1,18 +1,6 @@
 import * as game from './setup';
 
 // ==================================================
-// ================ WINDOW RENDERING ================
-// ==================================================
-// (function() {
-//   const requestAnimationFrame = 
-//   window.requestAnimationFrame || 
-//   window.mozRequestAnimationFrame || 
-//   window.webkitRequestAnimationFrame || 
-//   window.msRequestAnimationFrame;
-//   window.requestAnimationFrame = requestAnimationFrame;
-// })();
-
-// ==================================================
 // =============== KEYBOARD LISTENERS ===============
 // ==================================================
 let keyboard = {};
@@ -101,7 +89,6 @@ export function update() {
     player.render();
     
   }, 1000 / 59);
-  // console.log(requestAnimationFrame);
 }
 
 
