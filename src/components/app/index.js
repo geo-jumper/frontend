@@ -135,7 +135,7 @@ const sound = new Howl({
 });
 
   // catherine - play background music
-// sound.play();
+sound.play();
 
 // catherine - change global volume
 Howler.volume(0.5);
