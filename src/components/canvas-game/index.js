@@ -12,10 +12,11 @@ class Game extends React.Component {
     
     let incomingState = null;
     try {
-      let incomingState = this.props.location.state;
+      incomingState = this.props.location.state;
     } catch (error) {
       console.log('couldn\'t retrieve state');
     }
+    
     this.state = {
       ...incomingState,
     };

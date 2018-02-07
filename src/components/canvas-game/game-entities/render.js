@@ -1,18 +1,6 @@
 import * as game from './setup';
 
 // ==================================================
-// ================ WINDOW RENDERING ================
-// ==================================================
-(function() {
-  const requestAnimationFrame = 
-  window.requestAnimationFrame || 
-  window.mozRequestAnimationFrame || 
-  window.webkitRequestAnimationFrame || 
-  window.msRequestAnimationFrame;
-  window.requestAnimationFrame = requestAnimationFrame;
-})();
-
-// ==================================================
 // =============== KEYBOARD LISTENERS ===============
 // ==================================================
 let keyboard = {};
@@ -76,38 +64,38 @@ document.addEventListener('keyup', (event) => {
 // ================== UPDATE PAGE ===================
 // ==================================================
 export function update() {
-  player.stand();
-  player.setDirection();
-  player.moveRight(keyboard);
-  player.moveLeft(keyboard);
-  player.glide(keyboard);
-  
-  if (keyboard[40]) { // 40 === 'down arrow'
-    player.slide();
-  } else {
-    player.velX *= game.FRICTION;
-  }
-  
-  player.x += player.velX;
-  player.y += player.velY;
-  if (player.velY < player.terminalVelocity) {
-    player.velY += game.GRAVITY;
-  }
+  setInterval(() => {
 
-  setBorders(player);
-  collisionCheck(player, bricks);
-  spikeCheck(player, spikes);
-
-
-  clearCanvas(game.ctx);
-  renderBackground();
-  bricks.forEach(brick => brick.render());
-  spikes.forEach(spike => spike.render());
-  player.render();
-
-  // renderGrid(game.ctx);
-  
-  requestAnimationFrame(update);
+    player.stand();
+    player.setDirection();
+    player.moveRight(keyboard);
+    player.moveLeft(keyboard);
+    player.glide(keyboard);
+    
+    if (keyboard[40]) { // 40 === 'down arrow'
+      player.slide();
+    } else {
+      player.velX *= game.FRICTION;
+    }
+    if (player.velY < player.terminalVelocity) {
+      player.velY += game.GRAVITY;
+    }
+    
+    player.x += player.velX;
+    player.y += player.velY;
+    
+    setBorders(player);
+    collisionCheck(player, bricks);
+    spikeCheck(player, spikes);
+    
+    
+    clearCanvas(game.ctx);
+    renderBackground();
+    bricks.forEach(brick => brick.render());
+    spikes.forEach(spike => spike.render());
+    player.render();
+    
+  }, 1000 / 59);
 }
 
 
@@ -194,6 +182,9 @@ function setTopAndBottomBorders(model) {
     }
   // mattL - configure the top of canvas
   }
+  // } else if (model.y <= 0) {
+    // model.y = 0;
+  // }
 }
 
 function setLeftAndRightBorders(model) {
@@ -216,10 +207,7 @@ function clearCanvas(ctx) {
   ctx.clearRect(0, 0, game.CANVAS_WIDTH, game.CANVAS_HEIGHT);
 }
 
-// window.addEventListener('load', () => {
-//   update();
-// });
-
+// mattL - used for drawing the canvas grid for level creation
 function renderGrid(ctx) {
   ctx.strokeStyle = '#fff';
   for(let x = 0; x <= 900; x += 20) {
