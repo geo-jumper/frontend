@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest -i --coverage",
     "watch": "webpack-dev-server --inline --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack && node index.js"
   },
   "repository": {
     "type": "git",

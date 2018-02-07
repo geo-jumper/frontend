@@ -11,6 +11,7 @@ export const CANVAS_WIDTH = 900;
 export const CANVAS_HEIGHT = 400;
 export const FRICTION = 0.85;
 export const GRAVITY = 0.85;
+export let backgroundFrame = 52;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
@@ -378,7 +379,7 @@ export class Brick {
     y = CANVAS_HEIGHT - 100,
     width = 60,
     height = 10,
-    color = '#333333'
+    color = '#fff'
   ) {
     this.type = 'platform';
     this.color = color;
@@ -405,10 +406,11 @@ export class Spike {
     x = CANVAS_WIDTH - 100,
     y = CANVAS_HEIGHT - 10,
     width = 10,
-    height = 10
+    height = 10,
+    color = 'orange'
   ) {
     this.type = 'spike';
-    this.color = 'red';
+    this.color = color;
 
     this.x = x;
     this.y = y;
