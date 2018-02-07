@@ -21,8 +21,9 @@ class Countdown extends Component {
 
   componentDidUpdate() {
     const { history } = this.props;
+  }
 
-  render(){
+  render() {
     return (
       <div id = "countdown">
 
@@ -38,6 +39,5 @@ class Countdown extends Component {
     );
   }
 }
-
 
 export default Countdown;

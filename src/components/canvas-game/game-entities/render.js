@@ -95,6 +95,7 @@ export function update() {
   spikes.forEach(spike => spike.render());
   player.render();
 
+  renderGrid();
   requestAnimationFrame(update);
 }
 
@@ -157,7 +158,7 @@ function spikeCheck(player, spikes) {
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       player.resetPosition();
   
-      const sound = new Howl ({
+      const sound = new Howl({
         src:
           ['../../../../src/sound/sound-effects/Movement/Falling Sounds/sfx_sounds_falling2.wav'],
       });
@@ -209,3 +210,7 @@ function clearCanvas(ctx) {
 // window.addEventListener('load', () => {
 //   update();
 // });
+
+function renderGrid() {
+
+}

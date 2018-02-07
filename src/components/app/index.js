@@ -24,15 +24,8 @@ class App extends React.Component {
             <button
               onClick={mute()}
             >Audio</button>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/signup' component={Home}/>
-            <Route exact path='/login' component={Home}/>
-            <Route exact path='/landing' component={Landing}/>
-            <Route exact path='/matchmaking' component={Matchmaking}/>
-            <Route exact path='/countdown' component={Countdown}/>
-            <Route exact path='/game' component={Game}/>
-            <Route exact path='/matchresults' component={MatchResults}/>
 
+            <Game />
             {/* mattL - Image Dump for Tuxedo Man */}
             <div id='image-dump' style={{display: 'none'}}>
               <img id='left-tuxedo-man' src={leftTuxedoMan} alt="Left Tuxedo Man" />
