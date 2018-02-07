@@ -13,6 +13,11 @@ class Matchmaking extends React.Component {
   }
 
   componentWillMount() {
+    const OK = this.props.getMatchmakingOK();
+    if (!OK) {
+      this.props.history.push('/');
+    }
+
     this.setState({ socket: getSocket() });
   }
 

@@ -13,6 +13,45 @@ import rightTuxedoMan from '../../images/right-tuxedo-man.png';
 class App extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      landingOK: false,
+      matchmakingOK: false,
+      countdownOK: false,
+      gameOK: false,
+    };
+
+    this.toggleLandingOK = this.toggleLandingOK.bind(this);
+    this.getLandingOK = this.getLandingOK.bind(this);
+    this.toggleMatchmakingOK = this.toggleMatchmakingOK.bind(this);
+    this.getMatchmakingOK = this.getMatchmakingOK.bind(this);
+  }
+
+  toggleLandingOK() {
+    let toggledState = !this.state.landingOK;
+    this.setState({ landingOK: toggledState });
+  }
+
+  getLandingOK() {
+    return this.state.landingOK;
+  }
+
+  toggleMatchmakingOK() {
+    let toggledState = !this.state.matchmakingOK;
+    this.setState({ matchmakingOK: toggledState });
+  }
+
+  getMatchmakingOK() {
+    return this.state.matchmakingOK;
+  }
+
+  toggleCountdownOK() {
+    let toggledState = !this.state.countdownOK;
+    this.setState({ matchmakingOK: toggledState });
+  }
+
+  getCountdownOK() {
+    return this.state.countdownOK;
   }
 
   render() {
@@ -20,13 +59,28 @@ class App extends React.Component {
       <div className='app'>
         <BrowserRouter>
           <div>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/signup' component={Home}/>
-            <Route exact path='/login' component={Home}/>
-            <Route exact path='/landing' component={Landing}/>
-            <Route exact path='/matchmaking' component={Matchmaking}/>
-            <Route exact path='/countdown' component={Countdown}/>
-            <Route exact path='/game' component={Game}/>
+            <Route exact path='/' render={props => {
+              return <Home {...props} toggleLandingOK={this.toggleLandingOK} />;
+            }}/>
+
+            <Route exact path='/landing' render={props => {
+              return <Landing
+                {...props}
+                toggleMatchmakingOK={this.toggleMatchmakingOK}
+                getLandingOK={this.getLandingOK}
+              />;
+            }}/>
+
+            <Route exact path='/matchmaking' render={props => {
+              return <Matchmaking
+                {...props}
+                toggleCountdownOK={this.toggleCountdownOK}
+                getMatchmakingOK={this.getMatchmakingOK}
+              />;
+            }}/>
+
+            <Route exact path='/countdown' render={() => <Countdown /> }/>
+            <Route exact path='/game' render={() => <Game />} />
             <Route exact path='/matchresults' component={MatchResults}/>
 
             {/* mattL - Image Dump for Tuxedo Man */}
