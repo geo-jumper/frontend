@@ -50,7 +50,7 @@ document.addEventListener('keydown', (event) => {
     player.crouching = true;
   }
   // mattL - 38 === up arrow
-  if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
+  if ((event.keyCode === 32 || event.keyCode === 38) && !player.jumping && player.jumpLimit > 0) {
     player.jump();
   }
   keyboard[event.keyCode] = true;
@@ -98,7 +98,7 @@ export function update() {
   spikes.forEach(spike => spike.render());
   player.render();
 
-  // renderGrid(game.ctx);
+  renderGrid(game.ctx);
   
   requestAnimationFrame(update);
 }
@@ -214,6 +214,7 @@ function clearCanvas(ctx) {
 // });
 
 function renderGrid(ctx) {
+  ctx.strokeStyle = '#fff';
   for(let x = 0; x <= 900; x += 20) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -230,7 +231,7 @@ function renderGrid(ctx) {
 }
 
 function renderBackground() {
-  let image = document.getElementById('clouds');
+  let image = document.getElementById('lava');
 
   game.ctx.drawImage(image, 0, 0, 900, 400);
 }
