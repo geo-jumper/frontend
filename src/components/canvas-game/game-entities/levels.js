@@ -50,6 +50,7 @@ export default { // levels
   },
 
   2 : {
+    frames: 26,
     background : [ // img ID
       'lava-1',
       'lava-2',
