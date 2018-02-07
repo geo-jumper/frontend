@@ -9,18 +9,23 @@ class Countdown extends Component {
     };
   }
 
-  componentDidMount() {
-    this.countdown = setInterval(() => {
-      let timer = this.state.timer;
-      console.log(timer);
-
-      timer--;
-      this.setState({ timer });
-    },1000);
-  }
-
   componentDidUpdate() {
     const { history } = this.props;
+  }
+
+  componentWillMount() {
+    const OK = this.props.getCountdownOK();
+    if (!OK) {
+      this.props.history.push('/');
+    } else {
+      this.countdown = setInterval(() => {
+        let timer = this.state.timer;
+        console.log(timer);
+
+        timer--;
+        this.setState({ timer });
+      }, 1000);
+    }
   }
 
   render(){
