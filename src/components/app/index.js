@@ -9,6 +9,7 @@ import MatchResults from '../match-results';
 // mattL - images for tuxedo man to reference
 import leftTuxedoMan from '../../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../../images/right-tuxedo-man.png';
+import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
   constructor(props){
@@ -72,6 +73,7 @@ class App extends React.Component {
       <div className='app'>
         <BrowserRouter>
           <div>
+      
             <Route exact path='/' render={props => {
               return <Home {...props} toggleLandingOK={this.toggleLandingOK} />;
             }}/>
@@ -107,7 +109,11 @@ class App extends React.Component {
               />;
             }}/>
 
-            <Route exact path='/matchresults' component={MatchResults}/>
+
+            <button
+              onClick={mute()}
+            >Audio</button>
+
 
             {/* mattL - Image Dump for Tuxedo Man */}
             <div id='image-dump' style={{display: 'none'}}>
@@ -121,3 +127,19 @@ class App extends React.Component {
   }
 }
 export default App;
+
+
+// catherine - setup new Howl aka background music
+const sound = new Howl({
+  src: ['../src/sound/Komiku_-_70_-_Ending (2).mp3'],
+});
+
+  // catherine - play background music
+// sound.play();
+
+// catherine - change global volume
+Howler.volume(0.5);
+
+const mute = () => {
+  sound.mute();
+};

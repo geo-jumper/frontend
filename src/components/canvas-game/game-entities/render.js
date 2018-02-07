@@ -36,8 +36,10 @@ let spikes = [
   new game.Spike(700),
 ];
 
-
-
+export const renderLevel = (object) => {
+  bricks = object.bricks;
+  spikes = object.spikes;
+};
 
 
 // mattL - keydown === when a key is pressed
@@ -66,7 +68,7 @@ document.addEventListener('keyup', (event) => {
 // ==================================================
 // ================== UPDATE PAGE ===================
 // ==================================================
-export default function update() {
+export function update() {
   player.stand();
   player.setDirection();
   player.moveRight(keyboard);
@@ -154,6 +156,12 @@ function spikeCheck(player, spikes) {
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       player.resetPosition();
+  
+      const sound = new Howl ({
+        src:
+          ['../../../../src/sound/sound-effects/Movement/Falling Sounds/sfx_sounds_falling2.wav'],
+      });
+      sound.play();
     }
   }); 
 }
