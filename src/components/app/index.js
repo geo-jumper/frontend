@@ -9,6 +9,7 @@ import MatchResults from '../match-results';
 // mattL - images for tuxedo man to reference
 import leftTuxedoMan from '../../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../../images/right-tuxedo-man.png';
+import clouds from '../../images/clouds.png';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -24,12 +25,13 @@ class App extends React.Component {
             <button
               onClick={mute()}
             >Audio</button>
-
+            <Route path = '/game' component={Game} />
             <Game />
             {/* mattL - Image Dump for Tuxedo Man */}
             <div id='image-dump' style={{display: 'none'}}>
               <img id='left-tuxedo-man' src={leftTuxedoMan} alt="Left Tuxedo Man" />
               <img id='right-tuxedo-man' src={rightTuxedoMan} alt="Right Tuxedo Man" />
+              <img id='clouds' src={clouds} alt="Toy Story" />
             </div>
           </div>
         </BrowserRouter>

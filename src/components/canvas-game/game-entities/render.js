@@ -80,10 +80,12 @@ export function update() {
   } else {
     player.velX *= game.FRICTION;
   }
-  player.velY += game.GRAVITY;
-
+  
   player.x += player.velX;
   player.y += player.velY;
+  if (player.velY < player.terminalVelocity) {
+    player.velY += game.GRAVITY;
+  }
 
   setBorders(player);
   collisionCheck(player, bricks);
@@ -91,11 +93,13 @@ export function update() {
 
 
   clearCanvas(game.ctx);
+  renderBackground();
   bricks.forEach(brick => brick.render());
   spikes.forEach(spike => spike.render());
   player.render();
 
-  renderGrid();
+  // renderGrid(game.ctx);
+  
   requestAnimationFrame(update);
 }
 
@@ -182,8 +186,6 @@ function setTopAndBottomBorders(model) {
       model.resetJump();
     }
   // mattL - configure the top of canvas
-  } else if (model.y <= 0) {
-    model.y = 0;
   }
 }
 
@@ -211,6 +213,24 @@ function clearCanvas(ctx) {
 //   update();
 // });
 
-function renderGrid() {
+function renderGrid(ctx) {
+  for(let x = 0; x <= 900; x += 20) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, 400);
+    ctx.stroke();
+  }
 
+  for(let y = 0; y <= 400; y += 20) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(900, y);
+    ctx.stroke();
+  }
+}
+
+function renderBackground() {
+  let image = document.getElementById('clouds');
+
+  game.ctx.drawImage(image, 0, 0, 900, 400);
 }
