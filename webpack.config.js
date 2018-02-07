@@ -44,7 +44,7 @@ webPackConfig.module = {
       loader: 'babel-loader',
     },
     {
-      test: /\.(jpg|gif|png|svg)$/,
+      test: /\.(jpg|gif|png|svg|mp3)$/,
       exclude: /\.icon\.svg$/,
       use: [{
         loader: 'url-loader',
