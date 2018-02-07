@@ -1,5 +1,6 @@
 // catherine - howler handles the sound effects
 import {Howl, Howler} from 'howler';
+import sounds from '../../../utils/import-sounds';
 
 // ========================================
 // ============= CANVAS SETUP =============
@@ -78,7 +79,7 @@ export class Player {
     
     const sound = new Howl ({
       src: 
-      ['../../../../src/sound/sound-effects/Movement/Jumping and Landing/sfx_movement_jump8.wav'],
+      [sounds.jumping],
     });
     sound.play(); 
   }
@@ -91,7 +92,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src: ['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src: [sounds.walking],
         });
         sound.play();
       }
@@ -107,7 +108,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src:['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src:[sounds.walking],
         });
         sound.play();
       }
@@ -418,6 +419,7 @@ export class Spike {
     this.height = height;
   }
 
+
   // ============= SPIKE RENDERING ==============
   render() {
     ctx.fillStyle = this.color;
@@ -433,5 +435,31 @@ export class Spike {
     ctx.lineTo(this.x - (this.width / 2), this.y); // left point
     ctx.lineTo(this.x + (this.width / 2), this.y - this.height); // right point
     ctx.fill();
+  }
+}
+
+
+// ========================================
+// ============= STAR MODEL ==============
+// ========================================
+
+export class Star {
+  constructor (
+    x = 0,
+    y = 0,
+    width = 40,
+    height = 40
+  ) {
+    this.type = 'star';
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.xOffset = 10;
+  }
+
+  render() {
+    let star = document.getElementById('star');
+    ctx.drawImage(star, this.x, this.y, this.width, this.height);
   }
 }
