@@ -7,6 +7,8 @@ let keyboard = {};
 
 let player = new game.Player();
 
+let star = new game.Star();
+
 let bricks = [
   new game.Brick(),
   new game.Brick(100, 200),
@@ -29,6 +31,7 @@ let gifFramesDefault;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
+  star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
   background = level.background;
@@ -87,12 +90,13 @@ export function update() {
     setBorders(player);
     collisionCheck(player, bricks);
     spikeCheck(player, spikes);
-    
+    starCheck(player, star);
     
     clearCanvas(game.ctx);
     renderBackground();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
+    star ? star.render() : null;
     player.render();
     
   }, 1000 / 59);
@@ -143,6 +147,7 @@ function collisionCheck(player, objects) {
   });
 }
 
+
 // RESET PLAYER WHEN SPIKE IS TOUCHED
 function spikeCheck(player, spikes) {
   spikes.forEach(spike => {
@@ -166,6 +171,29 @@ function spikeCheck(player, spikes) {
   }); 
 }
 
+// CHECKING FOR PLAYER TO REACH STAR !!
+function starCheck(player, star) {
+  if(star) {
+  // get the vectors to check against
+    let vectorX = (player.x + (player.width / 2)) - (star.x + (star.width / 2));
+    let vectorY = (player.y + (player.height / 2)) - (star.y + (star.height / 2));
+    let halfWidths = (player.width / 2) + (star.width / 2);
+    let halfHeights = (player.height / 2) + (star.height / 2);
+    // add the half widths and half heights of the objects
+  
+    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+    if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
+      endLevel();
+  
+      const sound = new Howl({
+        src:
+          ['../../../../src/sound/sound-effects/Movement/Portals and Transitions/sfx_movement_portal1.wav'],
+      });
+      sound.play();
+    } 
+  }
+}
+
 function setBorders(model) {
   setTopAndBottomBorders(model);
   setLeftAndRightBorders(model);
@@ -183,7 +211,7 @@ function setTopAndBottomBorders(model) {
   // mattL - configure the top of canvas
   }
   // } else if (model.y <= 0) {
-    // model.y = 0;
+  // model.y = 0;
   // }
 }
 
@@ -247,4 +275,8 @@ function renderBackground() {
     let image = document.getElementById(background);
     game.ctx.drawImage(image, 0, 0, 900, 400);
   }
+}
+
+function endLevel() {
+  star = null;
 }

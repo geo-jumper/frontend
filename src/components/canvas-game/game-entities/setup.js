@@ -418,6 +418,7 @@ export class Spike {
     this.height = height;
   }
 
+
   // ============= SPIKE RENDERING ==============
   render() {
     ctx.fillStyle = this.color;
@@ -433,5 +434,31 @@ export class Spike {
     ctx.lineTo(this.x - (this.width / 2), this.y); // left point
     ctx.lineTo(this.x + (this.width / 2), this.y - this.height); // right point
     ctx.fill();
+  }
+}
+
+
+// ========================================
+// ============= STAR MODEL ==============
+// ========================================
+
+export class Star {
+  constructor (
+    x = 0,
+    y = 0,
+    width = 40,
+    height = 40
+  ) {
+    this.type = 'star';
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.xOffset = 10;
+  }
+
+  render() {
+    let star = document.getElementById('star');
+    ctx.drawImage(star, this.x, this.y, this.width, this.height);
   }
 }

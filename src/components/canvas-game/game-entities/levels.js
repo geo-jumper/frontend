@@ -205,7 +205,9 @@ export default { // levels
       new game.Spike(885, 399),
       new game.Spike(895, 399),
     ],
-    star : null,
+    // star : {x: 764, y: 130},
+    star : {x: 40, y: 30},
+    
   },
 
 
