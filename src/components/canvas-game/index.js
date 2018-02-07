@@ -1,14 +1,30 @@
 import React from 'react';
-import update from './game-entities/render';
+import levels from './game-entities/levels';
+import { renderLevel } from './game-entities/render';
+import { update } from './game-entities/render';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 let canvas = document.getElementById('geo-jumper');
 
-
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      ...this.props.location.state,
+    };
+    
+    console.log(this.state);
+  }
+
   componentDidMount() {
-    update();
     canvas.style.display = 'block';
+    try {
+      renderLevel(levels[this.state.level]);
+    } catch (error) {
+      renderLevel(levels['default']);
+    }
+    update();
   }
 
   componentWillUnmount() {
@@ -18,7 +34,6 @@ class Game extends React.Component {
   render() {
     return(
       <BrowserRouter>
-        {/* <Link to='/'> Home </Link> */}
 
       </BrowserRouter>
     );

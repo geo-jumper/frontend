@@ -36,8 +36,10 @@ let spikes = [
   new game.Spike(700),
 ];
 
-
-
+export const renderLevel = (object) => {
+  bricks = object.bricks;
+  spikes = object.spikes;
+};
 
 
 // mattL - keydown === when a key is pressed
@@ -66,7 +68,7 @@ document.addEventListener('keyup', (event) => {
 // ==================================================
 // ================== UPDATE PAGE ===================
 // ==================================================
-export default function update() {
+export function update() {
   player.stand();
   player.setDirection();
   player.moveRight(keyboard);
