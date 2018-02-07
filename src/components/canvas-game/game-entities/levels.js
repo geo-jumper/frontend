@@ -4,7 +4,7 @@ import background from '../../../utils/import-images';
 
 export default { // levels
   1 : {
-    background : document.getElementById('clouds'),
+    background : 'clouds',
     bricks : [
       new game.Brick(610, 80, 10, undefined, '#5abdf4'),  // invisi-brick
       new game.Brick(630, -10, 90),  // invisi-brick
