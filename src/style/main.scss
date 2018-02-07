@@ -7,6 +7,54 @@
     text-align: center;
   }
 
+#home h1 {
+    font-size: 80px;
+}
+#home input{
+    height:30px;
+    font-size: 20px;
+    color:rgb(84, 84, 245);
+}
+
+#home button {
+    background: #1934e3;
+    background-image: -webkit-linear-gradient(top, #1934e3, #6728c7);
+    background-image: -moz-linear-gradient(top, #1934e3, #6728c7);
+    background-image: -ms-linear-gradient(top, #1934e3, #6728c7);
+    background-image: -o-linear-gradient(top, #1934e3, #6728c7);
+    background-image: linear-gradient(to bottom, #1934e3, #6728c7);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+  }
+  
+  #home .button:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+  }
+
+#home, #landing, #matchmaking, #countdown {
+    background: url(https://i.imgur.com/G78CvSH.gif) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 600px;
+}
+
+
 button {
     display: inline;
     // @include transition(all 0.5s);
