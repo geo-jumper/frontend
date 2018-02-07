@@ -1,5 +1,6 @@
 // catherine - howler handles the sound effects
 import {Howl, Howler} from 'howler';
+import sounds from '../../../utils/import-sounds';
 
 // ========================================
 // ============= CANVAS SETUP =============
@@ -78,7 +79,7 @@ export class Player {
     
     const sound = new Howl ({
       src: 
-      ['../../../../src/sound/sound-effects/Movement/Jumping and Landing/sfx_movement_jump8.wav'],
+      [sounds.jumping],
     });
     sound.play(); 
   }
@@ -91,7 +92,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src: ['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src: [sounds.walking],
         });
         sound.play();
       }
@@ -107,7 +108,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src:['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src:[sounds.walking],
         });
         sound.play();
       }

@@ -1,4 +1,6 @@
 import * as game from './setup';
+import sounds from '../../../utils/import-sounds';
+import {Howl, Howler} from 'howler';
 
 // ==================================================
 // =============== KEYBOARD LISTENERS ===============
@@ -164,7 +166,7 @@ function spikeCheck(player, spikes) {
   
       const sound = new Howl({
         src:
-          ['../../../../src/sound/sound-effects/Movement/Falling Sounds/sfx_sounds_falling2.wav'],
+          [sounds.spikeCollision],
       });
       sound.play();
     }
@@ -187,7 +189,7 @@ function starCheck(player, star) {
   
       const sound = new Howl({
         src:
-          ['../../../../src/sound/sound-effects/Movement/Portals and Transitions/sfx_movement_portal1.wav'],
+          [sounds.starCollision],
       });
       sound.play();
     } 

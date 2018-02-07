@@ -8,6 +8,7 @@ import Game from '../canvas-game';
 import MatchResults from '../match-results';
 // mattL - images for tuxedo man to reference
 import image from '../../utils/import-images';
+import sounds from '../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -111,9 +112,7 @@ class App extends React.Component {
             }}/>
 
 
-            <button
-              onClick={mute()}
-            >Audio</button>
+       
             {/* mattL - Image Dump for Tuxedo Man */}
             <div id='image-dump' style={{display : 'none'}}>
               <img id='left-tuxedo-man' src={image.leftTuxedoMan} alt="Left Tuxedo Man" />
@@ -137,17 +136,14 @@ export default App;
 
 // catherine - setup new Howl aka background music
 const sound = new Howl({
-  src: ['../src/sound/Komiku_-_70_-_Ending (2).mp3'],
+  src: [sounds.backgroundMusic],
 });
 
   // catherine - play background music
-// sound.play();
+sound.play();
 
 // catherine - change global volume
 Howler.volume(0.5);
 
-const mute = () => {
-  sound.mute();
-};
 
 // style={{display: 'none'}}
