@@ -1,17 +1,18 @@
 import React from 'react';
 import FindGame from '../find-game';
+import Profile from '../profile';
 
 class Landing extends React.Component {
   constructor(props){
     super(props);
   }
 
-  componentWillMount() {
-    const OK = this.props.getLandingOK();
-    if (!OK) {
-      this.props.history.push('/');
-    }
-  }
+  // componentWillMount() {
+  //   const OK = this.props.getLandingOK();
+  //   if (!OK) {
+  //     this.props.history.push('/');
+  //   }
+  // }
 
   render(){
     return (
@@ -21,6 +22,7 @@ class Landing extends React.Component {
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
+        <Profile/>
       </div>
     );
   }
