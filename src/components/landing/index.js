@@ -6,11 +6,21 @@ class Landing extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    const OK = this.props.getLandingOK();
+    if (!OK) {
+      this.props.history.push('/');
+    }
+  }
+
   render(){
     return (
       <div id ="landing">
         <h1> Welcome to Geo-Jumper </h1>
-        <FindGame history={this.props.history}/>
+        <FindGame
+          history={this.props.history}
+          toggleMatchmakingOK={this.props.toggleMatchmakingOK}
+        />
       </div>
     );
   }

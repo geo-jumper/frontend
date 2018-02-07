@@ -13,14 +13,20 @@ class Matchmaking extends React.Component {
   }
 
   componentWillMount() {
+    const OK = this.props.getMatchmakingOK();
+    if (!OK) {
+      this.props.history.push('/');
+    }
+
     this.setState({ socket: getSocket() });
   }
 
   componentDidMount() {
-    const { history } = this.props;
+    const { history, toggleCountdownOK } = this.props;
 
     if (this.state.socket) {
       this.state.socket.on('match-found', () => {
+        toggleCountdownOK();
         this.setState({ searching: false });
         updateSocket(getSocket);
         history.push('/countdown');
