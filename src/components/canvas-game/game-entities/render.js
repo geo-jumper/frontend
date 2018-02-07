@@ -3,14 +3,14 @@ import * as game from './setup';
 // ==================================================
 // ================ WINDOW RENDERING ================
 // ==================================================
-(function() {
-  const requestAnimationFrame = 
-  window.requestAnimationFrame || 
-  window.mozRequestAnimationFrame || 
-  window.webkitRequestAnimationFrame || 
-  window.msRequestAnimationFrame;
-  window.requestAnimationFrame = requestAnimationFrame;
-})();
+// (function() {
+//   const requestAnimationFrame = 
+//   window.requestAnimationFrame || 
+//   window.mozRequestAnimationFrame || 
+//   window.webkitRequestAnimationFrame || 
+//   window.msRequestAnimationFrame;
+//   window.requestAnimationFrame = requestAnimationFrame;
+// })();
 
 // ==================================================
 // =============== KEYBOARD LISTENERS ===============
@@ -69,36 +69,39 @@ document.addEventListener('keyup', (event) => {
 // ================== UPDATE PAGE ===================
 // ==================================================
 export function update() {
-  player.stand();
-  player.setDirection();
-  player.moveRight(keyboard);
-  player.moveLeft(keyboard);
-  player.glide(keyboard);
-  
-  if (keyboard[40]) { // 40 === 'down arrow'
-    player.slide();
-  } else {
-    player.velX *= game.FRICTION;
-  }
-  if (player.velY < player.terminalVelocity) {
-    player.velY += game.GRAVITY;
-  }
+  setInterval(() => {
 
-  player.x += player.velX;
-  player.y += player.velY;
-
-  setBorders(player);
-  collisionCheck(player, bricks);
-  spikeCheck(player, spikes);
-
-
-  clearCanvas(game.ctx);
-  renderBackground();
-  bricks.forEach(brick => brick.render());
-  spikes.forEach(spike => spike.render());
-  player.render();
-
-  requestAnimationFrame(update);
+    player.stand();
+    player.setDirection();
+    player.moveRight(keyboard);
+    player.moveLeft(keyboard);
+    player.glide(keyboard);
+    
+    if (keyboard[40]) { // 40 === 'down arrow'
+      player.slide();
+    } else {
+      player.velX *= game.FRICTION;
+    }
+    if (player.velY < player.terminalVelocity) {
+      player.velY += game.GRAVITY;
+    }
+    
+    player.x += player.velX;
+    player.y += player.velY;
+    
+    setBorders(player);
+    collisionCheck(player, bricks);
+    spikeCheck(player, spikes);
+    
+    
+    clearCanvas(game.ctx);
+    renderBackground();
+    bricks.forEach(brick => brick.render());
+    spikes.forEach(spike => spike.render());
+    player.render();
+    
+  }, 1000 / 59);
+  // console.log(requestAnimationFrame);
 }
 
 
