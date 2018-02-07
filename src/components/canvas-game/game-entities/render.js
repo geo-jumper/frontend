@@ -23,10 +23,17 @@ let spikes = [
   new game.Spike(500),
   new game.Spike(700),
 ];
+let background;
+let gifFrames;
+let gifFramesDefault;
 
-export const renderLevel = (object) => {
-  bricks = object.bricks;
-  spikes = object.spikes;
+export const renderLevel = (level) => {
+  console.log(`Loading level`, level);
+  bricks = level.bricks;
+  spikes = level.spikes;
+  background = level.background;
+  gifFrames = level.frames;
+  gifFramesDefault = level.frames;
 };
 
 
@@ -38,7 +45,7 @@ document.addEventListener('keydown', (event) => {
     player.crouching = true;
   }
   // mattL - 38 === up arrow
-  if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
+  if ((event.keyCode === 32 || event.keyCode === 38) && !player.jumping && player.jumpLimit > 0) {
     player.jump();
   }
   keyboard[event.keyCode] = true;
@@ -150,7 +157,7 @@ function spikeCheck(player, spikes) {
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       player.resetPosition();
   
-      const sound = new Howl ({
+      const sound = new Howl({
         src:
           ['../../../../src/sound/sound-effects/Movement/Falling Sounds/sfx_sounds_falling2.wav'],
       });
@@ -173,7 +180,7 @@ function setTopAndBottomBorders(model) {
     if (model.type === 'character') {
       model.resetJump();
     }
-  // // mattL - configure the top of canvas
+  // mattL - configure the top of canvas
   }
   // } else if (model.y <= 0) {
     // model.y = 0;
@@ -200,10 +207,44 @@ function clearCanvas(ctx) {
   ctx.clearRect(0, 0, game.CANVAS_WIDTH, game.CANVAS_HEIGHT);
 }
 
-function renderBackground() {
-  let image = document.getElementById('clouds');
-  game.ctx.drawImage(image, 0, 0, 900, 400);
+// mattL - used for drawing the canvas grid for level creation
+function renderGrid(ctx) {
+  ctx.strokeStyle = '#fff';
+  for(let x = 0; x <= 900; x += 20) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, 400);
+    ctx.stroke();
+  }
+
+  for(let y = 0; y <= 400; y += 20) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(900, y);
+    ctx.stroke();
+  }
 }
-// window.addEventListener('load', () => {
-//   update();
-// });
+
+function renderBackground() {
+  if (!background) {
+    return;
+  }
+
+  if (typeof background === 'object') {
+    if (!gifFramesDefault) {
+      throw new Error('__RENDER BACKGROUND__ background frame integer required for gif\'s');
+    }
+    if (gifFrames === gifFramesDefault * 2) {
+      gifFrames = 2;
+    }
+    
+    let image = document.getElementById(background[Math.floor(gifFrames / 2)]);
+    game.ctx.drawImage(image, 0, 0, 900, 400);
+    
+    gifFrames ++;
+  } else {
+
+    let image = document.getElementById(background);
+    game.ctx.drawImage(image, 0, 0, 900, 400);
+  }
+}
