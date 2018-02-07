@@ -35,10 +35,17 @@ let spikes = [
   new game.Spike(500),
   new game.Spike(700),
 ];
+let background;
+let gifFrames;
+let gifFramesDefault;
 
-export const renderLevel = (object) => {
-  bricks = object.bricks;
-  spikes = object.spikes;
+export const renderLevel = (level) => {
+  console.log(`Loading level`, level);
+  bricks = level.bricks;
+  spikes = level.spikes;
+  background = level.background;
+  gifFrames = level.frames;
+  gifFramesDefault = level.frames;
 };
 
 
@@ -50,7 +57,7 @@ document.addEventListener('keydown', (event) => {
     player.crouching = true;
   }
   // mattL - 38 === up arrow
-  if (event.keyCode === 38 && !player.jumping && player.jumpLimit > 0) {
+  if ((event.keyCode === 32 || event.keyCode === 38) && !player.jumping && player.jumpLimit > 0) {
     player.jump();
   }
   keyboard[event.keyCode] = true;
@@ -214,6 +221,7 @@ function clearCanvas(ctx) {
 // });
 
 function renderGrid(ctx) {
+  ctx.strokeStyle = '#fff';
   for(let x = 0; x <= 900; x += 20) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -230,12 +238,25 @@ function renderGrid(ctx) {
 }
 
 function renderBackground() {
-  if (game.backgroundFrame === 52) {
-    game.backgroundFrame = 2;
+  if (!background) {
+    return;
   }
-  game.backgroundFrame ++;
-  let image = document.getElementById(`lava-${Math.floor(game.backgroundFrame / 2)}`);
-  // let image = document.getElementById('clouds');
 
-  game.ctx.drawImage(image, 0, 0, 900, 400);
+  if (typeof background === 'object') {
+    if (!gifFramesDefault) {
+      throw new Error('__RENDER BACKGROUND__ background frame integer required for gif\'s');
+    }
+    if (gifFrames === gifFramesDefault * 2) {
+      gifFrames = 2;
+    }
+    
+    let image = document.getElementById(background[Math.floor(gifFrames / 2)]);
+    game.ctx.drawImage(image, 0, 0, 900, 400);
+    
+    gifFrames ++;
+  } else {
+
+    let image = document.getElementById(background);
+    game.ctx.drawImage(image, 0, 0, 900, 400);
+  }
 }
