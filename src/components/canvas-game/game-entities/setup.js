@@ -1,3 +1,6 @@
+// catherine - howler handles the sound effects
+import {Howl, Howler} from 'howler';
+
 // ========================================
 // ============= CANVAS SETUP =============
 // ========================================
@@ -16,7 +19,11 @@ canvas.height = CANVAS_HEIGHT;
 // ============= PLAYER MODEL =============
 // ========================================
 import io from 'socket.io-client';
-const socket = io(`http://localhost:3000`);
+let socket = io(`http://localhost:3000`);
+
+export const updateSocket = (getSocket) => {
+  socket = getSocket();
+};
 
 export class Player {
   constructor() {
@@ -45,6 +52,7 @@ export class Player {
     this.direction = 'right';
 
     this.characterFrame = 0;
+    this.walkingCycle = 5;
     this.playerInterval = 0;
     this.secondPlayer = {};
   }
@@ -65,6 +73,12 @@ export class Player {
     this.velY = -this.speed * 4;
     this.jumping = true;
     this.jumpLimit --;
+    
+    const sound = new Howl ({
+      src: 
+      ['../../../../src/sound/sound-effects/Movement/Jumping and Landing/sfx_movement_jump8.wav'],
+    });
+    sound.play(); 
   }
 
   moveRight(keyboard) {
@@ -72,6 +86,14 @@ export class Player {
       if (this.velX < this.speed) {
         this.velX ++;
       }
+      if(this.walkingCycle === 0) {
+        this.walkingCycle = 12;
+        const sound = new Howl ({
+          src: ['../../../../src/sound/sound-effects/Movement/Footsteps/sfx_movement_footstepsloop4_fast.wav'],
+        });
+        sound.play();
+      }
+      this.walkingCycle--;
     }
   }
 
@@ -80,6 +102,14 @@ export class Player {
       if (this.velX > -this.speed) {
         this.velX --;
       }
+      if(this.walkingCycle === 0) {
+        this.walkingCycle = 12;
+        const sound = new Howl ({
+          src: ['../../../../src/sound/sound-effects/Movement/Footsteps/sfx_movement_footstepsloop4_fast.wav'],
+        });
+        sound.play();
+      }
+      this.walkingCycle--;
     }
   }
 
@@ -253,6 +283,7 @@ export class Player {
       this.drawCharacter(movingCharacter[(frame % 6) + 1]);
     } else {
       this.characterFrame = 0;
+      this.walkingCycle = 0;
       characterStatus = standingCharacter;
       this.drawCharacter(standingCharacter);
     }

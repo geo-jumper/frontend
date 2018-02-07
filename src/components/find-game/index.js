@@ -1,8 +1,7 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 import {socketInit} from '../../utils/socketIO';
 
-const FindGame = withRouter(({history}) => {
+const FindGame = ({ history }) => {
   return(
     <button onClick = {() =>{
       history.push('/matchmaking');
@@ -12,6 +11,6 @@ const FindGame = withRouter(({history}) => {
     </button>
 
   );
-});
+};
 
 export default FindGame;

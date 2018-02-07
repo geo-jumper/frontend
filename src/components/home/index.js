@@ -10,11 +10,10 @@ class Home extends React.Component {
     return (
       <div id="home">
         <h1>Geo-Jumper</h1>
-        <SignUpForm/>
+        <SignUpForm history={this.props.history}/>
         <LogInForm/>
-        <ContinueAnonymously/>
+        <ContinueAnonymously history={this.props.history}/>
       </div>
-
     );
   }
 }
