@@ -80,7 +80,9 @@ export function update() {
   } else {
     player.velX *= game.FRICTION;
   }
-  player.velY += game.GRAVITY;
+  if (player.velY < player.terminalVelocity) {
+    player.velY += game.GRAVITY;
+  }
 
   player.x += player.velX;
   player.y += player.velY;
@@ -91,6 +93,7 @@ export function update() {
 
 
   clearCanvas(game.ctx);
+  renderBackground();
   bricks.forEach(brick => brick.render());
   spikes.forEach(spike => spike.render());
   player.render();
@@ -180,10 +183,11 @@ function setTopAndBottomBorders(model) {
     if (model.type === 'character') {
       model.resetJump();
     }
-  // mattL - configure the top of canvas
-  } else if (model.y <= 0) {
-    model.y = 0;
+  // // mattL - configure the top of canvas
   }
+  // } else if (model.y <= 0) {
+    // model.y = 0;
+  // }
 }
 
 function setLeftAndRightBorders(model) {
@@ -206,6 +210,10 @@ function clearCanvas(ctx) {
   ctx.clearRect(0, 0, game.CANVAS_WIDTH, game.CANVAS_HEIGHT);
 }
 
+function renderBackground() {
+  let image = document.getElementById('clouds');
+  game.ctx.drawImage(image, 0, 0, 900, 400);
+}
 // window.addEventListener('load', () => {
 //   update();
 // });

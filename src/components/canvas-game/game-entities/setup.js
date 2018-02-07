@@ -45,6 +45,7 @@ export class Player {
     this.speed = 3;
     this.velX = 0;
     this.velY = 0;
+    this.terminalVelocity = 12;
     this.jumping = false;
     this.jumpLimit = this.default.jumpLimit;
     this.crouching = false;
@@ -70,7 +71,7 @@ export class Player {
   }
 
   jump() {
-    this.velY = -this.speed * 4;
+    this.velY = -this.speed * 3.2;
     this.jumping = true;
     this.jumpLimit --;
     
@@ -376,10 +377,11 @@ export class Brick {
     x = CANVAS_WIDTH / 10,
     y = CANVAS_HEIGHT - 100,
     width = 60,
-    height = 10
+    height = 10,
+    color = '#333333'
   ) {
     this.type = 'platform';
-    this.color = '#333333';
+    this.color = color;
 
     this.x = x;
     this.y = y;
