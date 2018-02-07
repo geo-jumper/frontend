@@ -98,7 +98,7 @@ export function update() {
   spikes.forEach(spike => spike.render());
   player.render();
 
-  renderGrid(game.ctx);
+  // renderGrid(game.ctx);
   
   requestAnimationFrame(update);
 }
