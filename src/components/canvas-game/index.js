@@ -20,8 +20,6 @@ class Game extends React.Component {
     this.state = {
       ...incomingState,
     };
-    
-    console.log(this.state);
   }
 
   componentDidMount() {
