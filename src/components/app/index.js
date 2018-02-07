@@ -25,6 +25,10 @@ class App extends React.Component {
     this.getLandingOK = this.getLandingOK.bind(this);
     this.toggleMatchmakingOK = this.toggleMatchmakingOK.bind(this);
     this.getMatchmakingOK = this.getMatchmakingOK.bind(this);
+    this.toggleCountdownOK = this.toggleCountdownOK.bind(this);
+    this.getCountdownOK = this.getCountdownOK.bind(this);
+    this.toggleGameOK = this.toggleGameOK.bind(this);
+    this.getGameOK = this.getGameOK.bind(this);
   }
 
   toggleLandingOK() {
@@ -47,11 +51,20 @@ class App extends React.Component {
 
   toggleCountdownOK() {
     let toggledState = !this.state.countdownOK;
-    this.setState({ matchmakingOK: toggledState });
+    this.setState({ countdownOK: toggledState });
   }
 
   getCountdownOK() {
     return this.state.countdownOK;
+  }
+
+  toggleGameOK() {
+    let toggledState = !this.state.gameOK;
+    this.setState({ gameOK: toggledState });
+  }
+
+  getGameOK() {
+    return this.state.gameOK;
   }
 
   render() {
@@ -79,8 +92,21 @@ class App extends React.Component {
               />;
             }}/>
 
-            <Route exact path='/countdown' render={() => <Countdown /> }/>
-            <Route exact path='/game' render={() => <Game />} />
+            <Route exact path='/countdown' render={props => {
+              return <Countdown
+                {...props}
+                toggleGameOK={this.toggleGameOK}
+                getCountdownOK={this.getCountdownOK}
+              />;
+            }}/>
+
+            <Route exact path='/game' render={props => {
+              return <Game
+                {...props}
+                getGameOK={this.getgameOK}
+              />;
+            }}/>
+
             <Route exact path='/matchresults' component={MatchResults}/>
 
             {/* mattL - Image Dump for Tuxedo Man */}

@@ -22,10 +22,11 @@ class Matchmaking extends React.Component {
   }
 
   componentDidMount() {
-    const { history } = this.props;
+    const { history, toggleCountdownOK } = this.props;
 
     if (this.state.socket) {
       this.state.socket.on('match-found', () => {
+        toggleCountdownOK();
         this.setState({ searching: false });
         updateSocket(getSocket);
         history.push('/countdown');
