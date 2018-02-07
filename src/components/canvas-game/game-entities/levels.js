@@ -3,6 +3,7 @@ import * as game from './setup';
 
 export default { // levels
   1 : {
+    image : document.getElementById('clouds'),
     bricks : [
       new game.Brick(610, 80, 10, undefined, '#5abdf4'),  // invisi-brick
       new game.Brick(630, -10, 90),  // invisi-brick
@@ -47,8 +48,8 @@ export default { // levels
     star : null,
   },
 
-
-  default : {
+  2 : {
+    image: document.getElementById('lava'),
     bricks : [
       new game.Brick(200, 180, 30, 300), // 1st pipe
       new game.Brick(400, 200, 30, 300), // 2nd pipe      
@@ -64,10 +65,6 @@ export default { // levels
       new game.Brick(760, 290, 25, 10), // 10th platform
       new game.Brick(860, 240, 25, 10), // 11th platform
       new game.Brick(770, 180, 25, 10), // 12th and final platform
-      
-      
-      
-      
       
     ],
     spikes : [
@@ -178,6 +175,19 @@ export default { // levels
       new game.Spike(875, 399),
       new game.Spike(885, 399),
       new game.Spike(895, 399),
+    ],
+    star : null,
+  },
+
+
+  default : {
+    bricks : [
+      
+      
+    ],
+    spikes : [
+
+ 
     ],
     star : null,
   },
