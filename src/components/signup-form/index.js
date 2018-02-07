@@ -23,12 +23,14 @@ class SignUpForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   handleChange(event) {
     let {name, value} = event.target;
     
     this.setState({ [name]: value });
   }
   handleSubmit(event){
+    
     event.preventDefault();
 
     const {history} = this.props;
@@ -36,7 +38,8 @@ class SignUpForm extends React.Component {
     let account = {};
     account.username = this.state.username;
     account.password = this.state.password;
-    account.email = this. state.email;
+    account.email = this.state.email;
+    
 
     return superagent.post(`${__API_URL__}${routes.SIGNUP_ROUTE}`)
       .send(account)
@@ -73,6 +76,7 @@ class SignUpForm extends React.Component {
 
 
   render() {
+    
     return(
       <form onSubmit={this.handleSubmit}>
         <input
