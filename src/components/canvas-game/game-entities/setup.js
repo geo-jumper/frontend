@@ -90,7 +90,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src: ['../../../../src/sound/sound-effects/Movement/Footsteps/sfx_movement_footstepsloop4_fast.wav'],
+          src: ['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
         });
         sound.play();
       }
@@ -106,7 +106,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src: ['../../../../src/sound/sound-effects/Movement/Footsteps/sfx_movement_footstepsloop4_fast.wav'],
+          src:['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
         });
         sound.play();
       }
