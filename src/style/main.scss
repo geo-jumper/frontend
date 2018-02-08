@@ -7,7 +7,7 @@
     text-align: center;
   }
 
-#home h1 {
+.title {
     font-size: 60px;
     font-family: 'Press Start 2P', cursive;
     padding-top: 20px;
@@ -58,7 +58,7 @@ button {
     margin-bottom: 10px;
     text-decoration: none;
   }
-  
+
 .button:hover {
     background: #3cb0fd;
     background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -70,7 +70,7 @@ button {
   }
 
 #home, #landing, #matchmaking, #countdown {
-    background: url(https://i.imgur.com/G78CvSH.gif) no-repeat center center fixed; 
+    background: url(https://i.imgur.com/G78CvSH.gif) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
