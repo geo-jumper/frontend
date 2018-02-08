@@ -2,14 +2,16 @@ import React from 'react';
 import levels from './game-entities/levels';
 import { renderLevel } from './game-entities/render';
 import { update } from './game-entities/render';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 
 let canvas = document.getElementById('geo-jumper');
+let forceReactUpdate = null;
+let endGame = false;
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    
+
     let incomingState = null;
     try {
       incomingState = this.props.location.state;
@@ -18,8 +20,10 @@ class Game extends React.Component {
     }
     
     this.state = {
-      ...incomingState,
+      ...incomingState, // mattL - incoming state determines game level
     };
+
+    forceReactUpdate = () => { this.forceUpdate(); } ;
   }
 
   componentDidMount() {
@@ -33,16 +37,22 @@ class Game extends React.Component {
   }
 
   componentWillUnmount() {
+    endGame = false;
     canvas.style.display = 'none';
   }
   
   render() {
     return(
-      <BrowserRouter>
-
-      </BrowserRouter>
+      <div>
+        {endGame ? location.replace('/') : console.log(false)} {/* TODO: change url to highscores */}
+      </div>
     );
   }
 }
 
 export default Game;
+
+export let loadResults = () => {
+  endGame = true;
+  forceReactUpdate();
+};
