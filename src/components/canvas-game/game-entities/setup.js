@@ -52,6 +52,8 @@ export class Player {
     this.crouching = false;
     this.falling = true;
     this.direction = 'right';
+    this.starIsCaptured = false;
+    this.wonTheLevel = false;
 
     this.characterFrame = 0;
     this.walkingCycle = 5;
@@ -300,12 +302,20 @@ export class Player {
       this.playerInterval = 2;
       
       socket.emit('update-player', ({
+        currentLevel: this.currentLevel,
         direction: this.direction,
         characterStatus,
       }));
 
       socket.on('render-players', (secondPlayer) => {
         this.secondPlayer = secondPlayer;
+      });
+
+      socket.on('return-star', (secondPlayer) => {
+        console.log('returning from star');
+        console.log(secondPlayer);
+        this.starIsCaptured = true;
+        socket.off('return-star');
       });
     }
 
@@ -376,10 +386,10 @@ export class Player {
       level : currentLevel,
       score : points,
     }));
+  }
+
+  lose() {
     
-    socket.on('return-star', (secondPlayer) => {
-      console.log(secondPlayer);
-    });
   }
 }
 

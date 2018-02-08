@@ -34,7 +34,6 @@ let gifFramesDefault;
 let startingTime;
 let points;
 let counterColor;
-let starIsCaptured = false;
 let levelFriction;
 
 export const renderLevel = (level) => {
@@ -52,7 +51,8 @@ export const renderLevel = (level) => {
   gifFramesDefault = level.frames;
   counterColor = level.counterColor || 'black';
   levelFriction = level.friction || game.FRICTION;
-
+  
+  player.starIsCaptured = false;
   startingTime = Date.now();
 };
 
@@ -84,7 +84,6 @@ document.addEventListener('keyup', (event) => {
 // ==================================================
 export function update() {
   setInterval(() => {
-
     player.stand();
     player.setDirection();
     player.moveRight(keyboard);
@@ -114,8 +113,12 @@ export function update() {
     spikes.forEach(spike => spike.render());
     renderTimer();
 
-    if (!starIsCaptured) {
+    // mattL - allows for the first person to collect the star to win
+    //         and the second player to lose and go onto the next level
+    if (!player.starIsCaptured) {
       star.render(); // mattL - renders a star if it hasn't been picked up
+    } else {
+      endLevel();
     }
 
     player.render();
@@ -203,6 +206,7 @@ function starCheck(player, star) {
   
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
+      player.wonTheLevel = true;
       endLevel();
   
       const sound = new Howl({
@@ -314,12 +318,20 @@ function renderTimer() {
 }
 
 function endLevel() {
-  player.captureStar({ 
-    currentLevel: player.currentLevel, 
-    points,
-  });
+  player.starIsCaptured = false;
 
-  player.score += points;
+  if (player.wonTheLevel) {
+    // mattL - you have to reset the level win so that last couple frames don't loop
+    //         the game to the end
+    player.wonTheLevel = false; 
+
+    player.captureStar({ 
+      currentLevel: player.currentLevel, 
+      points,
+    });
+
+    player.score += points;
+  } 
 
   if (!levels[player.currentLevel + 1]) {
     renderLevel(levels['end']);
@@ -327,9 +339,6 @@ function endLevel() {
     renderLevel(levels[player.currentLevel + 1]);
 
   }
-
-
-  // star = null;
 
   // TODO : Emit star
 
