@@ -1,6 +1,7 @@
 import React from 'react';
 import superagent from 'superagent';
 import FindGame from '../find-game';
+import Instructions from '../instructions';
 import * as routes from '../../routes';
 
 class Landing extends React.Component {
@@ -33,6 +34,7 @@ class Landing extends React.Component {
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
+        <Instructions/>
         <div>{this.state.name}: {this.state.wins}</div>
       </div>
     );
