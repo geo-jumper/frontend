@@ -57,6 +57,7 @@ export class Player {
     this.walkingCycle = 5;
     this.playerInterval = 0;
     this.secondPlayer = {};
+    this.currentLevel = null;
 
     this.score = 0;
   }
