@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 export let socket = null;
 
 export const socketInit = () => {
-  const _socket = io('http://localhost:3000');
+  const _socket = io(__API_URL__);
   _socket.emit('join-room');
   socket = _socket;
 };

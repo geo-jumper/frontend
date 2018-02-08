@@ -44,6 +44,7 @@ class Matchmaking extends React.Component {
     return (
       <div id = "matchmaking">
         <h1> Matchmaking </h1>
+        <div className = "loader"></div>
         {isSearching}
       </div>
     );

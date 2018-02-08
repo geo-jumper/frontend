@@ -7,8 +7,8 @@ import Countdown from '../countdown';
 import Game from '../canvas-game';
 import MatchResults from '../match-results';
 // mattL - images for tuxedo man to reference
-import leftTuxedoMan from '../../images/left-tuxedo-man.png';
-import rightTuxedoMan from '../../images/right-tuxedo-man.png';
+import image from '../../utils/import-images';
+import sounds from '../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -109,16 +109,21 @@ class App extends React.Component {
               />;
             }}/>
 
-
-            <button
-              onClick={mute()}
-            >Audio</button>
-
-
             {/* mattL - Image Dump for Tuxedo Man */}
-            <div id='image-dump' style={{display: 'none'}}>
-              <img id='left-tuxedo-man' src={leftTuxedoMan} alt="Left Tuxedo Man" />
-              <img id='right-tuxedo-man' src={rightTuxedoMan} alt="Right Tuxedo Man" />
+            <div id='image-dump' style={{display : 'none'}}>
+              <img id='left-tuxedo-man' src={image.leftTuxedoMan} alt="Left Tuxedo Man" />
+              <img id='right-tuxedo-man' src={image.rightTuxedoMan} alt="Right Tuxedo Man" />
+              <img id='left-tuxedo-man-pink' src={image.leftTuxedoManPink} alt="Left Tuxedo Man Pink" />
+              <img id='right-tuxedo-man-pink' src={image.rightTuxedoManPink} alt="Right Tuxedo Man Pink" />
+              <img id='clouds' src={image.clouds} alt="Toy Story" />
+              <img id='star' src={image.star} alt="star" />
+              <img id='rainbow' src={image.rainbow} alt="rainbow" />
+              <img id='ice' src={image.ice} alt="ice" />
+              {
+                image.lava.map((each, i) => {
+                  return <img key={i} id={`lava-${i + 1}`} src={image.lava[i]} alt={`lava-${i + 1}`} />;
+                })
+              }
             </div>
           </div>
         </BrowserRouter>
@@ -128,10 +133,10 @@ class App extends React.Component {
 }
 export default App;
 
-
 // catherine - setup new Howl aka background music
 const sound = new Howl({
-  src: ['../src/sound/Komiku_-_70_-_Ending (2).mp3'],
+  src: [sounds.backgroundMusic],
+  loop: true,
 });
 
   // catherine - play background music
@@ -140,6 +145,4 @@ sound.play();
 // catherine - change global volume
 Howler.volume(0.5);
 
-const mute = () => {
-  sound.mute();
-};
+// style={{display: 'none'}}

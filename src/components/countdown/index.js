@@ -12,7 +12,7 @@ class Countdown extends Component {
   componentDidUpdate() {
     const { history } = this.props;
   }
-
+  
   componentWillMount() {
     const OK = this.props.getCountdownOK();
     if (!OK) {
@@ -28,7 +28,7 @@ class Countdown extends Component {
     }
   }
 
-  render(){
+  render() {
     return (
       <div id = "countdown">
 
@@ -44,6 +44,5 @@ class Countdown extends Component {
     );
   }
 }
-
 
 export default Countdown;

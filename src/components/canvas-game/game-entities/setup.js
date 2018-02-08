@@ -1,5 +1,6 @@
 // catherine - howler handles the sound effects
 import {Howl, Howler} from 'howler';
+import sounds from '../../../utils/import-sounds';
 
 // ========================================
 // ============= CANVAS SETUP =============
@@ -11,6 +12,7 @@ export const CANVAS_WIDTH = 900;
 export const CANVAS_HEIGHT = 400;
 export const FRICTION = 0.85;
 export const GRAVITY = 0.85;
+export let backgroundFrame = 52;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
@@ -37,7 +39,6 @@ export class Player {
       width: 20,
       jumpLimit: 2,
     };
-
     this.x = this.default.x;
     this.y = this.default.y;
     this.width = this.default.width;
@@ -45,16 +46,22 @@ export class Player {
     this.speed = 3;
     this.velX = 0;
     this.velY = 0;
+    this.terminalVelocity = 12;
     this.jumping = false;
     this.jumpLimit = this.default.jumpLimit;
     this.crouching = false;
     this.falling = true;
     this.direction = 'right';
+    this.starIsCaptured = false;
+    this.wonTheLevel = false;
 
     this.characterFrame = 0;
     this.walkingCycle = 5;
     this.playerInterval = 0;
     this.secondPlayer = {};
+    this.currentLevel = null;
+
+    this.score = 0;
   }
 
   // ============ PLAYER ACTIONS ============
@@ -70,13 +77,13 @@ export class Player {
   }
 
   jump() {
-    this.velY = -this.speed * 4;
+    this.velY = -this.speed * 3.2;
     this.jumping = true;
     this.jumpLimit --;
     
     const sound = new Howl ({
       src: 
-      ['../../../../src/sound/sound-effects/Movement/Jumping and Landing/sfx_movement_jump8.wav'],
+      [sounds.jumping],
     });
     sound.play(); 
   }
@@ -89,7 +96,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src: ['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src: [sounds.walking],
         });
         sound.play();
       }
@@ -105,7 +112,7 @@ export class Player {
       if(this.walkingCycle === 0) {
         this.walkingCycle = 12;
         const sound = new Howl ({
-          src:['../../../../src/sound/sound-effects/Movement/Climbing Ladder/sfx_movement_ladder1a.wav'],
+          src:[sounds.walking],
         });
         sound.play();
       }
@@ -293,16 +300,22 @@ export class Player {
 
     if (this.playerInterval === 0) {
       this.playerInterval = 2;
-      // console.log(characterStatus);
       
       socket.emit('update-player', ({
+        currentLevel: this.currentLevel,
         direction: this.direction,
         characterStatus,
       }));
 
       socket.on('render-players', (secondPlayer) => {
-        // console.log('hi');
         this.secondPlayer = secondPlayer;
+      });
+
+      socket.on('return-star', (secondPlayer) => {
+        console.log('returning from star');
+        console.log(secondPlayer);
+        this.starIsCaptured = true;
+        socket.off('return-star');
       });
     }
 
@@ -341,14 +354,14 @@ export class Player {
   }
 
   drawOtherPlayer(secondPlayer) {
-    let leftTuxedoMan = document.getElementById('left-tuxedo-man');
-    let rightTuxedoMan = document.getElementById('right-tuxedo-man');
+    let leftTuxedoManPink = document.getElementById('left-tuxedo-man-pink');
+    let rightTuxedoManPink = document.getElementById('right-tuxedo-man-pink');
     let tuxedoMan = null;
-
+    
     if (secondPlayer.direction === 'left') {
-      tuxedoMan = leftTuxedoMan;
+      tuxedoMan = leftTuxedoManPink;
     } else {
-      tuxedoMan = rightTuxedoMan;
+      tuxedoMan = rightTuxedoManPink;
     }
     // mattL - we need secondPlayer.characterStatus to check, before rendering
     //         because for the first few frames there's no data
@@ -365,6 +378,19 @@ export class Player {
       }
     }
   }
+
+  captureStar({ currentLevel, points }) {
+    console.log('in capture star');
+    
+    socket.emit('capture-star', ({
+      level : currentLevel,
+      score : points,
+    }));
+  }
+
+  lose() {
+    
+  }
 }
 
 // ========================================
@@ -376,10 +402,11 @@ export class Brick {
     x = CANVAS_WIDTH / 10,
     y = CANVAS_HEIGHT - 100,
     width = 60,
-    height = 10
+    height = 10,
+    color = '#fff'
   ) {
     this.type = 'platform';
-    this.color = '#333333';
+    this.color = color;
 
     this.x = x;
     this.y = y;
@@ -403,16 +430,18 @@ export class Spike {
     x = CANVAS_WIDTH - 100,
     y = CANVAS_HEIGHT - 10,
     width = 10,
-    height = 10
+    height = 10,
+    color = 'orange'
   ) {
     this.type = 'spike';
-    this.color = 'red';
+    this.color = color;
 
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
   }
+
 
   // ============= SPIKE RENDERING ==============
   render() {
@@ -429,5 +458,31 @@ export class Spike {
     ctx.lineTo(this.x - (this.width / 2), this.y); // left point
     ctx.lineTo(this.x + (this.width / 2), this.y - this.height); // right point
     ctx.fill();
+  }
+}
+
+
+// ========================================
+// ============= STAR MODEL ==============
+// ========================================
+
+export class Star {
+  constructor (
+    x = 0,
+    y = 0,
+    width = 25,
+    height = 25
+  ) {
+    this.type = 'star';
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.xOffset = 10;
+  }
+
+  render() {
+    let star = document.getElementById('star');
+    ctx.drawImage(star, this.x, this.y, this.width, this.height);
   }
 }

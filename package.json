@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest -i --coverage",
     "watch": "webpack-dev-server --inline --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack && node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
-    "jest": "^22.1.4",
-    "redux-devtools-extension": "^2.13.2"
+    "jest": "^22.1.4"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
@@ -49,9 +49,7 @@
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
     "resolve-url-loader": "^2.2.1",
     "sass-loader": "^6.0.6",
     "serve-favicon": "^2.4.5",

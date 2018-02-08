@@ -10,11 +10,16 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-      ...this.props.location.state,
-    };
+    let incomingState = null;
+    try {
+      incomingState = this.props.location.state;
+    } catch (error) {
+      console.log('couldn\'t retrieve state');
+    }
     
-    console.log(this.state);
+    this.state = {
+      ...incomingState,
+    };
   }
 
   componentDidMount() {
