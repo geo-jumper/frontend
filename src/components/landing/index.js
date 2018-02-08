@@ -16,18 +16,27 @@ class Landing extends React.Component {
       this.props.history.push('/');
     } else {
       const token = sessionStorage.getItem('X-GEO-JUMPER-TOKEN');
-      return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}/me`)
-        .set('Authorization', `Bearer ${token}`)
-        .then(response => {
-          const parsedResponse = JSON.parse(response.text);
-          console.log(parsedResponse);
-          this.setState({ ...parsedResponse });
-          return superagent.get(`${routes.API_ROUTE}${routes.PORFILE_ROUTE}`)
-            .then(response => {
-              const parsedResponse = JSON.parse(response.text);
-              console.log(parsedResponse);
-            });
-        });
+      console.log(token);
+      if (token) {
+        return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}/me`)
+          .set('Authorization', `Bearer ${token}`)
+          .then(response => {
+            const parsedResponse = JSON.parse(response.text);
+            console.log(parsedResponse);
+            this.setState({ ...parsedResponse });
+            return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
+              .then(response => {
+                const parsedResponse = JSON.parse(response.text);
+                console.log(parsedResponse);
+              });
+          });
+      } else {
+        return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
+          .then(response => {
+            const parsedResponse = JSON.parse(response.text);
+            console.log(parsedResponse);
+          });
+      }
     }
   }
 
