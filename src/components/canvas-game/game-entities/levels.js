@@ -332,6 +332,32 @@ export default { // levels
     ],
   },
 
+  4 : {
+    id : 4,
+    background: 'ice',
+    counterColor : 'white',
+    friction : 0.992,
+    playerPosition : { x : 5, y : 350 },
+    star: {x: 870, y: 10},    
+    bricks : [
+
+      new game.Brick(50, 305, 820, 10), // 2nd platform (long)
+      new game.Brick(90, 255, 900, 10), // 3rd platform (long)
+      new game.Brick(50, 205, 820, 10), // 4th platform (long)
+      new game.Brick(90, 155, 900, 10), // 5th platform (long)
+      new game.Brick(50, 105, 820, 10), // 6th platform (long)
+      new game.Brick(90, 55, 900, 10), // 7th platform (long)
+      new game.Brick(50, 5, 900, 10), // 8th platform (long)
+      
+      new game.Brick(50, 5, 10, 310), // 1st pipe
+    ],
+    spikes : [
+
+
+    ],
+  },
+
+
 
   default : {
     id : 'default',
