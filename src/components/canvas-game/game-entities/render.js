@@ -320,7 +320,7 @@ function renderTimer() {
 
 function endLevel() {
   player.starIsCaptured = false;
-
+  
   if (player.wonTheLevel) {
     // mattL - you have to reset the level win so that last couple frames don't loop
     //         the game to the end
@@ -334,9 +334,13 @@ function endLevel() {
     player.score += points;
   }
 
-  if (!levels[player.currentLevel + 1]) {
+
+  if (player.currentLevel === 'end') {
     player.sendTotalScore(player.score);
     loadResults();
+  }
+  if (!levels[player.currentLevel + 1]) {
+    renderLevel(levels['end']);
   } else {
     renderLevel(levels[player.currentLevel + 1]);
   }
