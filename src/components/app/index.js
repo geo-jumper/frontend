@@ -136,6 +136,7 @@ export default App;
 // catherine - setup new Howl aka background music
 const sound = new Howl({
   src: [sounds.backgroundMusic],
+  loop: true,
 });
 
   // catherine - play background music
