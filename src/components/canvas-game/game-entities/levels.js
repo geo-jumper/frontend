@@ -7,6 +7,7 @@ export default { // levels
     id : 1,
     star : { x : 840, y : 350 },
     playerPosition : { x : 10, y : 170 },
+    counterColor : 'black',
     background : 'clouds', // <img/> id
     bricks : [
       new game.Brick(610, 80, 10, undefined, '#5abdf4'),  // invisi-brick
@@ -55,6 +56,7 @@ export default { // levels
     id : 2,
     star : {x: 764, y: 130},
     playerPosition : { x : 5, y : 10 },
+    counterColor : 'white',
     frames : 26,
     background : [ // <img/> id
       'lava-1',
@@ -99,6 +101,7 @@ export default { // levels
       new game.Brick(760, 290, 25, 10), // 10th platform
       new game.Brick(860, 240, 25, 10), // 11th platform
       new game.Brick(770, 180, 25, 10), // 12th and final platform
+      new game.Brick(890, 0, 10, 400), // right border
       
     ],
     spikes : [
@@ -208,13 +211,14 @@ export default { // levels
       new game.Spike(865, 399),
       new game.Spike(875, 399),
       new game.Spike(885, 399),
-      new game.Spike(895, 399),
+      // new game.Spike(895, 399),
     ],
   },
 
 
   default : {
     id : 'default',
+    counterColor : 'black',
     star : { x: 450, y: 350 },
     playerPosition : { x : 10, y : 350 },
     background : 'clouds', // <img/> id
@@ -226,6 +230,7 @@ export default { // levels
 
   end : {
     id : 'end',
+    counterColor : 'black',
     star : { x: 450, y: 350 },
     playerPosition : { x : 10, y : 350 },
     background : 'clouds', // <img/> id

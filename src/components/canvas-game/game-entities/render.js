@@ -33,6 +33,8 @@ let gifFrames;
 let gifFramesDefault;
 let currentLevel;
 let startingTime;
+let points;
+let counterColor;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
@@ -47,6 +49,7 @@ export const renderLevel = (level) => {
   player.y = level.playerPosition.y;
   player.default.x = level.playerPosition.x;
   player.default.y = level.playerPosition.y;
+  counterColor = level.counterColor;
 
   startingTime = Date.now();
 };
@@ -293,22 +296,23 @@ function renderBackground() {
 
 function renderTimer() {
   startingTime --;
-  let xPosition = 860;
 
-
-  let points = (Math.floor(60000 - (Date.now() - startingTime)));
+  points = (Math.floor(60000 - (Date.now() - startingTime)));
   points = points < 0 ? 0 : points;
 
-  // mattL - converts position when the text is under 10 (shorter length)
-  //         to keep the text against the right wall
-  xPosition = points / 1000 > 10 ? xPosition : xPosition + 12;
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '20px open-sans';
+  game.ctx.fillText(Math.floor(points), 835, 20);
 
-  game.ctx.fillStyle = 'black';
-  game.ctx.font = '25px open-sans';
-  game.ctx.fillText(Math.floor(points / 1000), xPosition, 25);
+
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '18px open-sans';
+  game.ctx.fillText(`Player One: ${player.score}`, 8, 20);
 }
 
 function endLevel() {
+  player.score += points;
+
   if (!levels[currentLevel + 1]) {
     renderLevel(levels['end']);
   } else {
