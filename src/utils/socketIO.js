@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-const BACKEND_API = 'https://geo-jumper-backend.herokuapp.com';
-// TODO: const BACKEND_API = 'http://28f027de.ngrok.io/';
+// const BACKEND_API = 'https://geo-jumper-backend.herokuapp.com';
+const BACKEND_API = 'http://localhost:3000'; // TODO: remove this
 
 export let socket = null;
 

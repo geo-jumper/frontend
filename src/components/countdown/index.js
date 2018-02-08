@@ -35,7 +35,7 @@ class Countdown extends Component {
         {this.state.timer === 0 ? 
           <Redirect to={{
             pathname: '/game',
-            state: { level: 3 },
+            state: { level: 1 },
           }}/> 
           : undefined}
 
