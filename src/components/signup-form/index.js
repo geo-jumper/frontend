@@ -2,12 +2,8 @@ import React from 'react';
 import validator from 'validator';
 import superagent from 'superagent';
 import * as routes from '../../routes';
-import * as cookie from '../../lib/cookie';
-import { log } from 'util';
-import {Redirect} from 'react-router-dom';
 
 class SignUpForm extends React.Component {
-
   constructor(props){
     super(props);
 
@@ -32,13 +28,8 @@ class SignUpForm extends React.Component {
 
     const { history, toggleLandingOK } = this.props;
 
-    let account = {};
-    account.username = this.state.username;
-    account.password = this.state.password;
-    account.email = this.state.email;
-
     return superagent.post(`${routes.API_ROUTE}${routes.SIGNUP_ROUTE}`)
-      .send(account)
+      .send(this.state)
       .then(response => {
         toggleLandingOK();
         sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
