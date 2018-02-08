@@ -48,7 +48,7 @@ export const renderLevel = (level) => {
   player.default.x = level.playerPosition.x;
   player.default.y = level.playerPosition.y;
 
-  startingTime = Date.now() ;
+  startingTime = Date.now();
 };
 
 
@@ -293,7 +293,19 @@ function renderBackground() {
 
 function renderTimer() {
   startingTime --;
-  game.ctx.fillText((Math.floor(startingTime / 100)), 400, 100);
+  let xPosition = 860;
+
+
+  let points = (Math.floor(60000 - (Date.now() - startingTime)));
+  points = points < 0 ? 0 : points;
+
+  // mattL - converts position when the text is under 10 (shorter length)
+  //         to keep the text against the right wall
+  xPosition = points / 1000 > 10 ? xPosition : xPosition + 12;
+
+  game.ctx.fillStyle = 'black';
+  game.ctx.font = '25px open-sans';
+  game.ctx.fillText(Math.floor(points / 1000), xPosition, 25);
 }
 
 function endLevel() {
