@@ -19,13 +19,16 @@ class Landing extends React.Component {
     } else {
       const token = sessionStorage.getItem('X-GEO-JUMPER-TOKEN');
       console.log(token);
+      // LOGGED IN USERS
       if (token) {
+        // GET USER DATA
         return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}/me`)
           .set('Authorization', `Bearer ${token}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
             console.log(parsedResponse);
             this.setState({ ...parsedResponse });
+            // GET LEADERBOARD DATA
             return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
@@ -33,7 +36,10 @@ class Landing extends React.Component {
                 this.setState({ leaderboard: parsedData });
               });
           });
+
+      // ANONOMYOUS USERS
       } else {
+        // GET LEADERBOARD DATA
         return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
@@ -47,12 +53,12 @@ class Landing extends React.Component {
   render(){
     return (
       <div id ="landing">
-        <h1> Welcome to Geo-Jumper </h1>
+        <h1 className='title'> Geo-Jumper </h1>
         <FindGame
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
-        <Welcome name={this.state.name} wins={this.state.wins}/>
+        <Welcome name={this.state.name} />
         <Leaderboard leaderboard={this.state.leaderboard}/>
         <Instructions/>
       </div>

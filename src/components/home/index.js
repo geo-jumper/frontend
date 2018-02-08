@@ -9,7 +9,7 @@ class Home extends React.Component {
   render() {
     return (
       <div id="home">
-        <h1>Geo-Jumper</h1>
+        <h1 className='title'>Geo-Jumper</h1>
         <SignUpForm history={this.props.history}
           toggleLandingOK={this.props.toggleLandingOK}
         />
