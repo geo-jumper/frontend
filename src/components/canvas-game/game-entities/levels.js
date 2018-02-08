@@ -5,7 +5,7 @@ import background from '../../../utils/import-images';
 export default { // levels
   1 : {
     id : 1,
-    star : { x : 840, y : 350},
+    star : { x : 840, y : 350 },
     playerPosition : { x : 10, y : 170 },
     background : 'clouds', // <img/> id
     bricks : [
@@ -28,7 +28,7 @@ export default { // levels
       new game.Brick(710, 240, 20),  // 3rd rising platform
       new game.Brick(620, 190, 30),  // 4th rising platform
       new game.Brick(710, 140, 20),  // 5th rising platform
-      new game.Brick(620, 90, 50),  // 6th rising platform
+      new game.Brick(620, 90, 60),  // 6th rising platform
     ],
     spikes : [
       new game.Spike(110, 210),
@@ -215,31 +215,23 @@ export default { // levels
 
   default : {
     id : 'default',
-    star : { x: 450, y: 380 },
-    playerPosition : { x : 10, y : 380 },
+    star : { x: 450, y: 350 },
+    playerPosition : { x : 10, y : 350 },
     background : 'clouds', // <img/> id
     bricks : [
-      
-      
     ],
     spikes : [
-
- 
     ],
   },
 
   end : {
     id : 'end',
-    star : { x: 450, y: 380 },
-    playerPosition : { x : 10, y : 380 },
+    star : { x: 450, y: 350 },
+    playerPosition : { x : 10, y : 350 },
     background : 'clouds', // <img/> id
     bricks : [
-      
-      
     ],
     spikes : [
-
- 
     ],
   },
 };

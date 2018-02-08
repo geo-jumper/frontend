@@ -32,6 +32,7 @@ let background;
 let gifFrames;
 let gifFramesDefault;
 let currentLevel;
+let startingTime;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
@@ -46,6 +47,8 @@ export const renderLevel = (level) => {
   player.y = level.playerPosition.y;
   player.default.x = level.playerPosition.x;
   player.default.y = level.playerPosition.y;
+
+  startingTime = Date.now() ;
 };
 
 
@@ -103,10 +106,12 @@ export function update() {
     
     clearCanvas(game.ctx);
     renderBackground();
+    renderTimer();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
     star ? star.render() : null;
     player.render();
+    
     
   }, 1000 / 59);
 }
@@ -284,6 +289,11 @@ function renderBackground() {
     let image = document.getElementById(background);
     game.ctx.drawImage(image, 0, 0, 900, 400);
   }
+}
+
+function renderTimer() {
+  startingTime --;
+  game.ctx.fillText((Math.floor(startingTime / 100)), 400, 100);
 }
 
 function endLevel() {

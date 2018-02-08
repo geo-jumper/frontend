@@ -69,8 +69,6 @@ class App extends React.Component {
   }
 
   render() {
-    let lava = new Array(26).fill('lava');
-
     return (
       <div className='app'>
         <BrowserRouter>
@@ -118,8 +116,8 @@ class App extends React.Component {
               <img id='clouds' src={image.clouds} alt="Toy Story" />
               <img id='star' src={image.star} alt="star" />
               {
-                lava.map((each, i) => {
-                  return <img key={i} id={`lava-${i + 1}`} src={image[`lava_${i + 1}`]} alt={`lava-${i + 1}`} />;
+                image.lava.map((each, i) => {
+                  return <img key={i} id={`lava-${i + 1}`} src={image.lava[i]} alt={`lava-${i + 1}`} />;
                 })
               }
             </div>

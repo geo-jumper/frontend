@@ -31,11 +31,7 @@ import lava_24 from '../images/lava-destructured/lava-animated-24.png';
 import lava_25 from '../images/lava-destructured/lava-animated-25.png';
 import lava_26 from '../images/lava-destructured/lava-animated-26.png';
 
-export default {
-  star,
-  leftTuxedoMan,
-  rightTuxedoMan,
-  clouds,
+let lava = [
   lava_1, 
   lava_2, 
   lava_3, 
@@ -62,4 +58,12 @@ export default {
   lava_24,
   lava_25,
   lava_26,
+];
+
+export default {
+  star,
+  leftTuxedoMan,
+  rightTuxedoMan,
+  clouds,
+  lava,
 };
