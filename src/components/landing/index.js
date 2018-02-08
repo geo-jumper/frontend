@@ -16,6 +16,7 @@ class Landing extends React.Component {
       this.props.history.push('/');
     } else {
       const token = sessionStorage.getItem('X-GEO-JUMPER-TOKEN');
+      console.log(token);
       if (token) {
         return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}/me`)
           .set('Authorization', `Bearer ${token}`)
