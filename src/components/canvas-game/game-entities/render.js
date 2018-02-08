@@ -335,10 +335,9 @@ function endLevel() {
   }
 
   if (!levels[player.currentLevel + 1]) {
-
+    player.sendTotalScore(player.score);
     loadResults();
   } else {
     renderLevel(levels[player.currentLevel + 1]);
-
   }
 }
