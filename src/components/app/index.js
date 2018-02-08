@@ -113,6 +113,8 @@ class App extends React.Component {
             <div id='image-dump' style={{display : 'none'}}>
               <img id='left-tuxedo-man' src={image.leftTuxedoMan} alt="Left Tuxedo Man" />
               <img id='right-tuxedo-man' src={image.rightTuxedoMan} alt="Right Tuxedo Man" />
+              <img id='left-tuxedo-man-pink' src={image.leftTuxedoManPink} alt="Left Tuxedo Man Pink" />
+              <img id='right-tuxedo-man-pink' src={image.rightTuxedoManPink} alt="Right Tuxedo Man Pink" />
               <img id='clouds' src={image.clouds} alt="Toy Story" />
               <img id='star' src={image.star} alt="star" />
               <img id='rainbow' src={image.rainbow} alt="rainbow" />

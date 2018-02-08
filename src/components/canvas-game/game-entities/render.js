@@ -42,18 +42,17 @@ export const renderLevel = (level) => {
   star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
-  background = level.background;
-  gifFrames = level.frames;
-  gifFramesDefault = level.frames;
   player.x = level.playerPosition.x;
   player.y = level.playerPosition.y;
   player.default.x = level.playerPosition.x;
   player.default.y = level.playerPosition.y;
-  counterColor = level.counterColor;
+  background = level.background;
+  gifFrames = level.frames;
+  gifFramesDefault = level.frames;
+  counterColor = level.counterColor || 'black';
 
   startingTime = Date.now();
 };
-
 
 // mattL - keydown === when a key is pressed
 document.addEventListener('keydown', (event) => {
@@ -112,13 +111,14 @@ export function update() {
     renderTimer();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
-    star ? star.render() : null; // mattL - renders a star if it hasn't been picked up
+
+    // if (!starIsCaptured) {
+    //   star.render(); // mattL - renders a star if it hasn't been picked up
+    // }
     player.render();
-    
     
   }, 1000 / 59);
 }
-
 
 
 // ==================================================
