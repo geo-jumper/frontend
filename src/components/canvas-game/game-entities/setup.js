@@ -459,8 +459,8 @@ export class Star {
   constructor (
     x = 0,
     y = 0,
-    width = 40,
-    height = 40
+    width = 25,
+    height = 25
   ) {
     this.type = 'star';
     this.x = x;

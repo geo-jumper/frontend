@@ -51,6 +51,7 @@ export const renderLevel = (level) => {
   gifFrames = level.frames;
   gifFramesDefault = level.frames;
   counterColor = level.counterColor || 'black';
+  game.FRICTION = level.friction || game.FRICTION;
 
   startingTime = Date.now();
 };
@@ -109,9 +110,9 @@ export function update() {
     
     clearCanvas(game.ctx);
     renderBackground();
-    renderTimer();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
+    renderTimer();
 
     if (!starIsCaptured) {
       star.render(); // mattL - renders a star if it hasn't been picked up
