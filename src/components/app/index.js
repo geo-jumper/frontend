@@ -10,6 +10,8 @@ import MatchResults from '../match-results';
 import image from '../../utils/import-images';
 import sounds from '../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
+import FaVolumeOff from 'react-icons/lib/fa/volume-off';
+import FaVolumeUp from 'react-icons/lib/fa/volume-up';
 
 // catherine - setup new Howl aka background music
 const sound = new Howl({
@@ -47,7 +49,7 @@ class App extends React.Component {
 
   toggleBackgroundSound() {
     if(this.state.backgroundSound === true) {
-      sound.stop();
+      sound.pause();
       this.setState({backgroundSound: false});
     } else {
       sound.play();
@@ -96,8 +98,7 @@ class App extends React.Component {
       <div className='app'>
         <BrowserRouter>
           <div>
-            <button onClick={this.toggleBackgroundSound}>audio</button>
-      
+            <button id="audio" onClick={this.toggleBackgroundSound}>audio</button>
             <Route exact path='/' render={props => {
               return <Home {...props} toggleLandingOK={this.toggleLandingOK} />;
             }}/>
