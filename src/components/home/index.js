@@ -6,6 +6,14 @@ import LogInForm from '../login-form';
 import ContinueAnonymously from '../continue-anonymously';
 
 class Home extends React.Component {
+  componentWillMount() {
+    const token = sessionStorage.getItem('X-GEO-JUMPER-TOKEN');
+    const { history, toggleLandingOK } = this.props;
+    if (token) {
+      toggleLandingOK();
+      history.push('/landing');
+    }
+  }
   render() {
     return (
       <div id="home">
