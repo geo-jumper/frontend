@@ -5,9 +5,6 @@ import * as routes from '../../routes';
 import * as cookie from '../../lib/cookie';
 import { log } from 'util';
 import {Redirect} from 'react-router-dom';
-import { HOME_ROUTE } from '../../routes';
-
-
 
 class SignUpForm extends React.Component {
 
@@ -23,29 +20,28 @@ class SignUpForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(event) {
     let {name, value} = event.target;
-    
+
     this.setState({ [name]: value });
   }
+
   handleSubmit(event){
-    
     event.preventDefault();
 
-    const {history} = this.props;
+    const { history, toggleLandingOK } = this.props;
 
     let account = {};
     account.username = this.state.username;
     account.password = this.state.password;
     account.email = this.state.email;
-    
 
-    return superagent.post(`${__API_URL__}${routes.SIGNUP_ROUTE}`)
+    return superagent.post(`${routes.API_ROUTE}${routes.SIGNUP_ROUTE}`)
       .send(account)
       .then(response => {
-        console.log(response);
-        sessionStorage.setItem('X-GEO_JUMPER_TOKEN', response.text);
+        toggleLandingOK();
+        sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
         history.push('/landing');
       });
   }
@@ -76,7 +72,7 @@ class SignUpForm extends React.Component {
 
 
   render() {
-    
+
     return(
       <form onSubmit={this.handleSubmit}>
         <input
