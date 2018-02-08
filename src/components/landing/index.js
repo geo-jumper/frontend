@@ -34,6 +34,13 @@ class Landing extends React.Component {
                 const parsedResponse = JSON.parse(response.text);
                 const parsedData = parsedResponse.data;
                 this.setState({ leaderboard: parsedData });
+                // GET HIGHSCORES
+                return superagent.get(`${routes.API_ROUTE}${routes.HIGHSCORES}`)
+                  .then(response => {
+                    const parsedResponse = JSON.parse(response.text);
+                    const parsedData = parsedResponse;
+                    this.setState({ levelData: parsedData });
+                  });
               });
           });
 
@@ -45,6 +52,13 @@ class Landing extends React.Component {
             const parsedResponse = JSON.parse(response.text);
             const parsedData = parsedResponse.data;
             this.setState({ leaderboard: parsedData });
+            // GET HIGHSCORES
+            return superagent.get(`${routes.API_ROUTE}${routes.HIGHSCORES}`)
+              .then(response => {
+                const parsedResponse = JSON.parse(response.text);
+                const parsedData = parsedResponse;
+                this.setState({ levelData: parsedData });
+              });
           });
       }
     }
@@ -59,7 +73,9 @@ class Landing extends React.Component {
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
         <Welcome name={this.state.name} />
-        <Leaderboard leaderboard={this.state.leaderboard}/>
+        <Leaderboard
+          leaderboard={this.state.leaderboard}
+          levelData={this.state.levelData}/>
         <Instructions/>
       </div>
     );
