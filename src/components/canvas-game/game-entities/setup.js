@@ -312,8 +312,6 @@ export class Player {
       });
 
       socket.on('return-star', (secondPlayer) => {
-        console.log('returning from star');
-        console.log(secondPlayer);
         this.starIsCaptured = true;
         socket.off('return-star');
       });
@@ -380,16 +378,16 @@ export class Player {
   }
 
   captureStar({ currentLevel, points }) {
-    console.log('in capture star');
-    
     socket.emit('capture-star', ({
       level : currentLevel,
       score : points,
     }));
   }
 
-  lose() {
-    
+  sendTotalScore(totalScore) {
+    socket.emit('total-score', ({
+      totalScore,
+    }));
   }
 }
 

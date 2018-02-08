@@ -2,6 +2,7 @@ import * as game from './setup';
 import levels from './levels';
 import sounds from '../../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
+import { loadResults } from '../index';
 
 // ==================================================
 // =============== KEYBOARD LISTENERS ===============
@@ -83,7 +84,7 @@ document.addEventListener('keyup', (event) => {
 // ================== UPDATE PAGE ===================
 // ==================================================
 export function update() {
-  setInterval(() => {
+  return setInterval(() => {
     player.stand();
     player.setDirection();
     player.moveRight(keyboard);
@@ -325,21 +326,18 @@ function endLevel() {
     //         the game to the end
     player.wonTheLevel = false; 
 
-    player.captureStar({ 
+    player.captureStar({
       currentLevel: player.currentLevel, 
       points,
     });
 
     player.score += points;
-  } 
-
-  if (!levels[player.currentLevel + 1]) {
-    renderLevel(levels['end']);
-  } else {
-    renderLevel(levels[player.currentLevel + 1]);
-
   }
 
-  // TODO : Emit star
-
+  if (!levels[player.currentLevel + 1]) {
+    player.sendTotalScore(player.score);
+    loadResults();
+  } else {
+    renderLevel(levels[player.currentLevel + 1]);
+  }
 }
