@@ -12,6 +12,7 @@ import rightTuxedoMan from '../../images/right-tuxedo-man.png';
 import levelTwoLava from '../../images/lava-animated-10.png';
 import clouds from '../../images/clouds.png';
 import rainbow from '../../images/rainbow.jpg';
+import ice from '../../images/ice.png';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
               <img id='clouds' src={clouds} alt="Toy Story" />
               <img id='lava' src={levelTwoLava} alt="Level 2 Lava" />
               <img id='rainbow' src={rainbow} alt="rainbow" />
+              <img id='ice' src={ice} alt="ice" />
             </div>
           </div>
         </BrowserRouter>

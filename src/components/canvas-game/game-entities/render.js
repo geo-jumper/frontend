@@ -231,7 +231,7 @@ function renderGrid(ctx) {
 }
 
 function renderBackground() {
-  let image = document.getElementById('rainbow');
+  let image = document.getElementById('ice');
 
   game.ctx.drawImage(image, 0, 0, 900, 400);
 }

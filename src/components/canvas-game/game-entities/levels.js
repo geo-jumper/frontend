@@ -295,11 +295,24 @@ export default { // levels
 
   default : {
     bricks : [
+      new game.Brick(0, 355, 900, 10), // 1st platform
+      new game.Brick(50, 305, 800, 10), // 2nd platform (long)
+      new game.Brick(90, 255, 900, 10), // 3rd platform (long)
+      new game.Brick(90, 205, 750, 10), // 4th platform (long)
+      new game.Brick(90, 155, 750, 10), // 4th platform (long)
+      
+      
+      new game.Brick(50, 200, 10, 110), // 1st pipe
+      new game.Brick(90, 165, 10, 50), // 2nd pipe
 
+      new game.Brick(40, 20, 25, 10),
+      new game.Brick(70, 70, 25, 10),
+      
+      
       
     ],
     spikes : [
-
+      // new game.Spike(30, 275),
 
     ],
     star : null,

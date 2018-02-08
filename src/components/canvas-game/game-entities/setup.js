@@ -378,7 +378,7 @@ export class Brick {
     y = CANVAS_HEIGHT - 100,
     width = 60,
     height = 10,
-    color = '#f3f315'
+    color = '#e9967a'
   ) {
     this.type = 'platform';
     this.color = color;
