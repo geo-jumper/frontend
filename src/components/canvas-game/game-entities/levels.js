@@ -587,7 +587,6 @@ export default { // levels
       new game.Spike(700, 200),
 
       // spike fish tail vertical
-
       new game.Spike(700, 180),
       new game.Spike(700, 160),
 
