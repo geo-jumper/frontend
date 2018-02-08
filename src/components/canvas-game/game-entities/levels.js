@@ -216,7 +216,10 @@ export default { // levels
   },
 
   3 : {
+    id : 3,
     background: 'rainbow',
+    counterColor : 'white',
+    playerPosition : { x : 5, y : 350 },
     star: {x: 853, y: 100},    
     bricks : [
       // first diagonal 

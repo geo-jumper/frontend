@@ -67,4 +67,5 @@ export default {
   rightTuxedoMan,
   clouds,
   lava,
+  rainbow,
 };

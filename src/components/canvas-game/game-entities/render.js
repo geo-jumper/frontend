@@ -112,7 +112,7 @@ export function update() {
     renderTimer();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
-    star ? star.render() : null;
+    star ? star.render() : null; // mattL - renders a star if it hasn't been picked up
     player.render();
     
     
@@ -304,7 +304,7 @@ function renderTimer() {
   game.ctx.font = '20px open-sans';
   game.ctx.fillText(Math.floor(points), 835, 20);
 
-
+  // mattL - text containing your score
   game.ctx.fillStyle = counterColor;
   game.ctx.font = '18px open-sans';
   game.ctx.fillText(`Player One: ${player.score}`, 8, 20);
