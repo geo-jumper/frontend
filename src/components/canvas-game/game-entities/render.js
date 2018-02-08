@@ -279,30 +279,6 @@ function renderBackground() {
   }
 }
 
-function renderBackground() {
-  if (!background) {
-    return;
-  }
-
-  if (typeof background === 'object') {
-    if (!gifFramesDefault) {
-      throw new Error('__RENDER BACKGROUND__ background frame integer required for gif\'s');
-    }
-    if (gifFrames === gifFramesDefault * 2) {
-      gifFrames = 2;
-    }
-    
-    let image = document.getElementById(background[Math.floor(gifFrames / 2)]);
-    game.ctx.drawImage(image, 0, 0, 900, 400);
-    
-    gifFrames ++;
-  } else {
-
-    let image = document.getElementById(background);
-    game.ctx.drawImage(image, 0, 0, 900, 400);
-  }
-}
-
 function endLevel() {
   star = null;
 }
