@@ -1,3 +1,4 @@
+import star from '../images/star.png';
 import leftTuxedoMan from '../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../images/right-tuxedo-man.png';
 import clouds from '../images/clouds.png';
@@ -31,6 +32,7 @@ import lava_25 from '../images/lava-destructured/lava-animated-25.png';
 import lava_26 from '../images/lava-destructured/lava-animated-26.png';
 
 export default {
+  star,
   leftTuxedoMan,
   rightTuxedoMan,
   clouds,
