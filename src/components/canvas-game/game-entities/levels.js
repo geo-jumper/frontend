@@ -4,7 +4,10 @@ import background from '../../../utils/import-images';
 
 export default { // levels
   1 : {
-    background : 'clouds',
+    id : 1,
+    star : { x : 840, y : 350},
+    playerPosition : { x : 10, y : 170 },
+    background : 'clouds', // <img/> id
     bricks : [
       new game.Brick(610, 80, 10, undefined, '#5abdf4'),  // invisi-brick
       new game.Brick(630, -10, 90),  // invisi-brick
@@ -46,12 +49,14 @@ export default { // levels
       new game.Spike(790, 220),
       new game.Spike(810, 220),
     ],
-    star : { x : 0, y : 0},
   },
 
   2 : {
-    frames: 26,
-    background : [ // img ID
+    id : 2,
+    star : {x: 764, y: 130},
+    playerPosition : { x : 5, y : 10 },
+    frames : 26,
+    background : [ // <img/> id
       'lava-1',
       'lava-2',
       'lava-3',
@@ -205,12 +210,14 @@ export default { // levels
       new game.Spike(885, 399),
       new game.Spike(895, 399),
     ],
-    star : {x: 764, y: 130},
   },
 
 
   default : {
-    background : 'clouds',
+    id : 'default',
+    star : { x: 450, y: 380 },
+    playerPosition : { x : 10, y : 380 },
+    background : 'clouds', // <img/> id
     bricks : [
       
       
@@ -219,6 +226,20 @@ export default { // levels
 
  
     ],
-    star : {x: 450, y: 380},
+  },
+
+  end : {
+    id : 'end',
+    star : { x: 450, y: 380 },
+    playerPosition : { x : 10, y : 380 },
+    background : 'clouds', // <img/> id
+    bricks : [
+      
+      
+    ],
+    spikes : [
+
+ 
+    ],
   },
 };

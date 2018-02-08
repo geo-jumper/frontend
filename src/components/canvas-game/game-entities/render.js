@@ -31,15 +31,21 @@ let spikes = [
 let background;
 let gifFrames;
 let gifFramesDefault;
+let currentLevel;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
+  currentLevel = level.id;
   star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
   background = level.background;
   gifFrames = level.frames;
   gifFramesDefault = level.frames;
+  player.x = level.playerPosition.x;
+  player.y = level.playerPosition.y;
+  player.default.x = level.playerPosition.x;
+  player.default.y = level.playerPosition.y;
 };
 
 
@@ -281,5 +287,14 @@ function renderBackground() {
 }
 
 function endLevel() {
-  star = null;
+  if (!levels[currentLevel + 1]) {
+    renderLevel(levels['end']);
+  } else {
+    renderLevel(levels[currentLevel + 1]);
+
+  }
+  // star = null;
+
+  // TODO : Emit star
+
 }
