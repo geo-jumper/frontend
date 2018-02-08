@@ -1,7 +1,6 @@
 import React from 'react';
 import superagent from 'superagent';
 import FindGame from '../find-game';
-import Profile from '../profile';
 import Instructions from '../instructions';
 import * as routes from '../../routes';
 
