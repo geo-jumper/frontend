@@ -39,7 +39,6 @@ export class Player {
       width: 20,
       jumpLimit: 2,
     };
-
     this.x = this.default.x;
     this.y = this.default.y;
     this.width = this.default.width;
@@ -58,6 +57,8 @@ export class Player {
     this.walkingCycle = 5;
     this.playerInterval = 0;
     this.secondPlayer = {};
+
+    this.score = 0;
   }
 
   // ============ PLAYER ACTIONS ============
