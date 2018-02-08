@@ -5,7 +5,7 @@ import background from '../../../utils/import-images';
 export default { // levels
   1 : {
     id : 1,
-    star : { x : 840, y : 350 },
+    star : { x : 750, y : 300 },
     playerPosition : { x : 10, y : 170 },
     counterColor : 'black',
     background : 'clouds', // <img/> id
@@ -54,7 +54,7 @@ export default { // levels
 
   2 : {
     id : 2,
-    star : {x: 764, y: 130},
+    star : {x: 770, y: 130},
     playerPosition : { x : 5, y : 10 },
     counterColor : 'white',
     frames : 26,
@@ -220,7 +220,7 @@ export default { // levels
     background: 'rainbow',
     counterColor : 'white',
     playerPosition : { x : 5, y : 350 },
-    star: {x: 853, y: 100},    
+    star: {x: 860, y: 100},    
     bricks : [
       // first diagonal 
       new game.Brick(0, 390, 25, 10), // 1st platform
@@ -335,10 +335,10 @@ export default { // levels
   4 : {
     id : 4,
     background: 'ice',
-    counterColor : 'white',
+    counterColor : 'black',
     friction : 0.992,
     playerPosition : { x : 5, y : 350 },
-    star: {x: 870, y: 10},    
+    star: {x: 870, y: 21},    
     bricks : [
 
       new game.Brick(50, 305, 820, 10), // 2nd platform (long)
