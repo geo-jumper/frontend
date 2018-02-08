@@ -1,6 +1,5 @@
 import React from 'react';
 import FindGame from '../find-game';
-import Profile from '../profile';
 
 class Landing extends React.Component {
   constructor(props){
