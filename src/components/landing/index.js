@@ -1,6 +1,8 @@
 import React from 'react';
 import superagent from 'superagent';
 import FindGame from '../find-game';
+import Welcome from '../welcome';
+import Leaderboard from '../leaderboard';
 import Instructions from '../instructions';
 import * as routes from '../../routes';
 
@@ -27,14 +29,16 @@ class Landing extends React.Component {
             return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
-                console.log(parsedResponse);
+                const parsedData = parsedResponse.data;
+                this.setState({ leaderboard: parsedData });
               });
           });
       } else {
         return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
-            console.log(parsedResponse);
+            const parsedData = parsedResponse.data;
+            this.setState({ leaderboard: parsedData });
           });
       }
     }
@@ -48,8 +52,9 @@ class Landing extends React.Component {
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
+        <Welcome name={this.state.name} wins={this.state.wins}/>
+        <Leaderboard leaderboard={this.state.leaderboard}/>
         <Instructions/>
-        <div>{this.state.name}: {this.state.wins}</div>
       </div>
     );
   }
