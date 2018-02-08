@@ -6,6 +6,7 @@ import rightTuxedoManPink from '../images/right-tuxedo-man-pink.png';
 import clouds from '../images/clouds.png';
 import rainbow from '../images/rainbow.png';
 import ice from '../images/ice.png';
+import underwater from '../images/underwater.jpg';
 
 // mattL - lava gif
 import lava_1 from '../images/lava-destructured/lava-animated-1.png';
@@ -74,4 +75,5 @@ export default {
   lava,
   rainbow,
   ice,
+  underwater,
 };
