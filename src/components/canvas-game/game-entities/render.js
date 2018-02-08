@@ -1,4 +1,5 @@
 import * as game from './setup';
+import levels from './levels';
 import sounds from '../../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
 
