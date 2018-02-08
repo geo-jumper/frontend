@@ -180,14 +180,127 @@ export default { // levels
   },
 
 
-  default : {
+  3 : {
     bricks : [
+      // first diagonal 
+      new game.Brick(0, 390, 25, 10), // 1st platform
+      new game.Brick(50, 330, 25, 10), // 2nd platform  
+      new game.Brick(100, 270, 25, 10), // 3rd platform  
+      new game.Brick(150, 210, 25, 10), // 4th platform  
+      new game.Brick(200, 150, 25, 10), // 5th platform  
+      new game.Brick(250, 90, 25, 10), // 6th platform   
+      new game.Brick(300, 30, 25, 10), // 7th platform 
+
+      // second diagonal
+      new game.Brick(380, 330, 25, 10), // 9th platform  
+      new game.Brick(430, 270, 25, 10), // 10th platform  
+      new game.Brick(480, 210, 25, 10), // 11th platform  
+      new game.Brick(530, 150, 25, 10), // 12th platform  
+      new game.Brick(580, 90, 25, 10),  // 13th platform 
+      new game.Brick(630, 30, 25, 10),  // 14th platform   
       
+      // third diagonal
+      new game.Brick(710, 330, 25, 10), // 15th platform
+      new game.Brick(760, 270, 25, 10), // 15th platform
+      new game.Brick(810, 210, 25, 10), // 15th platform
+      new game.Brick(860, 150, 25, 10), // 15th platform
+      new game.Brick(910, 90, 25, 10), // 15th platform
       
     ],
     spikes : [
 
- 
+      // first row of spikes
+      new game.Spike(320, 50),
+      new game.Spike(320, 70),
+      new game.Spike(320, 90),
+      new game.Spike(320, 110),
+      new game.Spike(320, 130),
+      new game.Spike(320, 150),
+      new game.Spike(320, 170),
+      new game.Spike(320, 190),
+      new game.Spike(320, 210),
+      new game.Spike(320, 230),
+      new game.Spike(320, 250),
+      new game.Spike(320, 270),
+      new game.Spike(320, 290),
+      new game.Spike(320, 310),
+      new game.Spike(320, 330),
+      new game.Spike(320, 350),
+      new game.Spike(320, 370),
+      new game.Spike(320, 390),
+      
+      // second row of spikes
+      new game.Spike(370, 10),      
+      new game.Spike(370, 30),
+      new game.Spike(370, 50),
+      new game.Spike(370, 70),
+      new game.Spike(370, 90),
+      new game.Spike(370, 110),
+      new game.Spike(370, 130),
+      new game.Spike(370, 150),
+      new game.Spike(370, 170),
+      new game.Spike(370, 190),
+      new game.Spike(370, 210),
+      new game.Spike(370, 230),
+      
+      // first row of spikes at bottom
+      new game.Spike(340, 390),
+      new game.Spike(360, 390),
+      new game.Spike(380, 390),
+      new game.Spike(400, 390),
+      
+      // third row of spikes
+      new game.Spike(650, 50),
+      new game.Spike(650, 70),
+      new game.Spike(650, 90),
+      new game.Spike(650, 110),
+      new game.Spike(650, 130),
+      new game.Spike(650, 150),
+      new game.Spike(650, 170),
+      new game.Spike(650, 190),
+      new game.Spike(650, 210),
+      new game.Spike(650, 230),
+      new game.Spike(650, 250),
+      new game.Spike(650, 270),
+      new game.Spike(650, 290),
+      new game.Spike(650, 310),
+      new game.Spike(650, 330),
+      new game.Spike(650, 350),
+      new game.Spike(650, 370),
+      new game.Spike(650, 390),
+
+      // fourth row of spikes
+      new game.Spike(700, 10),      
+      new game.Spike(700, 30),
+      new game.Spike(700, 50),
+      new game.Spike(700, 70),
+      new game.Spike(700, 90),
+      new game.Spike(700, 110),
+      new game.Spike(700, 130),
+      new game.Spike(700, 150),
+      new game.Spike(700, 170),
+      new game.Spike(700, 190),
+      new game.Spike(700, 210),
+      new game.Spike(700, 230),
+
+
+      // second row of spikes at bottom
+      new game.Spike(670, 390),
+      new game.Spike(690, 390),
+      new game.Spike(710, 390),
+      new game.Spike(730, 390),
+    ],
+    star : null,
+  },
+
+  default : {
+    bricks : [
+
+      
+    ],
+    spikes : [
+
+
     ],
     star : null,
   },
