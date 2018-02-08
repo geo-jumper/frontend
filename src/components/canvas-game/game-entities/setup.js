@@ -345,14 +345,17 @@ export class Player {
   }
 
   drawOtherPlayer(secondPlayer) {
-    let leftTuxedoMan = document.getElementById('left-tuxedo-man');
-    let rightTuxedoMan = document.getElementById('right-tuxedo-man');
+    
+    let leftTuxedoManPink = document.getElementById('left-tuxedo-man-pink');
+    let rightTuxedoManPink = document.getElementById('right-tuxedo-man-pink');
     let tuxedoMan = null;
-
+    
+    console.log(leftTuxedoManPink);
+    
     if (secondPlayer.direction === 'left') {
-      tuxedoMan = leftTuxedoMan;
+      tuxedoMan = leftTuxedoManPink;
     } else {
-      tuxedoMan = rightTuxedoMan;
+      tuxedoMan = rightTuxedoManPink;
     }
     // mattL - we need secondPlayer.characterStatus to check, before rendering
     //         because for the first few frames there's no data

@@ -1,6 +1,8 @@
 import star from '../images/star.png';
 import leftTuxedoMan from '../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../images/right-tuxedo-man.png';
+import leftTuxedoManPink from '../images/right-tuxedo-man-pink.png';
+import rightTuxedoManPink from '../images/right-tuxedo-man-pink.png';
 import clouds from '../images/clouds.png';
 import rainbow from '../images/rainbow.png';
 
@@ -65,6 +67,8 @@ export default {
   star,
   leftTuxedoMan,
   rightTuxedoMan,
+  leftTuxedoManPink,
+  rightTuxedoManPink,
   clouds,
   lava,
   rainbow,
