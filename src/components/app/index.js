@@ -111,8 +111,6 @@ class App extends React.Component {
               />;
             }}/>
 
-
-       
             {/* mattL - Image Dump for Tuxedo Man */}
             <div id='image-dump' style={{display : 'none'}}>
               <img id='left-tuxedo-man' src={image.leftTuxedoMan} alt="Left Tuxedo Man" />
@@ -133,7 +131,6 @@ class App extends React.Component {
 }
 export default App;
 
-
 // catherine - setup new Howl aka background music
 const sound = new Howl({
   src: [sounds.backgroundMusic],
@@ -144,6 +141,5 @@ sound.play();
 
 // catherine - change global volume
 Howler.volume(0.5);
-
 
 // style={{display: 'none'}}
