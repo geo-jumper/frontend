@@ -8,7 +8,10 @@
   }
 
 #home h1 {
-    font-size: 80px;
+    font-size: 60px;
+    font-family: 'Press Start 2P', cursive;
+    padding-top: 20px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #115ff0, 0 0 30px #115ff0, 0 0 40px #115ff0, 0 0 55px #115ff0, 0 0 75px #115ff0;
 }
 #landing h1 {
     font-size: 40px;
@@ -20,6 +23,21 @@
     height:30px;
     font-size: 20px;
     color:rgb(84, 84, 245);
+}
+#instructions {
+    background-color: black;
+    height:auto;
+    padding-bottom: 20px;
+}
+#instructions li {
+    display: inline;
+    margin-right: 20px;
+}
+#profiles {
+    height: 300px;
+    margin-top: 100px;
+    background-color: black;
+    opacity: .8;
 }
 
 button {

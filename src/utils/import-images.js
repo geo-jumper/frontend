@@ -2,6 +2,7 @@ import star from '../images/star.png';
 import leftTuxedoMan from '../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../images/right-tuxedo-man.png';
 import clouds from '../images/clouds.png';
+import rainbow from '../images/rainbow.png';
 
 // mattL - lava gif
 import lava_1 from '../images/lava-destructured/lava-animated-1.png';
