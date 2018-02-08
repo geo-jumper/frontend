@@ -117,6 +117,7 @@ class App extends React.Component {
               <img id='right-tuxedo-man' src={image.rightTuxedoMan} alt="Right Tuxedo Man" />
               <img id='clouds' src={image.clouds} alt="Toy Story" />
               <img id='star' src={image.star} alt="star" />
+              <img id='rainbow' src={image.rainbow} alt="rainbow" />
               {
                 lava.map((each, i) => {
                   return <img key={i} id={`lava-${i + 1}`} src={image[`lava_${i + 1}`]} alt={`lava-${i + 1}`} />;
