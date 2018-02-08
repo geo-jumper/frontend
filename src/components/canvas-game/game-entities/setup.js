@@ -387,6 +387,7 @@ export class Player {
   sendTotalScore(totalScore) {
     socket.emit('total-score', ({
       totalScore,
+      level: 0,
     }));
   }
 }
