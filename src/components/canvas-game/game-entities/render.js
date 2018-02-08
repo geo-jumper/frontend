@@ -231,7 +231,7 @@ function renderGrid(ctx) {
 }
 
 function renderBackground() {
-  let image = document.getElementById('ice');
+  let image = document.getElementById('water');
 
   game.ctx.drawImage(image, 0, 0, 900, 400);
 }

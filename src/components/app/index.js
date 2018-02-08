@@ -13,6 +13,7 @@ import levelTwoLava from '../../images/lava-animated-10.png';
 import clouds from '../../images/clouds.png';
 import rainbow from '../../images/rainbow.jpg';
 import ice from '../../images/ice.png';
+import water from '../../images/underwater.jpg';
 import {Howl, Howler} from 'howler';
 
 class App extends React.Component {
@@ -38,6 +39,7 @@ class App extends React.Component {
               <img id='lava' src={levelTwoLava} alt="Level 2 Lava" />
               <img id='rainbow' src={rainbow} alt="rainbow" />
               <img id='ice' src={ice} alt="ice" />
+              <img id='water' src={water} alt="water" />
             </div>
           </div>
         </BrowserRouter>
