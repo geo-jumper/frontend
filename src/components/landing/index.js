@@ -1,6 +1,7 @@
 import React from 'react';
 import FindGame from '../find-game';
 import Profile from '../profile';
+import Instructions from '../instructions';
 
 class Landing extends React.Component {
   constructor(props){
@@ -23,6 +24,7 @@ class Landing extends React.Component {
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
         <Profile/>
+        <Instructions/>
       </div>
     );
   }
