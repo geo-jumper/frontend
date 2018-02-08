@@ -35,6 +35,7 @@ let currentLevel;
 let startingTime;
 let points;
 let counterColor;
+let starIsCaptured = false;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
@@ -112,9 +113,9 @@ export function update() {
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
 
-    // if (!starIsCaptured) {
-    //   star.render(); // mattL - renders a star if it hasn't been picked up
-    // }
+    if (!starIsCaptured) {
+      star.render(); // mattL - renders a star if it hasn't been picked up
+    }
     player.render();
     
   }, 1000 / 59);
@@ -311,6 +312,8 @@ function renderTimer() {
 }
 
 function endLevel() {
+  player.captureStar({ currentLevel, points });
+
   player.score += points;
 
   if (!levels[currentLevel + 1]) {
@@ -319,6 +322,8 @@ function endLevel() {
     renderLevel(levels[currentLevel + 1]);
 
   }
+
+
   // star = null;
 
   // TODO : Emit star

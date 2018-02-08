@@ -297,7 +297,6 @@ export class Player {
 
     if (this.playerInterval === 0) {
       this.playerInterval = 2;
-      // console.log(characterStatus);
       
       socket.emit('update-player', ({
         direction: this.direction,
@@ -305,7 +304,6 @@ export class Player {
       }));
 
       socket.on('render-players', (secondPlayer) => {
-        // console.log('hi');
         this.secondPlayer = secondPlayer;
       });
     }
@@ -345,12 +343,9 @@ export class Player {
   }
 
   drawOtherPlayer(secondPlayer) {
-    
     let leftTuxedoManPink = document.getElementById('left-tuxedo-man-pink');
     let rightTuxedoManPink = document.getElementById('right-tuxedo-man-pink');
     let tuxedoMan = null;
-    
-    console.log(leftTuxedoManPink);
     
     if (secondPlayer.direction === 'left') {
       tuxedoMan = leftTuxedoManPink;
@@ -371,6 +366,19 @@ export class Player {
         ctx.drawImage(tuxedoMan, ...secondPlayer.characterStatus);
       }
     }
+  }
+
+  captureStar({ currentLevel, points }) {
+    console.log('in capture star');
+    
+    socket.emit('capture-star', ({
+      level : currentLevel,
+      score : points,
+    }));
+    
+    socket.on('return-star', (secondPlayer) => {
+      console.log(secondPlayer);
+    });
   }
 }
 
