@@ -22,6 +22,11 @@ class Landing extends React.Component {
           const parsedResponse = JSON.parse(response.text);
           console.log(parsedResponse);
           this.setState({ ...parsedResponse });
+          return superagent.get(`${routes.API_ROUTE}${routes.PORFILE_ROUTE}`)
+            .then(response => {
+              const parsedResponse = JSON.parse(response.text);
+              console.log(parsedResponse);
+            });
         });
     }
   }

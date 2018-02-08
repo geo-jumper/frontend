@@ -13,7 +13,10 @@ class Home extends React.Component {
         <SignUpForm history={this.props.history}
           toggleLandingOK={this.props.toggleLandingOK}
         />
-        <LogInForm/>
+        <LogInForm
+          history={this.props.history}
+          toggleLandingOK={this.props.toggleLandingOK}
+        />
         <ContinueAnonymously
           history={this.props.history}
           toggleLandingOK={this.props.toggleLandingOK}

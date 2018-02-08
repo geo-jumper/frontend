@@ -10,7 +10,7 @@ describe('LoginForm', () => {
   test('Testing that the initial login form state is an empty object', () => {
     let mountedLoginForm = Enzyme.mount(<LoginForm />);
 
-    expect(mountedLoginForm.state()).toEqual({});
+    expect(mountedLoginForm.state()).toEqual({ username: '', password: '' });
   });
   test('Testing that the component renders a Login form to the page', () => {
     const wrapper = shallow(
