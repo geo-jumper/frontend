@@ -44,6 +44,7 @@ Geo-Jumper is a multiplayer fullstack platform game that combines socket.io with
 ```  
   PORT=3000
   NODE_ENV=production
+  API_URL=http://localhost:3000
 ``` 
 
 
@@ -52,10 +53,56 @@ Geo-Jumper is a multiplayer fullstack platform game that combines socket.io with
 * PR: If you would like to contribute to the Repo, please open a Pull Request and we will review it
 * Bug Reporting: If you find a bug - please report it by opening up an issue in this git repository.
 
+---
+### Tech/Framework used
 
+* JavaScript / ES6
+* Node.js
+* jest
+* enzyme
+* enzyme-adapter-react-16
+* eslint
+* babel-core
+* babel-loader
+* babel-plugin-transform-object-rest-spread
+* babel-preset-env
+* babel-preset-react
+* clean-webpack-plugin
+* css-loader
+* dotenv
+* enzyme-to-json
+* eslint-plugin-react
+* express
+* extract-text-webpack-plugin
+* file-loader
+* howler
+* html-webpack-plugin
+* node-sass
+* react
+* react-dom
+* react-router-dom
+* resolve-url-loader
+* sass-loader
+* serve-favicon
+* socket.io
+* socket.io-client
+* style-loader
+* superagent
+* url-loader
+* validator
+* webpack
+* webpack-dev-server
+
+---
 ### Credits
 
-[Character Sheet - Gentleman Spy](https://opengameart.org/content/gentleman-spy-animated)
+* [Character Sheet - Gentleman Spy](https://opengameart.org/content/gentleman-spy-animated)
+* Code Fellows
+* Heroku - for deployment
+* Travis.ci - for continuous integration
+* MongoDB - for persistence
+
+---
 
 ### License
 
