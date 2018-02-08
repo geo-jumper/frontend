@@ -53,12 +53,12 @@ class Landing extends React.Component {
   render(){
     return (
       <div id ="landing">
-        <h1> Welcome to Geo-Jumper </h1>
+        <h1 className='title'> Geo-Jumper </h1>
         <FindGame
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
-        <Welcome name={this.state.name} wins={this.state.wins}/>
+        <Welcome name={this.state.name} />
         <Leaderboard leaderboard={this.state.leaderboard}/>
         <Instructions/>
       </div>
