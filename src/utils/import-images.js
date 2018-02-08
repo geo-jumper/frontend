@@ -2,6 +2,7 @@ import star from '../images/star.png';
 import leftTuxedoMan from '../images/left-tuxedo-man.png';
 import rightTuxedoMan from '../images/right-tuxedo-man.png';
 import clouds from '../images/clouds.png';
+import rainbow from '../images/rainbow.png';
 
 // mattL - lava gif
 import lava_1 from '../images/lava-destructured/lava-animated-1.png';
@@ -31,11 +32,7 @@ import lava_24 from '../images/lava-destructured/lava-animated-24.png';
 import lava_25 from '../images/lava-destructured/lava-animated-25.png';
 import lava_26 from '../images/lava-destructured/lava-animated-26.png';
 
-export default {
-  star,
-  leftTuxedoMan,
-  rightTuxedoMan,
-  clouds,
+let lava = [
   lava_1, 
   lava_2, 
   lava_3, 
@@ -62,4 +59,12 @@ export default {
   lava_24,
   lava_25,
   lava_26,
+];
+
+export default {
+  star,
+  leftTuxedoMan,
+  rightTuxedoMan,
+  clouds,
+  lava,
 };

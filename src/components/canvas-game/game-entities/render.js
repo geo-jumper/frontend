@@ -31,15 +31,27 @@ let spikes = [
 let background;
 let gifFrames;
 let gifFramesDefault;
+let currentLevel;
+let startingTime;
+let points;
+let counterColor;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
+  currentLevel = level.id;
   star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
   background = level.background;
   gifFrames = level.frames;
   gifFramesDefault = level.frames;
+  player.x = level.playerPosition.x;
+  player.y = level.playerPosition.y;
+  player.default.x = level.playerPosition.x;
+  player.default.y = level.playerPosition.y;
+  counterColor = level.counterColor;
+
+  startingTime = Date.now();
 };
 
 
@@ -97,10 +109,12 @@ export function update() {
     
     clearCanvas(game.ctx);
     renderBackground();
+    renderTimer();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
     star ? star.render() : null;
     player.render();
+    
     
   }, 1000 / 59);
 }
@@ -280,6 +294,33 @@ function renderBackground() {
   }
 }
 
+function renderTimer() {
+  startingTime --;
+
+  points = (Math.floor(60000 - (Date.now() - startingTime)));
+  points = points < 0 ? 0 : points;
+
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '20px open-sans';
+  game.ctx.fillText(Math.floor(points), 835, 20);
+
+
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '18px open-sans';
+  game.ctx.fillText(`Player One: ${player.score}`, 8, 20);
+}
+
 function endLevel() {
-  star = null;
+  player.score += points;
+
+  if (!levels[currentLevel + 1]) {
+    renderLevel(levels['end']);
+  } else {
+    renderLevel(levels[currentLevel + 1]);
+
+  }
+  // star = null;
+
+  // TODO : Emit star
+
 }
