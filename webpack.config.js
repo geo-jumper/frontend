@@ -55,6 +55,18 @@ webPackConfig.module = {
       }],
     },
     {
+      test: /\.(woff|woff2|ttf|eot).*/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'font/[name].[hash].[ext]',
+          },
+        },
+      ],
+    },
+    {
       test: /\.(mp3|wav)$/,
       exclude: /\.icon\.svg$/,
       use: [{
