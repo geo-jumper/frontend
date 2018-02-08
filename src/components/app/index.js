@@ -11,6 +11,12 @@ import image from '../../utils/import-images';
 import sounds from '../../utils/import-sounds';
 import {Howl, Howler} from 'howler';
 
+// catherine - setup new Howl aka background music
+const sound = new Howl({
+  src: [sounds.backgroundMusic],
+  loop: true,
+});
+  
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -20,6 +26,7 @@ class App extends React.Component {
       matchmakingOK: false,
       countdownOK: false,
       gameOK: false,
+      backgroundSound: true,
     };
 
     this.toggleLandingOK = this.toggleLandingOK.bind(this);
@@ -30,6 +37,22 @@ class App extends React.Component {
     this.getCountdownOK = this.getCountdownOK.bind(this);
     this.toggleGameOK = this.toggleGameOK.bind(this);
     this.getGameOK = this.getGameOK.bind(this);
+    this.toggleBackgroundSound = this.toggleBackgroundSound.bind(this);
+  }
+
+  componentWillMount() {
+    // catherine - play background music on page load
+    sound.play();
+  }
+
+  toggleBackgroundSound() {
+    if(this.state.backgroundSound === true) {
+      sound.stop();
+      this.setState({backgroundSound: false});
+    } else {
+      sound.play();
+      this.setState({backgroundSound: true});
+    }
   }
 
   toggleLandingOK() {
@@ -73,6 +96,7 @@ class App extends React.Component {
       <div className='app'>
         <BrowserRouter>
           <div>
+            <button onClick={this.toggleBackgroundSound}>audio</button>
       
             <Route exact path='/' render={props => {
               return <Home {...props} toggleLandingOK={this.toggleLandingOK} />;
@@ -133,16 +157,5 @@ class App extends React.Component {
 }
 export default App;
 
-// catherine - setup new Howl aka background music
-const sound = new Howl({
-  src: [sounds.backgroundMusic],
-  loop: true,
-});
-
-  // catherine - play background music
-sound.play();
-
-// catherine - change global volume
-Howler.volume(0.5);
 
 // style={{display: 'none'}}
