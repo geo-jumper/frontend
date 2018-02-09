@@ -1,3 +1,4 @@
+import './_signup-form.scss';
 import React from 'react';
 import validator from 'validator';
 import superagent from 'superagent';

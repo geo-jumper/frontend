@@ -7,7 +7,7 @@ const ContinueAnonymously = ({ history, toggleLandingOK }) => {
       toggleLandingOK();
       history.push('/landing');
     }}>
-      ContinueAnonymously
+      Quick Play
     </button>
 
   );
