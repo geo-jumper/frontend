@@ -7,7 +7,8 @@
     "test": "jest -i --coverage",
     "watch": "webpack-dev-server --inline --hot",
     "build": "webpack",
-    "start": "webpack && node index.js"
+    "start": "webpack && node index.js",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",

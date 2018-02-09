@@ -21,7 +21,7 @@ canvas.height = CANVAS_HEIGHT;
 // ============= PLAYER MODEL =============
 // ========================================
 import io from 'socket.io-client';
-let socket = io(__API_URL__);
+let socket = io(__API_URL__); // eslint-disable-line
 
 export const updateSocket = (getSocket) => {
   socket = getSocket();

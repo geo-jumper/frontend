@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 export let socket = null;
 
 export const socketInit = () => {
-  const _socket = io(__API_URL__);
+  const _socket = io(__API_URL__); // eslint-disable-line
   _socket.emit('join-room');
   socket = _socket;
 };

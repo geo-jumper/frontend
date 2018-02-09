@@ -18,24 +18,22 @@ class Landing extends React.Component {
       this.props.history.push('/');
     } else {
       const token = sessionStorage.getItem('X-GEO-JUMPER-TOKEN');
-      console.log(token);
       // LOGGED IN USERS
       if (token) {
         // GET USER DATA
-        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}/me`)
+        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}/me`) // eslint-disable-line
           .set('Authorization', `Bearer ${token}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
-            console.log(parsedResponse);
             this.setState({ ...parsedResponse });
             // GET LEADERBOARD DATA
-            return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`)
+            return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`) // eslint-disable-line
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
                 const parsedData = parsedResponse.data;
                 this.setState({ leaderboard: parsedData });
                 // GET HIGHSCORES
-                return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`)
+                return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`) // eslint-disable-line
                   .then(response => {
                     const parsedResponse = JSON.parse(response.text);
                     const parsedData = parsedResponse;
@@ -47,13 +45,13 @@ class Landing extends React.Component {
       // ANONOMYOUS USERS
       } else {
         // GET LEADERBOARD DATA
-        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`)
+        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`) // eslint-disable-line
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
             const parsedData = parsedResponse.data;
             this.setState({ leaderboard: parsedData });
             // GET HIGHSCORES
-            return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`)
+            return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`) // eslint-disable-line
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
                 const parsedData = parsedResponse;
