@@ -12,7 +12,7 @@ class Countdown extends Component {
   componentDidUpdate() {
     const { history } = this.props;
   }
-  
+
   componentWillMount() {
     const OK = this.props.getCountdownOK();
     if (!OK) {
@@ -32,11 +32,11 @@ class Countdown extends Component {
     return (
       <div id = "countdown">
 
-        {this.state.timer === 0 ? 
+        {this.state.timer === 0 ?
           <Redirect to={{
             pathname: '/game',
             state: { level: 1 },
-          }}/> 
+          }}/>
           : undefined}
 
         <h1>{this.state.timer}</h1>

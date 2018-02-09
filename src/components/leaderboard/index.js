@@ -40,23 +40,33 @@ class Leaderboard extends Component {
     let four;
     let five;
 
-    if (this.props.leaderboard) {
-      let top10 = this.props.leaderboard.slice(0, 10);
-      overall = (
-        <ul>
-          {
-            top10.map((player, index) => {
-              return <li key={player._id}>{index + 1}{ player.name }</li>;
-            })
-          }
-        </ul>
-      );
-    }
 
     if (this.props.levelData) {
       let theLevelData = this.props.levelData.slice(0, 20);
       console.log('===>', this.props.levelData);
       theLevelData.forEach(data => {
+        if (data.level === 0) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          overall = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
         if (data.level === 1) {
           const compare = (a, b) => {
             if (a.score > b.score) {
