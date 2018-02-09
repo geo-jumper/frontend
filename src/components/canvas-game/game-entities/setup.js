@@ -21,7 +21,7 @@ canvas.height = CANVAS_HEIGHT;
 // ============= PLAYER MODEL =============
 // ========================================
 import io from 'socket.io-client';
-let socket = io(`http://localhost:3000`);
+let socket = io(__API_URL__);
 
 export const updateSocket = (getSocket) => {
   socket = getSocket();
@@ -61,6 +61,7 @@ export class Player {
     this.playerInterval = 0;
     this.secondPlayer = {};
     this.currentLevel = null;
+    this.swimming = false;
 
     this.score = 0;
   }
@@ -232,6 +233,75 @@ export class Player {
       ],
     };
 
+    let swimmingCharacter = {
+      // swimming 1
+      1: [
+        173, // image: x - location
+        10, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+      // swimming 2
+      2: [
+        173, // image: x - location
+        38, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+      // swimming 3
+      3: [
+        173, // image: x - location
+        69, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+      // swimming 4
+      4: [
+        173, // image: x - location
+        99, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+      // swimming 5
+      5: [
+        173, // image: x - location
+        128, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+      // swimming 6
+      6: [
+        173, // image: x - location
+        159, // image: y - location
+        16, // image: x - span
+        18, // image: y - span
+        this.x, // image: x- positioning
+        this.y, // image: y - positioning
+        this.width, // image: width
+        this.height,  // image: height
+      ],
+    };
+
     let parachute = [
       214, // image: x - location
       10, // image: y - location
@@ -264,37 +334,46 @@ export class Player {
       this.width, // image: width
       this.height + 2,  // image: height
     ];
+    if (!this.swimming) {
+      if (this.velY < 0) { // mattL - the player is rising up if velocity < 0
+        characterStatus = jumpingCharacter;
+        this.drawCharacter(jumpingCharacter);
+      }
+      else if (this.falling && this.crouching) {
+        characterStatus = [parachute, standingCharacter];
+        this.drawCharacter(parachute);
+        this.drawCharacter(standingCharacter);
+      }
+      else if (this.crouching) {
+        characterStatus = crouchingCharacter;
+        this.drawCharacter(crouchingCharacter);
+      }
+      // mattL - if the velocity is greater than 0.5
+      //         then the player is moving at a noticeable rate
+      else if (Math.abs(this.velX) > 0.5) {
+        this.characterFrame += 1;
+        // mattL - increments the movingCharacter Frame Sequence to make the
+        //         character look like it's moving. '/ 5' sets the animation speed
+        let frame = Math.floor(this.characterFrame / 5);
+        // mattL - '(% 6) + 1' selects the character frame
+        //         ex: sequence 1 through 6
+        characterStatus = movingCharacter[(frame % 6) + 1];
+        this.drawCharacter(movingCharacter[(frame % 6) + 1]);
+      } else {
+        this.characterFrame = 0;
+        this.walkingCycle = 0;
+        characterStatus = standingCharacter;
+        this.drawCharacter(standingCharacter);
+      }
 
-    if (this.velY < 0) { // mattL - the player is rising up if velocity < 0
-      characterStatus = jumpingCharacter;
-      this.drawCharacter(jumpingCharacter);
-    }
-    else if (this.falling && this.crouching) {
-      characterStatus = [parachute, standingCharacter];
-      this.drawCharacter(parachute);
-      this.drawCharacter(standingCharacter);
-    }
-    else if (this.crouching) {
-      characterStatus = crouchingCharacter;
-      this.drawCharacter(crouchingCharacter);
-    }
-    // mattL - if the velocity is greater than 0.5
-    //         then the player is moving at a noticeable rate
-    else if (Math.abs(this.velX) > 0.5) {
+    } else { // mattL - if the player is swimming
       this.characterFrame += 1;
-      // mattL - increments the movingCharacter Frame Sequence to make the
-      //         character look like it's moving. '/ 5' sets the animation speed
       let frame = Math.floor(this.characterFrame / 5);
-      // mattL - '(% 6) + 1' selects the character frame
-      //         ex: sequence 1 through 6
-      characterStatus = movingCharacter[(frame % 6) + 1];
-      this.drawCharacter(movingCharacter[(frame % 6) + 1]);
-    } else {
-      this.characterFrame = 0;
-      this.walkingCycle = 0;
-      characterStatus = standingCharacter;
-      this.drawCharacter(standingCharacter);
+
+      characterStatus = swimmingCharacter[(frame % 6) + 1];
+      this.drawCharacter(swimmingCharacter[(frame % 6) + 1]);
     }
+    
 
     // =========== Second Player ===========
     this.drawOtherPlayer(this.secondPlayer);
