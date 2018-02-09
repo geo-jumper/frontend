@@ -157,6 +157,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
-
-// style={{display: 'none'}}
