@@ -336,10 +336,10 @@ function endLevel() {
 
 
   if (player.currentLevel === 'end') {
-    player.sendTotalScore(player.score);
     loadResults();
   }
   if (!levels[player.currentLevel + 1]) {
+    player.sendTotalScore(player.score);
     renderLevel(levels['end']);
   } else {
     renderLevel(levels[player.currentLevel + 1]);
