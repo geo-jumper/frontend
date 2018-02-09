@@ -1,3 +1,4 @@
+import './_leaderboard.scss';
 import React, { Component } from 'react';
 
 class Leaderboard extends Component {
@@ -204,20 +205,23 @@ class Leaderboard extends Component {
     }
 
     return (
-      <div id = "leaderboard">
+      <div id = 'leaderboard'>
         <h3>HIGH SCORES</h3>
         <div id = 'leaderboard-data'>
           <select onChange={this.menuClicked}>
             <option value='overall'>Overall</option>
-            <option value='one'>1 - Ice</option>
+            <option value='one'>1 - Clouds</option>
             <option value='two'>2 - Lava</option>
-            <option value='three'>3 - Clouds</option>
-            <option value='four'>4 - Rainbow</option>
+            <option value='three'>3 - Rainbow</option>
+            <option value='four'>4 - Ice</option>
             <option value='five'>5 - Underwater</option>
           </select>
         </div>
-        { renderedScores }
+        <div id='high-scores'>
+          { renderedScores }
+        </div>
       </div>
+
     );
   }
 }
