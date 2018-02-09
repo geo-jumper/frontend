@@ -204,16 +204,18 @@ class Leaderboard extends Component {
     }
 
     return (
-      <div>
+      <div id = "leaderboard">
         <h3>HIGH SCORES</h3>
-        <select onChange={this.menuClicked}>
-          <option value='overall'>Overall</option>
-          <option value='one'>1 - Ice</option>
-          <option value='two'>2 - Lava</option>
-          <option value='three'>3 - Clouds</option>
-          <option value='four'>4 - Rainbow</option>
-          <option value='five'>5 - Underwater</option>
-        </select>
+        <div id = 'leaderboard-data'>
+          <select onChange={this.menuClicked}>
+            <option value='overall'>Overall</option>
+            <option value='one'>1 - Ice</option>
+            <option value='two'>2 - Lava</option>
+            <option value='three'>3 - Clouds</option>
+            <option value='four'>4 - Rainbow</option>
+            <option value='five'>5 - Underwater</option>
+          </select>
+        </div>
         { renderedScores }
       </div>
     );
