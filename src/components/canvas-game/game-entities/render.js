@@ -40,10 +40,11 @@ let levelGravity;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
+  player.getUsername();
   // mattL - resetting player defaults
   player.default.jumpLimit = 2;
   player.jumpHeight = 3.2;
-
+  
   player.currentLevel = level.id;
 
   star = new game.Star(level.star.x, level.star.y);
@@ -121,7 +122,11 @@ export function update() {
     renderBackground();
     bricks.forEach(brick => brick.render());
     spikes.forEach(spike => spike.render());
-    renderTimer();
+    if (player.currentLevel === 'end') {
+      renderEndGameResults();
+    } else {
+      renderTimer();
+    }
 
     // mattL - allows for the first person to collect the star to win
     //         and the second player to lose and go onto the next level
@@ -134,6 +139,7 @@ export function update() {
     player.render();
 
   }, 1000 / 59);
+
 }
 
 
@@ -321,10 +327,46 @@ function renderTimer() {
   game.ctx.font = '20px open-sans';
   game.ctx.fillText(Math.floor(points), 835, 20);
 
-  // mattL - text containing your score
+  let you = player.username || 'anon';
+  let them = player.secondPlayer.username || 'anon';
+  you = you === 'anon' ? 'you' : you;
+  them = them === 'anon' ? 'them' : them;
+  let yourScore = player.score || 0;
+  let theirScore = player.secondPlayer.score || 0;
+  you = `${you}: ${yourScore}`;
+  them = `${them}: ${theirScore}`;
+
   game.ctx.fillStyle = counterColor;
-  game.ctx.font = '18px open-sans';
-  game.ctx.fillText(`Player One: ${player.score}`, 8, 20);
+  game.ctx.font = '26px open-sans';
+  game.ctx.fillText(you, 10, 25);
+
+  
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '26px open-sans';
+  game.ctx.fillText(them, 10, 60);
+}
+
+function renderEndGameResults() {
+  let you = player.username || 'anon';
+  let them = player.secondPlayer.username || 'anon';
+  you = you === 'anon' ? 'you' : you;
+  them = them === 'anon' ? 'them' : them;
+  let yourScore = player.score || 0;
+  let theirScore = player.secondPlayer.score || 0;
+  let winner = `${you}: ${yourScore}`;
+  let loser = `${them}: ${theirScore}`;
+  if (theirScore > yourScore) {
+    [winner, loser] = [loser, winner];
+  }
+
+
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '26px open-sans';
+  game.ctx.fillText(`Winner = ${winner}`, 10, 25);
+
+  game.ctx.fillStyle = counterColor;
+  game.ctx.font = '26px open-sans';
+  game.ctx.fillText(`Loser = ${loser}`, 10, 60);
 }
 
 function endLevel() {
