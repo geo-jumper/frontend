@@ -26,13 +26,23 @@ class LogInForm extends React.Component {
 
     const { history, toggleLandingOK } = this.props;
 
-    return superagent.get(`${routes.API_ROUTE}${routes.LOGIN_ROUTE}`)
-      .auth(this.state.username, this.state.password)
-      .then(response => {
-        toggleLandingOK();
-        sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
-        history.push('/landing');
-      });
+    if (this.state.username === '' || this.state.password === '') {
+      alert('enter username and password');
+      return;
+    } else {
+      return superagent.get(`${routes.API_ROUTE}${routes.LOGIN_ROUTE}`)
+        .auth(this.state.username, this.state.password)
+        .then(response => {
+          toggleLandingOK();
+          sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
+          history.push('/landing');
+        })
+        .catch(error => {
+          if (error.toString().includes('Not Found')) {
+            alert('Invalid username or password');
+          }
+        });
+    }
   }
 
 
@@ -50,7 +60,7 @@ class LogInForm extends React.Component {
         <input
           name='password'
           placeholder='password'
-          type='text'
+          type='password'
           value={this.state.password}
           onChange={this.handleChange}
         />
