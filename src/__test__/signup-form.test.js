@@ -39,9 +39,6 @@ describe('SignupForm', () => {
     mockEvent.name = 'email';
     mockEvent.value = 'testValue';
 
-    console.log(wrapper);
-    // wrapper.handleChange(mockEvent);
-
     expect(wrapper.state().email).toEqual('');
   });
 });

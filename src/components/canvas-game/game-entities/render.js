@@ -72,7 +72,6 @@ export const renderLevel = (level) => {
 
 // mattL - keydown === when a key is pressed
 document.addEventListener('keydown', (event) => {
-  // console.log(event.keyCode);
   // mattL - 40 === down arrow
   if (event.keyCode === 40 && !player.crouching) {
     player.crouching = true;
