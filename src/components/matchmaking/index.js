@@ -1,3 +1,4 @@
+import './_matchmaking.scss';
 import React from 'react';
 import { getSocket } from '../../utils/socketIO';
 import { updateSocket } from '../canvas-game/game-entities/setup';
