@@ -28,13 +28,24 @@ class SignUpForm extends React.Component {
 
     const { history, toggleLandingOK } = this.props;
 
-    return superagent.post(`${routes.API_ROUTE}${routes.SIGNUP_ROUTE}`)
-      .send(this.state)
-      .then(response => {
-        toggleLandingOK();
-        sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
-        history.push('/landing');
-      });
+    if (this.state.username === '' || this.state.email === '' || this.state.password === '') {
+      alert('input username email and password');
+      return;
+    } else {
+      return superagent.post(`${routes.API_ROUTE}${routes.SIGNUP_ROUTE}`)
+        .send(this.state)
+        .then(response => {
+          toggleLandingOK();
+          sessionStorage.setItem('X-GEO-JUMPER-TOKEN', response.text);
+          history.push('/landing');
+        })
+        .catch(error => {
+          if (error.toString().includes('Conflict')) {
+            alert('someone already has taken that username!');
+          }
+        });
+    }
+
   }
 
 
@@ -63,7 +74,6 @@ class SignUpForm extends React.Component {
 
 
   render() {
-
     return(
       <form onSubmit={this.handleSubmit}>
         <input
@@ -77,7 +87,7 @@ class SignUpForm extends React.Component {
         <input
           name='email'
           placeholder='email'
-          type='text'
+          type='email'
           value={this.state.email}
           onChange={this.handleChange}
         />
@@ -85,7 +95,7 @@ class SignUpForm extends React.Component {
         <input
           name='password'
           placeholder='password'
-          type='text'
+          type='password'
           value={this.state.password}
           onChange={this.handleChange}
         />
