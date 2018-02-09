@@ -76,7 +76,7 @@ class SignUpForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form id='signup' onSubmit={this.handleSubmit}>
         <input
           name='username'
           placeholder='username'
