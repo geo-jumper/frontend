@@ -174,13 +174,15 @@ canvas {
 //=========================================
 
 .loader {
-    border: 16px solid #ffffff; /* Light grey */
-    border-top: 16px solid #3ef1ad; /* Blue */
+    border: 26px solid #ffffff; /* Light grey */
+    border-top: 26px solid #3ef1ad; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 15em;
+    height: 15em;
     animation: spin 2s linear infinite;
     margin:auto;
+    position: relative;
+    top: 33%;
 }
 
 @keyframes spin {
@@ -216,7 +218,7 @@ li {
 #audio {
     position: absolute;
     right: 10vw;
-    top: 7.5px;  
+    top: 7.5px;
     margin: 0px;
     padding: 2px 5px;
     background-image: none;
@@ -228,4 +230,3 @@ li {
     color: black;
     cursor: pointer;
 }
-

@@ -1,3 +1,4 @@
+import './_matchmaking.scss';
 import React from 'react';
 import { getSocket } from '../../utils/socketIO';
 import { updateSocket } from '../canvas-game/game-entities/setup';
@@ -41,8 +42,8 @@ class Matchmaking extends React.Component {
   render() {
 
     let isSearching = this.state.searching ?
-      <p>1/2 Players found ...</p> :
-      <p>2/2 Players found ...</p>;
+      <p className='searching'>1/2 Players Found ...</p> :
+      <p className='searching'>2/2 Players Found ...</p>;
 
 
     return (
