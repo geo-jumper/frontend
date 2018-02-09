@@ -1,3 +1,4 @@
+import './_countdown.scss';
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 
@@ -38,7 +39,7 @@ class Countdown extends Component {
           }}/>
           : undefined}
 
-        <h1>{this.state.timer}</h1>
+        <h1 id='timer'>{this.state.timer}</h1>
       </div>
     );
   }
