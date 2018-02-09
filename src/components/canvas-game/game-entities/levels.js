@@ -359,16 +359,27 @@ export default { // levels
 
   5 : {
     id : 5,
-    background: 'underwater',
+    gravity : 0.1,
+    jumpLimit : Infinity,
+    jumpHeight : 0.6,
+    background : 'underwater',
     counterColor : 'white',
-    playerPosition : { x : 5, y : 350 },
+    playerPosition : { x : 5, y : 20 },
     star: {x: 370, y: 110}, 
     bricks : [
-      new game.Brick(0, 370, 50, 10),
-    
     ],
     spikes : [
 
+      // first spike border
+      new game.Spike(0, 0),
+      new game.Spike(10, 0),
+      new game.Spike(20, 0),
+      new game.Spike(30, 0),
+      new game.Spike(40, 0),
+      new game.Spike(50, 0),
+      new game.Spike(60, 0),
+      
+      
       // vertical spike wall
       new game.Spike(70, 10),
       new game.Spike(70, 30),
