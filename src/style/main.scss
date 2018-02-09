@@ -8,11 +8,12 @@
     outline-width: 0;
 }
 
-div#home {
+html, body, #container, #app, #landing, div#home {
     min-height: 100vh;
 }
 
 canvas {
+    position: absolute;
     width: 100vw;
 }
 
