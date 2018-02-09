@@ -401,10 +401,6 @@ export default { // levels
       
     
       // spike bottom
-      new game.Spike(5, 399),
-      new game.Spike(15, 399),
-      new game.Spike(25, 399),
-      new game.Spike(35, 399),
       new game.Spike(45, 399),
       new game.Spike(55, 399),
       new game.Spike(65, 399),
