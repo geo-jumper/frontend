@@ -40,6 +40,10 @@ class Landing extends React.Component {
                     this.setState({ levelData: parsedData });
                   });
               });
+          })
+          .catch(error => {
+            sessionStorage.removeItem('X-GEO-JUMPER-TOKEN');
+            this.props.history.push('/');
           });
 
       // ANONOMYOUS USERS
