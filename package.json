@@ -13,6 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/geo-jumper/frontend.git"
   },
+  "jest": {
+    "moduleNameMapper": {
+        "\\.(svg|eof|ttf|woff|woff2|scss|gif)$": "<rootDir>/src/__test__/mock-asset.js"
+    }
+},
   "keywords": [
     "react",
     "canvas",

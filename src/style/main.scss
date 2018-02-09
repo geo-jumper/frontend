@@ -1,5 +1,16 @@
 //********** MAIN SCSS **********************
 //=========================================
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+canvas {
+    width: 100vw;
+}
+
 #home , #landing, #matchmaking, #countdown, #match-results{
     background-color: rgb(71, 108, 231);
     color: rgb(255, 255, 255);
@@ -21,38 +32,6 @@
 }
 #countdown {
     height:500px;
-}
-button {
-    background: #1934e3;
-    background-image: -webkit-linear-gradient(top, #1934e3, #6728c7);
-    background-image: -moz-linear-gradient(top, #1934e3, #6728c7);
-    background-image: -ms-linear-gradient(top, #1934e3, #6728c7);
-    background-image: -o-linear-gradient(top, #1934e3, #6728c7);
-    background-image: linear-gradient(to bottom, #1934e3, #6728c7);
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-    font-family: Arial;
-    color: white;
-    font-size: 20px;
-    padding: 10px 20px 10px 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
-  }
-
-button:hover {
-    background: #3c4ffd;
-    background-image: -webkit-linear-gradient(top, #3c4ffd, #86ffbd);
-    background-image: -moz-linear-gradient(top, #3c4ffd, #86ffbd);
-    background-image: -ms-linear-gradient(top, #3c4ffd, #86ffbd);
-    background-image: -o-linear-gradient(top, #3c4ffd, #86ffbd);
-    background-image: linear-gradient(to bottom, #3c4ffd, #86ffbd);
-    text-decoration: none;
-  }
-
-button {
-    display: inline;
 }
 
 //********** HOME SCSS **********************
@@ -83,9 +62,7 @@ button {
     display: inline;
     margin-right: 20px;
 }
-#keys {
 
-}
 #up {
     height: 40px;
     width:40px;
@@ -232,6 +209,17 @@ li {
 //=========================================
 #audio {
     position: absolute;
-    margin-left: 20px;
+    right: 10vw;
+    top: 7.5px;  
+    margin: 0px;
+    padding: 2px 5px;
+    background-image: none;
+    background-color: black;
+}
+
+#audio:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
 }
 
