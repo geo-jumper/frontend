@@ -26,7 +26,10 @@ webPackConfig.plugins = [
   new DefinePlugin({
     __API_URL__: JSON.stringify(process.env.API_URL),
   }),
-  new ExtractTextPlugin('bundle.[hash].css'),
+  new ExtractTextPlugin({
+    filename: 'bundle.[hash].css',
+    disable: process.env.NODE_ENV !== 'production',
+  }),
 ];
 
 if (PRODUCTION) {
@@ -80,6 +83,7 @@ webPackConfig.module = {
     {
       test:  /\.scss$/,
       loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
         use: [
           'css-loader',
           'resolve-url-loader',
@@ -87,7 +91,10 @@ webPackConfig.module = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: [`${__dirname}/src/style`],
+              includePaths: [
+                `${__dirname}/src/style/main.scss`,
+                `${__dirname}/src/style/home.scss`,
+              ],
             },
           },
         ],
@@ -101,4 +108,3 @@ webPackConfig.devtool = PRODUCTION ? undefined : 'eval-source-map';
 webPackConfig.devServer = {
   historyApiFallback: true,
 };
-

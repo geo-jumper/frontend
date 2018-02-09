@@ -36,11 +36,17 @@ let startingTime;
 let points;
 let counterColor;
 let levelFriction;
+let levelGravity;
 
 export const renderLevel = (level) => {
   console.log(`Loading level`, level);
   player.getUsername();
+  // mattL - resetting player defaults
+  player.default.jumpLimit = 2;
+  player.jumpHeight = 3.2;
+  
   player.currentLevel = level.id;
+  
   star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
@@ -53,7 +59,10 @@ export const renderLevel = (level) => {
   gifFramesDefault = level.frames;
   counterColor = level.counterColor || 'black';
   levelFriction = level.friction || game.FRICTION;
+  levelGravity = level.gravity || game.GRAVITY;
   
+  player.jumpHeight = level.jumpHeight || player.jumpHeight;
+  player.default.jumpLimit = level.jumpLimit || player.default.jumpLimit;
   player.starIsCaptured = false;
   startingTime = Date.now();
 };
@@ -98,7 +107,7 @@ export function update() {
       player.velX *= levelFriction;
     }
     if (player.velY < player.terminalVelocity) {
-      player.velY += game.GRAVITY;
+      player.velY += levelGravity;
     }
     
     player.x += player.velX;

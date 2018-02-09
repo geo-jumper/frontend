@@ -25,6 +25,10 @@ class Matchmaking extends React.Component {
     const { history, toggleCountdownOK } = this.props;
 
     if (this.state.socket) {
+      // !!!!!!!!!!!!!!
+      const username = location.search.split('username=')[1];
+      console.log(username);
+      this.state.socket.emit('set-username', username);
       this.state.socket.on('match-found', () => {
         toggleCountdownOK();
         this.setState({ searching: false });
