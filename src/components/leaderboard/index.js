@@ -53,6 +53,123 @@ class Leaderboard extends Component {
       );
     }
 
+    if (this.props.levelData) {
+      let theLevelData = this.props.levelData.slice(0, 20);
+      console.log('===>', this.props.levelData);
+      theLevelData.forEach(data => {
+        if (data.level === 1) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          one = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
+        if (data.level === 2) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          two = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
+        if (data.level === 3) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          three = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
+        if (data.level === 4) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          four = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
+        if (data.level === 5) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          five = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
+      });
+    }
+
     let renderedScores = null;
 
     {

@@ -49,6 +49,7 @@ export class Player {
     this.terminalVelocity = 12;
     this.jumping = false;
     this.jumpLimit = this.default.jumpLimit;
+    this.jumpHeight = 3.2;
     this.crouching = false;
     this.falling = true;
     this.direction = 'right';
@@ -77,7 +78,7 @@ export class Player {
   }
 
   jump() {
-    this.velY = -this.speed * 3.2;
+    this.velY = -this.speed * this.jumpHeight;
     this.jumping = true;
     this.jumpLimit --;
     
@@ -85,7 +86,7 @@ export class Player {
       src: 
       [sounds.jumping],
     });
-    sound.play(); 
+    sound.play();
   }
 
   moveRight(keyboard) {
@@ -387,6 +388,7 @@ export class Player {
   sendTotalScore(totalScore) {
     socket.emit('total-score', ({
       totalScore,
+      level: 0,
     }));
   }
 }
