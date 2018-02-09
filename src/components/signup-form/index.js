@@ -33,7 +33,7 @@ class SignUpForm extends React.Component {
       alert('input username email and password');
       return;
     } else {
-      return superagent.post(`${routes.API_ROUTE}${routes.SIGNUP_ROUTE}`)
+      return superagent.post(`${__API_URL__}${routes.SIGNUP_ROUTE}`)
         .send(this.state)
         .then(response => {
           toggleLandingOK();
