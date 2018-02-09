@@ -1,0 +1,9 @@
+#quick-play {
+  background-image: none;
+  background: linear-gradient(red, yellow);
+  margin-bottom: 30px;
+}
+
+#quick-play:hover {
+  background: linear-gradient(yellow, red);
+}

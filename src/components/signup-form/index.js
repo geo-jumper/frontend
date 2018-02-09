@@ -1,3 +1,4 @@
+import './_signup-form.scss';
 import React from 'react';
 import validator from 'validator';
 import superagent from 'superagent';
@@ -75,7 +76,7 @@ class SignUpForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form id='signup' onSubmit={this.handleSubmit}>
         <input
           name='username'
           placeholder='username'
