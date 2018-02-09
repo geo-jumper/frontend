@@ -40,23 +40,33 @@ class Leaderboard extends Component {
     let four;
     let five;
 
-    if (this.props.leaderboard) {
-      let top20 = this.props.leaderboard.slice(0, 20);
-      overall = (
-        <ul>
-          {
-            top20.map((player, index) => {
-              return <li key={player._id}>{index + 1}{ player.name }</li>;
-            })
-          }
-        </ul>
-      );
-    }
 
     if (this.props.levelData) {
       let theLevelData = this.props.levelData.slice(0, 20);
       console.log('===>', this.props.levelData);
       theLevelData.forEach(data => {
+        if (data.level === 0) {
+          const compare = (a, b) => {
+            if (a.score > b.score) {
+              return -1;
+            }
+            if (a.score < b.score) {
+              return 1;
+            }
+            return 0;
+          };
+
+          data.scores.sort(compare);
+          overall = (
+            <ul>
+              {
+                data.scores.map((score, index) => {
+                  return <li key={score._id}>{index + 1} {score.username} {score.score}</li>;
+                })
+              }
+            </ul>
+          );
+        }
         if (data.level === 1) {
           const compare = (a, b) => {
             if (a.score > b.score) {
@@ -194,16 +204,18 @@ class Leaderboard extends Component {
     }
 
     return (
-      <div>
+      <div id = "leaderboard">
         <h3>HIGH SCORES</h3>
-        <select onChange={this.menuClicked}>
-          <option value='overall'>Overall</option>
-          <option value='one'>1 - Ice</option>
-          <option value='two'>2 - Lava</option>
-          <option value='three'>3 - Clouds</option>
-          <option value='four'>4 - Rainbow</option>
-          <option value='five'>5 - Underwater</option>
-        </select>
+        <div id = 'leaderboard-data'>
+          <select onChange={this.menuClicked}>
+            <option value='overall'>Overall</option>
+            <option value='one'>1 - Ice</option>
+            <option value='two'>2 - Lava</option>
+            <option value='three'>3 - Clouds</option>
+            <option value='four'>4 - Rainbow</option>
+            <option value='five'>5 - Underwater</option>
+          </select>
+        </div>
         { renderedScores }
       </div>
     );

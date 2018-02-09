@@ -49,6 +49,7 @@ export class Player {
     this.terminalVelocity = 12;
     this.jumping = false;
     this.jumpLimit = this.default.jumpLimit;
+    this.jumpHeight = 3.2;
     this.crouching = false;
     this.falling = true;
     this.direction = 'right';
@@ -77,15 +78,15 @@ export class Player {
   }
 
   jump() {
-    this.velY = -this.speed * 3.2;
+    this.velY = -this.speed * this.jumpHeight;
     this.jumping = true;
     this.jumpLimit --;
-    
+
     const sound = new Howl ({
-      src: 
+      src:
       [sounds.jumping],
     });
-    sound.play(); 
+    sound.play();
   }
 
   moveRight(keyboard) {
@@ -152,7 +153,7 @@ export class Player {
     this.setFalling();
 
     let standingCharacter = [
-      12, // image: x - location  
+      12, // image: x - location
       11, // image: y - location
       11, // image: x - span
       16, // image: y - span
@@ -164,8 +165,8 @@ export class Player {
 
     let movingCharacter = {
       // sequence 1
-      1: [ 
-        52, // image: x - location  
+      1: [
+        52, // image: x - location
         11, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -175,8 +176,8 @@ export class Player {
         this.height + 2,  // image: height
       ],
       // sequence 2
-      2: [ 
-        52, // image: x - location  
+      2: [
+        52, // image: x - location
         40, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -186,8 +187,8 @@ export class Player {
         this.height + 2,  // image: height
       ],
       // sequence 3
-      3: [ 
-        52, // image: x - location  
+      3: [
+        52, // image: x - location
         71, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -197,8 +198,8 @@ export class Player {
         this.height + 2,  // image: height
       ],
       // sequence 4
-      4: [ 
-        52, // image: x - location  
+      4: [
+        52, // image: x - location
         101, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -208,8 +209,8 @@ export class Player {
         this.height + 2,  // image: height
       ],
       // sequence 5
-      5: [ 
-        52, // image: x - location  
+      5: [
+        52, // image: x - location
         130, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -219,8 +220,8 @@ export class Player {
         this.height + 2,  // image: height
       ],
       // sequence 6
-      6: [ 
-        52, // image: x - location  
+      6: [
+        52, // image: x - location
         161, // image: y - location
         12, // image: x - span
         16, // image: y - span
@@ -232,7 +233,7 @@ export class Player {
     };
 
     let parachute = [
-      214, // image: x - location  
+      214, // image: x - location
       10, // image: y - location
       18, // image: x - span
       16, // image: y - span
@@ -243,7 +244,7 @@ export class Player {
     ];
 
     let crouchingCharacter = [
-      216, // image: x - location  
+      216, // image: x - location
       101, // image: y - location
       12, // image: x - span
       16, // image: y - span
@@ -254,7 +255,7 @@ export class Player {
     ];
 
     let jumpingCharacter = [
-      92, // image: x - location  
+      92, // image: x - location
       10, // image: y - location
       14, // image: x - span
       18, // image: y - span
@@ -277,7 +278,7 @@ export class Player {
       characterStatus = crouchingCharacter;
       this.drawCharacter(crouchingCharacter);
     }
-    // mattL - if the velocity is greater than 0.5 
+    // mattL - if the velocity is greater than 0.5
     //         then the player is moving at a noticeable rate
     else if (Math.abs(this.velX) > 0.5) {
       this.characterFrame += 1;
@@ -300,7 +301,7 @@ export class Player {
 
     if (this.playerInterval === 0) {
       this.playerInterval = 2;
-      
+
       socket.emit('update-player', ({
         currentLevel: this.currentLevel,
         direction: this.direction,
@@ -350,7 +351,7 @@ export class Player {
     let tuxedoMan = null;
 
     if (this.direction === 'left') {
-      tuxedoMan = leftTuxedoMan;  
+      tuxedoMan = leftTuxedoMan;
     } else {
       tuxedoMan = rightTuxedoMan;
     }
@@ -363,7 +364,7 @@ export class Player {
     let leftTuxedoManPink = document.getElementById('left-tuxedo-man-pink');
     let rightTuxedoManPink = document.getElementById('right-tuxedo-man-pink');
     let tuxedoMan = null;
-    
+
     if (secondPlayer.direction === 'left') {
       tuxedoMan = leftTuxedoManPink;
     } else {
@@ -392,9 +393,9 @@ export class Player {
     }));
   }
 
-  sendTotalScore(totalScore) {
+  sendTotalScore(score) {
     socket.emit('total-score', ({
-      totalScore,
+      score,
       level: 0,
     }));
   }
