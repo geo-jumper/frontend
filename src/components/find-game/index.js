@@ -1,11 +1,14 @@
 import React from 'react';
 import {socketInit} from '../../utils/socketIO';
 
-const FindGame = ({ history, toggleMatchmakingOK }) => {
+const FindGame = ({ history, toggleMatchmakingOK, name }) => {
   return(
     <button onClick = {() =>{
+      if (!name) {
+        name = 'anon';
+      }
       toggleMatchmakingOK();
-      history.push('/matchmaking');
+      history.push(`/matchmaking?username=${name}`);
       socketInit();
     }}>
     Find Game

@@ -69,6 +69,7 @@ class Landing extends React.Component {
       <div id ="landing">
         <h1 className='title'> Geo-Jumper </h1>
         <FindGame
+          name={this.state.name}
           history={this.props.history}
           toggleMatchmakingOK={this.props.toggleMatchmakingOK}
         />
