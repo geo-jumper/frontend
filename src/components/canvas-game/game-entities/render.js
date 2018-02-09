@@ -44,6 +44,7 @@ export const renderLevel = (level) => {
   // mattL - resetting player defaults
   player.default.jumpLimit = 2;
   player.jumpHeight = 3.2;
+  player.swimming = level.playerIsSwimming || false;
 
   player.currentLevel = level.id;
 
@@ -54,6 +55,8 @@ export const renderLevel = (level) => {
   player.y = level.playerPosition.y;
   player.default.x = level.playerPosition.x;
   player.default.y = level.playerPosition.y;
+  player.default.width = level.playerPosition.width || 20;
+  player.default.height = level.playerPosition.height || 28;
   background = level.background;
   gifFrames = level.frames;
   gifFramesDefault = level.frames;
