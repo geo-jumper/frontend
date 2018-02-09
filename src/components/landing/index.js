@@ -5,7 +5,6 @@ import Welcome from '../welcome';
 import Leaderboard from '../leaderboard';
 import Instructions from '../instructions';
 import * as routes from '../../routes';
-import MusicButton from '../music-button';
 
 class Landing extends React.Component {
   constructor(props){

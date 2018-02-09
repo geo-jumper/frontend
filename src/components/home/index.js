@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import SignUpForm from '../signup-form';
 import LogInForm from '../login-form';
 import ContinueAnonymously from '../continue-anonymously';
-import MusicButton from '../music-button';
 
 class Home extends React.Component {
   componentWillMount() {
