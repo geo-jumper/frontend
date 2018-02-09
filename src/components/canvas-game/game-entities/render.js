@@ -343,11 +343,10 @@ function endLevel() {
   }
 
   player.starIsCaptured = false;
-  
+
   if (player.currentLevel === 'end') {
     loadResults();
-  }
-  if (!levels[player.currentLevel + 1]) {
+  } else if (!levels[player.currentLevel + 1]) {
     player.sendTotalScore(player.score);
     renderLevel(levels['end']);
   } else {
