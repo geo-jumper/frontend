@@ -306,6 +306,7 @@ export class Player {
         currentLevel: this.currentLevel,
         direction: this.direction,
         characterStatus,
+        score : this.score,
       }));
 
       socket.on('render-players', (secondPlayer) => {
@@ -335,6 +336,13 @@ export class Player {
     } else {
       this.falling = true;
     }
+  }
+
+  getUsername() {
+    socket.emit('get-player-username');
+    socket.on('send-player-username', username => {
+      this.username = username;
+    });
   }
 
   drawCharacter(properties) {

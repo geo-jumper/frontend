@@ -608,10 +608,15 @@ export default { // levels
   default : {
     id : 'default',
     counterColor : 'black',
-    star : { x: 450, y: 350 },
+    star : { x: 440, y: 40 },
     playerPosition : { x : 10, y : 350 },
-    background : 'clouds', // <img/> id
+    background : 'clouds',
     bricks : [
+      new game.Brick(150, 310, 150, 30, 'black'),
+      new game.Brick(250, 210, 150, 30, 'black'),
+      new game.Brick(500, 210, 150, 30, 'black'),
+      new game.Brick(600, 310, 150, 30, 'black'),
+      new game.Brick(375, 110, 150, 30, 'black'),
     ],
     spikes : [
     ],
@@ -620,10 +625,15 @@ export default { // levels
   end : {
     id : 'end',
     counterColor : 'black',
-    star : { x: 450, y: 350 },
+    star : { x: 440, y: 40 },
     playerPosition : { x : 10, y : 350 },
-    background : 'clouds', // <img/> id
+    background : 'clouds',
     bricks : [
+      new game.Brick(150, 310, 150, 30, 'black'),
+      new game.Brick(250, 210, 150, 30, 'black'),
+      new game.Brick(500, 210, 150, 30, 'black'),
+      new game.Brick(600, 310, 150, 30, 'black'),
+      new game.Brick(375, 110, 150, 30, 'black'),
     ],
     spikes : [
     ],
