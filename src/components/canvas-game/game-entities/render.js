@@ -19,7 +19,7 @@ let bricks = [
   new game.Brick(200, 100),
   new game.Brick(375, 100),
 ];
-// ====HAZARDS===== 
+// ====HAZARDS=====
 let spikes = [
   new game.Spike(85, 200),
   new game.Spike(180, 100),
@@ -45,7 +45,7 @@ export const renderLevel = (level) => {
   player.jumpHeight = 3.2;
 
   player.currentLevel = level.id;
-  
+
   star = new game.Star(level.star.x, level.star.y);
   bricks = level.bricks;
   spikes = level.spikes;
@@ -59,7 +59,7 @@ export const renderLevel = (level) => {
   counterColor = level.counterColor || 'black';
   levelFriction = level.friction || game.FRICTION;
   levelGravity = level.gravity || game.GRAVITY;
-  
+
   player.jumpHeight = level.jumpHeight || player.jumpHeight;
   player.default.jumpLimit = level.jumpLimit || player.default.jumpLimit;
   player.starIsCaptured = false;
@@ -99,7 +99,7 @@ export function update() {
     player.moveRight(keyboard);
     player.moveLeft(keyboard);
     player.glide(keyboard);
-    
+
     if (keyboard[40]) { // 40 === 'down arrow'
       player.slide();
     } else {
@@ -108,15 +108,15 @@ export function update() {
     if (player.velY < player.terminalVelocity) {
       player.velY += levelGravity;
     }
-    
+
     player.x += player.velX;
     player.y += player.velY;
-    
+
     setBorders(player);
     collisionCheck(player, bricks);
     spikeCheck(player, spikes);
     starCheck(player, star);
-    
+
     clearCanvas(game.ctx);
     renderBackground();
     bricks.forEach(brick => brick.render());
@@ -132,7 +132,7 @@ export function update() {
     }
 
     player.render();
-    
+
   }, 1000 / 59);
 }
 
@@ -149,13 +149,13 @@ function collisionCheck(player, objects) {
     let halfHeights = (player.height / 2) + (object.height / 2);
     // add the half widths and half heights of the objects
     let collisionDirection = null;
-  
+
     // if the x and y vector are less than the half width or half height, they must be inside the object, causing a collision
-    if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {         
+    if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       // figures out on which side we are colliding (top, bottom, left, or right)
-      var distanceX = halfWidths - Math.abs(vectorX),             
-        distanceY = halfHeights - Math.abs(vectorY); 
-  
+      var distanceX = halfWidths - Math.abs(vectorX),
+        distanceY = halfHeights - Math.abs(vectorY);
+
       if (distanceX >= distanceY) {
         if (vectorY > 0) {
           collisionDirection = 'bottom';
@@ -190,18 +190,18 @@ function spikeCheck(player, spikes) {
     let halfWidths = (player.width / 2) + (spike.width / 2);
     let halfHeights = (player.height / 2) + (spike.height / 2);
     // add the half widths and half heights of the objects
-  
+
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       player.resetPosition();
-  
+
       const sound = new Howl({
         src:
           [sounds.spikeCollision],
       });
       sound.play();
     }
-  }); 
+  });
 }
 
 // CHECKING FOR PLAYER TO REACH STAR !!
@@ -213,18 +213,18 @@ function starCheck(player, star) {
     let halfWidths = (player.width / 2) + (star.width / 2);
     let halfHeights = (player.height / 2) + (star.height / 2);
     // add the half widths and half heights of the objects
-  
+
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
       player.wonTheLevel = true;
       endLevel();
-  
+
       const sound = new Howl({
         src:
           [sounds.starCollision],
       });
       sound.play();
-    } 
+    }
   }
 }
 
@@ -238,7 +238,7 @@ function setTopAndBottomBorders(model) {
   if (model.y >= game.CANVAS_HEIGHT - model.height) {
     model.y = game.CANVAS_HEIGHT - model.height;
     model.velY = 0;
-    
+
     if (model.type === 'character') {
       model.resetJump();
     }
@@ -299,10 +299,10 @@ function renderBackground() {
     if (gifFrames === gifFramesDefault * 2) {
       gifFrames = 2;
     }
-    
+
     let image = document.getElementById(background[Math.floor(gifFrames / 2)]);
     game.ctx.drawImage(image, 0, 0, 900, 400);
-    
+
     gifFrames ++;
   } else {
 
@@ -328,26 +328,25 @@ function renderTimer() {
 }
 
 function endLevel() {
-  player.starIsCaptured = false;
-  
+
   if (player.wonTheLevel) {
     // mattL - you have to reset the level win so that last couple frames don't loop
     //         the game to the end
-    player.wonTheLevel = false; 
+    player.wonTheLevel = false;
 
     player.captureStar({
-      currentLevel: player.currentLevel, 
+      currentLevel: player.currentLevel,
       points,
     });
 
     player.score += points;
   }
 
+  player.starIsCaptured = false;
 
   if (player.currentLevel === 'end') {
     loadResults();
-  }
-  if (!levels[player.currentLevel + 1]) {
+  } else if (!levels[player.currentLevel + 1]) {
     player.sendTotalScore(player.score);
     renderLevel(levels['end']);
   } else {
