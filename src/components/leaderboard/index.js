@@ -41,11 +41,11 @@ class Leaderboard extends Component {
     let five;
 
     if (this.props.leaderboard) {
-      let top20 = this.props.leaderboard.slice(0, 20);
+      let top10 = this.props.leaderboard.slice(0, 10);
       overall = (
         <ul>
           {
-            top20.map((player, index) => {
+            top10.map((player, index) => {
               return <li key={player._id}>{index + 1}{ player.name }</li>;
             })
           }
@@ -77,16 +77,18 @@ class Leaderboard extends Component {
     }
 
     return (
-      <div>
+      <div id = "leaderboard">
         <h3>HIGH SCORES</h3>
-        <select onChange={this.menuClicked}>
-          <option value='overall'>Overall</option>
-          <option value='one'>1 - Ice</option>
-          <option value='two'>2 - Lava</option>
-          <option value='three'>3 - Clouds</option>
-          <option value='four'>4 - Rainbow</option>
-          <option value='five'>5 - Underwater</option>
-        </select>
+        <div id = 'leaderboard-data'>
+          <select onChange={this.menuClicked}>
+            <option value='overall'>Overall</option>
+            <option value='one'>1 - Ice</option>
+            <option value='two'>2 - Lava</option>
+            <option value='three'>3 - Clouds</option>
+            <option value='four'>4 - Rainbow</option>
+            <option value='five'>5 - Underwater</option>
+          </select>
+        </div>
         { renderedScores }
       </div>
     );
