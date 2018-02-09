@@ -30,7 +30,7 @@ class LogInForm extends React.Component {
       alert('enter username and password');
       return;
     } else {
-      return superagent.get(`${routes.API_ROUTE}${routes.LOGIN_ROUTE}`)
+      return superagent.get(`${__API_URL__}${routes.LOGIN_ROUTE}`)
         .auth(this.state.username, this.state.password)
         .then(response => {
           toggleLandingOK();

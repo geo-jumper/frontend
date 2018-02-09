@@ -22,20 +22,20 @@ class Landing extends React.Component {
       // LOGGED IN USERS
       if (token) {
         // GET USER DATA
-        return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}/me`)
+        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}/me`)
           .set('Authorization', `Bearer ${token}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
             console.log(parsedResponse);
             this.setState({ ...parsedResponse });
             // GET LEADERBOARD DATA
-            return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
+            return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`)
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
                 const parsedData = parsedResponse.data;
                 this.setState({ leaderboard: parsedData });
                 // GET HIGHSCORES
-                return superagent.get(`${routes.API_ROUTE}${routes.HIGHSCORES}`)
+                return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`)
                   .then(response => {
                     const parsedResponse = JSON.parse(response.text);
                     const parsedData = parsedResponse;
@@ -47,13 +47,13 @@ class Landing extends React.Component {
       // ANONOMYOUS USERS
       } else {
         // GET LEADERBOARD DATA
-        return superagent.get(`${routes.API_ROUTE}${routes.PROFILE_ROUTE}`)
+        return superagent.get(`${__API_URL__}${routes.PROFILE_ROUTE}`)
           .then(response => {
             const parsedResponse = JSON.parse(response.text);
             const parsedData = parsedResponse.data;
             this.setState({ leaderboard: parsedData });
             // GET HIGHSCORES
-            return superagent.get(`${routes.API_ROUTE}${routes.HIGHSCORES}`)
+            return superagent.get(`${__API_URL__}${routes.HIGHSCORES}`)
               .then(response => {
                 const parsedResponse = JSON.parse(response.text);
                 const parsedData = parsedResponse;
