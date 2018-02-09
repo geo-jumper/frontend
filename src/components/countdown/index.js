@@ -21,7 +21,6 @@ class Countdown extends Component {
     } else {
       this.countdown = setInterval(() => {
         let timer = this.state.timer;
-        console.log(timer);
 
         timer--;
         this.setState({ timer });

@@ -44,7 +44,6 @@ class Leaderboard extends Component {
 
     if (this.props.levelData) {
       let theLevelData = this.props.levelData.slice(0, 20);
-      console.log('===>', this.props.levelData);
       theLevelData.forEach(data => {
         if (data.level === 0) {
           const compare = (a, b) => {

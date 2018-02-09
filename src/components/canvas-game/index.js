@@ -44,7 +44,7 @@ class Game extends React.Component {
   render() {
     return(
       <div>
-        {endGame ? location.replace('/') : console.log(false)} {/* TODO: change url to highscores */}
+        {endGame ? location.replace('/') : null}
       </div>
     );
   }
