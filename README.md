@@ -122,6 +122,8 @@ Standard JavaScript with ES6 Syntax.
 ### Credits
 
 * [Character Sheet - Gentleman Spy](https://opengameart.org/content/gentleman-spy-animated)
+* Komiku - song title 'Ending' - for background music
+* Juhani Junkala - sound effects - email: juhani.junkala@musician.org
 * Code Fellows
 * Heroku - for deployment
 * Travis.ci - for continuous integration
