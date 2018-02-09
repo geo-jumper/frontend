@@ -29,6 +29,7 @@ class Home extends React.Component {
           history={this.props.history}
           toggleLandingOK={this.props.toggleLandingOK}
         />
+
       </div>
     );
   }

@@ -91,7 +91,10 @@ webPackConfig.module = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: [`${__dirname}/src/style`],
+              includePaths: [
+                `${__dirname}/src/style/main.scss`,
+                `${__dirname}/src/style/home.scss`,
+              ],
             },
           },
         ],
