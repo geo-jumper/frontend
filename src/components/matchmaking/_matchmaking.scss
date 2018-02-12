@@ -1,0 +1,18 @@
+#matchmaking {
+  min-height: 100vh;
+  h1 {
+    padding-top: 20px;
+    font-family: 'Press Start 2P';
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #115ff0, 0 0 30px #115ff0, 0 0 40px #115ff0, 0 0 55px #115ff0, 0 0 75px #115ff0;
+  }
+
+  p {
+    font-size: 25px;
+    font-family: 'Press Start 2P';
+  }
+
+  #loader-wrapper {
+    position: relative;
+    top: 13%;
+  }
+}

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+#countdown {
+  text-align: center;
+  min-height: 100vh;
+}
+
+#timer {
+  font-size: 15em;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #115ff0, 0 0 30px #115ff0, 0 0 40px #115ff0, 0 0 55px #115ff0, 0 0 75px #115ff0;
+  font-family: 'Press Start 2P';
+  position: relative;
+  top: 30%;
+  margin: 0;
+}
