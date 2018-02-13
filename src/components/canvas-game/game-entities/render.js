@@ -302,7 +302,7 @@ function renderBackground() {
 
   if (typeof background === 'object') {
     if (!gifFramesDefault) {
-      throw new Error('__RENDER BACKGROUND__ background frame integer required for gif\'s');
+      throw new TypeError('__BACKGROUND_RENDERING__ frame integer required for background gifs \n ex: `<level> : { frames : 26 }`\n');
     }
     if (gifFrames === gifFramesDefault * 2) {
       gifFrames = 2;
