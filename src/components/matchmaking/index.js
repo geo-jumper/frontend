@@ -1,6 +1,6 @@
 import './_matchmaking.scss';
 import React from 'react';
-import { getSocket } from '../../utils/socketIO';
+import { getSocket, socketInit, socket } from '../../utils/socketIO';
 import { updateSocket } from '../canvas-game/game-entities/setup';
 
 class Matchmaking extends React.Component {
@@ -11,6 +11,12 @@ class Matchmaking extends React.Component {
       socket: null,
     };
 
+
+    this.skipMatchmaking = () => {
+      if (socket) {
+        socketInit();
+      }
+    };
   }
 
   componentWillMount() {
@@ -49,6 +55,7 @@ class Matchmaking extends React.Component {
         <h1> Matchmaking </h1>
         <div className = "loader"></div>
         {isSearching}
+        <button onClick={this.skipMatchmaking}> Tired of Waiting? </button>
       </div>
     );
   }
